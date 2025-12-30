@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace StudentPerformanceDashboard.Models
+namespace StudentPerformanceDashboard
 {
     // Base data models
     public sealed class StudentsPerYear

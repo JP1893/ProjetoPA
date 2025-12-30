@@ -2,13 +2,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
-using StudentPerformanceDashboard.Models;
-using StudentPerformanceDashboard.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace StudentPerformanceDashboard.Views
+namespace StudentPerformanceDashboard
 {
     public partial class StudentDashboardPage : Window
     {
