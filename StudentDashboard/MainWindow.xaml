@@ -3,10 +3,374 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:StudentDashBoard"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        xmlns:local="clr-namespace:StudentPerformanceDashboard"
+        xmlns:chart="http://schemas.syncfusion.com/wpf"
+        xmlns:gauge="http://schemas.syncfusion.com/wpf"
+        xmlns:editors="http://schemas.syncfusion.com/wpf"
+        mc:Ignorable="d">
 
-    </Grid>
+    <Window.DataContext>
+        <local:StudentPerformanceViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary  Source="/Style/DashboardStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <ScrollViewer>
+        <Grid RowDefinitions="1*,1*,3.5*,4.5*" Background="#290D5C">
+
+            <!-- Header -->
+            <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto,Auto" Margin="5">
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Path Data="{StaticResource PathData1}" Margin="10,0,0,0"  Fill="#FAEFF6"/>
+                        <TextBlock Margin="20,0,0,0" Text="Student Performance and Engagement Hub" Foreground="#FAEFF6" FontSize="24"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <TextBlock Grid.Column="1" FontSize="15" Foreground="#FAEFF6" Text="Subject" FontWeight="SemiBold" Margin="20,10,10,10" VerticalAlignment="Center"/>
+
+                <editors:ComboBoxAdv Grid.Column="2" Style="{StaticResource comboBoxStyle}"
+                     Width="160"
+                     DisplayMemberPath="Name"
+                     ItemsSource="{Binding Subjects}"
+                     SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"
+                     VerticalAlignment="Center"/>
+
+                <editors:ComboBoxAdv Grid.Column="3" Style="{StaticResource comboBoxStyle}" Margin="10,0,0,0"
+                     Width="120" VerticalAlignment="Center"
+                     ItemsSource="{Binding Years}"
+                     SelectedItem="{Binding SelectedYear, Mode=TwoWay}"/>
+            </Grid>
+
+            <!-- Score tiles -->
+            <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*,*">
+
+                <Border Grid.Column="0" Style="{StaticResource border}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="PhysEd : " Style="{StaticResource kpiCard1}"/>
+                        <TextBlock Text="{Binding PhysEdScore, StringFormat={}{0}%}" Style="{StaticResource kpiCard2}"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" Style="{StaticResource border}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="Arts  : " Style="{StaticResource kpiCard1}"/>
+                        <TextBlock Text="{Binding ArtsScore, StringFormat={}{0}%}" Style="{StaticResource kpiCard2}"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Style="{StaticResource border}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="English : " Style="{StaticResource kpiCard1}"/>
+                        <TextBlock Text="{Binding EnglishScore, StringFormat={}{0}%}" Style="{StaticResource kpiCard2}"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="3" Style="{StaticResource border}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="Maths : " Style="{StaticResource kpiCard1}"/>
+                        <TextBlock Text="{Binding MathsScore, StringFormat={}{0}%}"  Style="{StaticResource kpiCard2}"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="4" Style="{StaticResource border}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="Science  : "  Style="{StaticResource kpiCard1}"/>
+                        <TextBlock Text="{Binding ScienceScore, StringFormat={}{0}%}" Style="{StaticResource kpiCard2}"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="2" ColumnDefinitions="4*,3.5*,2.5*">
+
+                <Border Grid.Column="0" Style="{StaticResource border}">
+                    <StackPanel>
+                        <TextBlock Text="Examination Results by Subject" Style="{StaticResource titleStyle}"/>
+                        <chart:SfChart Palette="Custom">
+                            <chart:SfChart.PrimaryAxis>
+                                <chart:CategoryAxis ShowGridLines="False" LabelPlacement="BetweenTicks" AxisLineStyle="{StaticResource axisLineStyle}"
+                                                    MajorTickLineStyle="{StaticResource axisLineStyle}" LabelStyle="{StaticResource axisLabelStyle}">
+                                </chart:CategoryAxis>
+                            </chart:SfChart.PrimaryAxis>
+
+                            <chart:SfChart.SecondaryAxis>
+                                <chart:NumericalAxis LabelStyle="{StaticResource axisLabelStyle}" EdgeLabelsDrawingMode="Center"
+                                                     MajorGridLineStyle="{StaticResource gridLineStyle}" Interval="200"
+                                                     AxisLineStyle="{StaticResource axisLineStyle}" MajorTickLineStyle="{StaticResource axisLineStyle}">
+                                </chart:NumericalAxis>
+                            </chart:SfChart.SecondaryAxis>
+
+                            <chart:SfChart.Legend>
+                                <chart:ChartLegend FontSize="13" Foreground="#FFFFF8" VerticalContentAlignment="Center" ItemMargin="5" IconHeight="12" IconWidth="12"/>
+                            </chart:SfChart.Legend>
+
+                            <chart:SfChart.ColorModel>
+                                <chart:ChartColorModel>
+                                    <chart:ChartColorModel.CustomBrushes>
+                                        <SolidColorBrush Color="#0BA7AC"/>
+                                        <SolidColorBrush Color="#F77F00"/>
+                                        <SolidColorBrush Color="#EC492D"/>
+                                    </chart:ChartColorModel.CustomBrushes>
+                                </chart:ChartColorModel>
+                            </chart:SfChart.ColorModel>
+
+                            <!-- Pass -->
+                            <chart:ColumnSeries ItemsSource="{Binding FilteredExamResults}" XBindingPath="Subject.Name" 
+                                    YBindingPath="Pass" SegmentSpacing="0.1" Label="Pass">
+                            </chart:ColumnSeries>
+
+                            <!-- Fail -->
+                            <chart:ColumnSeries ItemsSource="{Binding FilteredExamResults}" XBindingPath="Subject.Name"
+                             YBindingPath="Fail" SegmentSpacing="0.1" Label="Fail">
+                            </chart:ColumnSeries>
+
+                            <!-- Not attended -->
+                            <chart:ColumnSeries ItemsSource="{Binding FilteredExamResults}" XBindingPath="Subject.Name"
+                             YBindingPath="NotAttended"  SegmentSpacing="0.1" Label="Not Attended"/>
+                        </chart:SfChart>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" Style="{StaticResource border}">
+                    <StackPanel>
+                        <TextBlock Text="Semester Grade Trends" Style="{StaticResource titleStyle}"/>
+
+                        <chart:SfChart>
+                            <chart:SfChart.PrimaryAxis>
+
+                                <chart:CategoryAxis ShowGridLines="False" LabelStyle="{StaticResource axisLabelStyle}" PlotOffset="5"
+                                                     MajorGridLineStyle="{StaticResource gridLineStyle}" EdgeLabelsDrawingMode="Center"
+                                                     AxisLineStyle="{StaticResource axisLineStyle}" MajorTickLineStyle="{StaticResource tickLineStyle}">
+                                </chart:CategoryAxis>
+                            </chart:SfChart.PrimaryAxis>
+
+                            <chart:SfChart.SecondaryAxis>
+                                <chart:NumericalAxis LabelStyle="{StaticResource axisLabelStyle}" EdgeLabelsDrawingMode="Center"
+                                                     MajorGridLineStyle="{StaticResource gridLineStyle}"
+                                                     AxisLineStyle="{StaticResource axisLineStyle}" MajorTickLineStyle="{StaticResource axisLineStyle}">
+                                </chart:NumericalAxis>
+                            </chart:SfChart.SecondaryAxis>
+
+                            <chart:SplineSeries ItemsSource="{Binding FilteredSemesterTrend}" XBindingPath="Label" YBindingPath="Value" Interior="#0BA7AC">
+                                <chart:SplineSeries.AdornmentsInfo>
+                                    <chart:ChartAdornmentInfo ShowMarker="True" SymbolStroke="#0BA7AC" BorderThickness="1" SymbolInterior="#FFFFF8"
+                                                              Symbol="Ellipse" SymbolHeight="8" SymbolWidth="8"/>
+                                </chart:SplineSeries.AdornmentsInfo>
+                            </chart:SplineSeries>
+
+                        </chart:SfChart>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Style="{StaticResource border}">
+                    <StackPanel>
+                        <TextBlock Text="Gender Participation" Style="{StaticResource titleStyle}"/>
+
+                        <chart:SfChart>
+
+                            <chart:SfChart.Legend>
+                                <chart:ChartLegend DockPosition="Bottom" Foreground="#FFFFF8" FontSize="13" VerticalContentAlignment="Center" ItemMargin="5" IconHeight="12" IconWidth="12"/>
+                            </chart:SfChart.Legend>
+
+                            <chart:DoughnutSeries ItemsSource="{Binding GenderParticipationPie}" XBindingPath="Label" 
+                                YBindingPath="Value" LegendIcon="Pentagon" Palette="Custom" EnableSmartLabels="True" LabelPosition="Inside"
+                                StartAngle="140" EndAngle="400" DoughnutCoefficient="0.8" DoughnutSize="1">
+
+                                <chart:DoughnutSeries.ColorModel>
+                                    <chart:ChartColorModel>
+                                        <chart:ChartColorModel.CustomBrushes>
+                                            <SolidColorBrush Color="#0BA7AC"/>
+                                            <SolidColorBrush Color="#F77F00"/>
+                                            <SolidColorBrush Color="#EC492D"/>
+                                        </chart:ChartColorModel.CustomBrushes>
+                                    </chart:ChartColorModel>
+                                </chart:DoughnutSeries.ColorModel>
+
+                                <chart:DoughnutSeries.AdornmentsInfo>
+                                    <chart:ChartAdornmentInfo ShowLabel="True" Foreground="White" ShowConnectorLine="True" FontSize="11" Margin="4"
+                                          SegmentLabelContent="Percentage"/>
+                                </chart:DoughnutSeries.AdornmentsInfo>
+                            </chart:DoughnutSeries>
+                        </chart:SfChart>
+
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+
+            <Grid Grid.Row="3" ColumnDefinitions="4*,4*,2*">
+
+                <Border Grid.Column="0" Style="{StaticResource border}">
+                    <StackPanel>
+                        <TextBlock Text="Students per Year" Style="{StaticResource titleStyle}"/>
+                        <chart:SfChart>
+
+                            <chart:SfChart.PrimaryAxis>
+                                <chart:CategoryAxis ShowGridLines="False" LabelStyle="{StaticResource axisLabelStyle}" EdgeLabelsDrawingMode="Shift"
+                                                     MajorGridLineStyle="{StaticResource gridLineStyle}" LabelPlacement="BetweenTicks"
+                                                     AxisLineStyle="{StaticResource axisLineStyle}" MajorTickLineStyle="{StaticResource tickLineStyle}">
+                                </chart:CategoryAxis>
+                            </chart:SfChart.PrimaryAxis>
+
+                            <chart:SfChart.SecondaryAxis>
+                                <chart:NumericalAxis ShowGridLines="True" LabelStyle="{StaticResource axisLabelStyle}" EdgeLabelsDrawingMode="Center"
+                                                     MajorGridLineStyle="{StaticResource gridLineStyle}"
+                                                     AxisLineStyle="{StaticResource axisLineStyle}" MajorTickLineStyle="{StaticResource axisLineStyle}">
+                                </chart:NumericalAxis>
+                            </chart:SfChart.SecondaryAxis>
+
+                            <chart:SplineSeries ItemsSource="{Binding StudentsPerYear}" XBindingPath="Year" YBindingPath="Students"
+                                                Interior="#F73039">
+                                <chart:SplineSeries.AdornmentsInfo>
+                                    <chart:ChartAdornmentInfo ShowMarker="True" SymbolInterior="#FFFFF8" SymbolStroke="#F73039" BorderThickness="1"
+                                                              Symbol="Ellipse" SymbolHeight="8" SymbolWidth="8"/>
+                                </chart:SplineSeries.AdornmentsInfo>
+                            </chart:SplineSeries>
+
+                        </chart:SfChart>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" Style="{StaticResource border}">
+                    <StackPanel>
+                        <TextBlock Text="Participation Rate by Subject (%)" Style="{StaticResource titleStyle}"/>
+
+                        <Grid>
+                            <chart:SfChart Visibility="{Binding FilteredParticipationRates.Count,
+                                                  Converter={StaticResource MultipleItemsVisibleConverter}}">
+                                <chart:SfChart.PrimaryAxis>
+                                    <chart:CategoryAxis ShowGridLines="False" LabelStyle="{StaticResource axisLabelStyle}" LabelPlacement="BetweenTicks"
+                                                     MajorGridLineStyle="{StaticResource gridLineStyle}"
+                                                     AxisLineStyle="{StaticResource gridLineStyle}" MajorTickLineStyle="{StaticResource gridLineStyle}">
+                                    </chart:CategoryAxis>
+                                </chart:SfChart.PrimaryAxis>
+                                <chart:SfChart.SecondaryAxis>
+                                    <chart:NumericalAxis ShowGridLines="False" Maximum="100" Visibility="Collapsed">
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.SecondaryAxis>
+
+                                <chart:ColumnSeries ItemsSource="{Binding FilteredParticipationRates}" XBindingPath="Subject.Name"
+                                      YBindingPath="Rate" Palette="Custom">
+
+                                    <chart:ColumnSeries.ColorModel>
+                                        <chart:ChartColorModel>
+                                            <chart:ChartColorModel.CustomBrushes>
+                                                <SolidColorBrush Color="#087C8A"/>
+                                                <SolidColorBrush Color="#14A89B"/>
+                                                <SolidColorBrush Color="#FC9000"/>
+                                                <SolidColorBrush Color="#F85600"/>
+                                            </chart:ChartColorModel.CustomBrushes>
+                                        </chart:ChartColorModel>
+                                    </chart:ColumnSeries.ColorModel>
+                                    <chart:ColumnSeries.AdornmentsInfo>
+                                        <chart:ChartAdornmentInfo ShowLabel="True"/>
+                                    </chart:ColumnSeries.AdornmentsInfo>
+                                </chart:ColumnSeries>
+                            </chart:SfChart>
+
+                            <!--<gauge:SfCircularGauge VerticalContentAlignment="Top"
+                                     VerticalAlignment="Top" Visibility="{Binding FilteredParticipationRates.Count,
+                                   Converter={StaticResource OneItemVisibleConverter}}">
+                                    
+                                    <gauge:SfCircularGauge.Annotations>
+                                        <gauge:GaugeAnnotation VerticalContentAlignment="Top" Offset="0.1" Angle="270">
+                                            <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding FilteredParticipationRates[0].Subject.Name}"
+                                                    FontSize="24" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="{Binding FilteredParticipationRates[0].Rate}" FontSize="34"
+                                                     FontWeight="Bold" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+                                        </gauge:GaugeAnnotation>
+                                    </gauge:SfCircularGauge.Annotations>
+
+                                    <gauge:SfCircularGauge.Scales>
+                                        <gauge:CircularScale StartAngle="180" ShowLabels="False"
+                                           ShowRim="False" SweepAngle="180" Radius="0.8" ShowTicks="False"
+                                           ShowFirstLabel="False">
+                                            <gauge:CircularScale.Pointers>
+                                                <gauge:CircularPointer RangePointerStrokeThickness="25" PointerType="RangePointer"
+                                                     RangeCap="Both" EnableAnimation="False" Value="100"/>
+                                            </gauge:CircularScale.Pointers>
+                                        </gauge:CircularScale>
+
+                                        <gauge:CircularScale SweepAngle="180" ShowLabels="False" StartAngle="180"
+                                           Radius="0.8" ShowTicks="False" ShowRim="False" BindRangeStrokeToLabels="True">
+                                            <gauge:CircularScale.Pointers>
+                                                <gauge:CircularPointer RangePointerStrokeThickness="25" PointerType="RangePointer"
+                                                     RangeCap="Both" EnableAnimation="True" Value="{Binding FilteredParticipationRates[0].Rate}"/>
+                                            </gauge:CircularScale.Pointers>
+                                        </gauge:CircularScale>
+                                        
+                                    </gauge:SfCircularGauge.Scales>
+                                </gauge:SfCircularGauge>-->
+
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Style="{StaticResource border}">
+                    <Grid RowDefinitions="1.5*, 8.5*" ColumnDefinitions="Auto,Auto">
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Grades Distribution" Style="{StaticResource titleStyle}"/>
+
+                        <ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding GradeDistributions}">
+
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="ContentPresenter">
+                                    <Setter Property="Margin" Value="0,6,0,6"/>
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+
+                                <DataTemplate>
+                                    <Border CornerRadius="14">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                <GradientStop Color="#FFFFFBEB" Offset="0"/>
+                                                <GradientStop Color="{Binding Color}" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                        <StackPanel Orientation="Horizontal" Margin="10">
+                                            <TextBlock Text="{Binding Grade}" FontWeight="SemiBold" FontSize="16"/>
+                                            <TextBlock VerticalAlignment="Center" FontSize="16" Margin="5,0,0,0">
+                                                <Run Text="{Binding Percentage}"/>
+                                                <Run Text="%"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Margin="30,30,0,0">
+                            <TextBlock Text="Every grade tells" FontStyle="Italic" Foreground="#FAEFF6" FontWeight="SemiBold" FontSize="17"/>
+                            <TextBlock Text="a story of effort..!" FontStyle="Italic" Foreground="#FAEFF6" FontWeight="SemiBold" FontSize="17"/>
+                            <Path  Data="{StaticResource PathData2}" Stroke="#FAEFF6" StrokeThickness="0.6" Margin="0,20,0,0">
+                                <Path.RenderTransform>
+                                    <ScaleTransform ScaleX="4.5" ScaleY="5"/>
+                                </Path.RenderTransform>
+                            </Path>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+            </Grid>
+
+        </Grid>
+
+    </ScrollViewer>
+
 </Window>

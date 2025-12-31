@@ -1,130 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Windows.Media;
-
-namespace StudentPerformanceDashboard
+﻿namespace StudentPerformanceDashboard
 {
-    public sealed class StudentPerformanceViewModel : INotifyPropertyChanged
+    public partial class StudentPerformanceViewModel
     {
-        // Data Collections
-        public ObservableCollection<StudentsPerYear> StudentsPerYear { get; } = new();
-        // Chronological view for charts to keep X axis ordered
-        public IEnumerable<StudentsPerYear> StudentsPerYearOrdered => StudentsPerYear.OrderBy(s => s.Year);
-        public ObservableCollection<AverageSubjectScore> AverageSubjectScores { get; } = new();
-        public StudentsByGradeAndGender StudentsByGradeAndGender { get; private set; } = new();
-        // Year-wise gender totals so pie responds to year changes
-        private readonly Dictionary<int, StudentsByGradeAndGender> _genderTotalsByYear = new();
-        public ObservableCollection<StudentParticipationRateByBranch> StudentParticipationRateByBranch { get; } = new();
-        public ObservableCollection<ExaminationResultsByBranch> ExaminationResultsByBranch { get; } = new();
-
-        // Chart Data Bindings
-        public ObservableCollection<LabelValue> GenderBreakdown { get; } = new();
-        // Pie showing participation by gender for selected year/subject
-        public ObservableCollection<LabelValue> GenderParticipationPie { get; } = new();
-        public ObservableCollection<SubjectRate> ParticipationBySubject { get; } = new();
-        public ObservableCollection<SubjectExamResult> ExamResultsBySubject { get; } = new();
-        public ObservableCollection<SubjectScoreTile> AverageSubjectTiles { get; } = new();
-        public ObservableCollection<Subject> Subjects { get; } = new();
-        public ObservableCollection<int> Years { get; } = new();
-        public ObservableCollection<LabelValue> SubjectScoresOverYears { get; } = new();
-        public ObservableCollection<LabelValue> SemesterGradeTrend { get; } = new();
-        public ObservableCollection<GradeDistribution> GradeDistributions { get; } = new();
-
-        // Filtered collections
-        public ObservableCollection<SubjectRate> FilteredParticipationRates { get; } = new();
-        public ObservableCollection<LabelValue> FilteredSemesterTrend { get; } = new();
-        public ObservableCollection<SubjectExamResult> FilteredExamResults { get; } = new();
-
-        // Helper selection for single-subject gauge
-        private SubjectRate? _selectedParticipationRate;
-        public SubjectRate? SelectedParticipationRate
-        {
-            get => _selectedParticipationRate;
-            private set { if (!Equals(_selectedParticipationRate, value)) { _selectedParticipationRate = value; OnPropertyChanged(nameof(SelectedParticipationRate)); } }
-        }
-
-        // Color Palettes
-        public ObservableCollection<Brush> PieBrushes { get; } = new();
-        public ObservableCollection<Brush> BarBrushes { get; } = new();
-        public ObservableCollection<Brush> ExamBrushes { get; } = new();
-
-        // Subject cache to avoid repeated allocations and enable name-based equality
-        private readonly Dictionary<string, Subject> _subjectsByName = new(StringComparer.OrdinalIgnoreCase);
-
-        // Filters
-        private int _selectedYear = 2021;
-        public int SelectedYear
-        {
-            get => _selectedYear;
-            set
-            {
-                if (_selectedYear != value)
-                {
-                    _selectedYear = value;
-                    OnPropertyChanged(nameof(SelectedYear));
-                    UpdateFilteredData();
-                }
-            }
-        }
-
-        private Subject? _selectedSubject;
-        public Subject? SelectedSubject
-        {
-            get => _selectedSubject;
-            set
-            {
-                if (value is null || _selectedSubject == value) return;
-                _selectedSubject = value;
-                OnPropertyChanged(nameof(SelectedSubject));
-                UpdateFilteredData();
-            }
-        }
-
-        // Score Tiles
-        private double _physEdScore; public double PhysEdScore { get => _physEdScore; private set { if (_physEdScore != value) { _physEdScore = value; OnPropertyChanged(nameof(PhysEdScore)); } } }
-        private double _artsScore; public double ArtsScore { get => _artsScore; private set { if (_artsScore != value) { _artsScore = value; OnPropertyChanged(nameof(ArtsScore)); } } }
-        private double _englishScore; public double EnglishScore { get => _englishScore; private set { if (_englishScore != value) { _englishScore = value; OnPropertyChanged(nameof(EnglishScore)); } } }
-        private double _mathsScore; public double MathsScore { get => _mathsScore; private set { if (_mathsScore != value) { _mathsScore = value; OnPropertyChanged(nameof(MathsScore)); } } }
-        private double _scienceScore; public double ScienceScore { get => _scienceScore; private set { if (_scienceScore != value) { _scienceScore = value; OnPropertyChanged(nameof(ScienceScore)); } } }
-
-        public StudentPerformanceViewModel()
-        {
-            InitializeColorPalettes();
-            SeedSampleData();
-            InitializeSubjects();
-            InitializeCollections();
-            // Default selection
-            SelectedSubject = _subjectsByName["Maths"];
-            UpdateFilteredData();
-        }
-
-        private void InitializeColorPalettes()
-        {
-            // Pie palette (soft grey + pink/peach like screenshot)
-            PieBrushes.Clear();
-            PieBrushes.Add(new SolidColorBrush(Color.FromArgb(255, 176, 176, 176))); // #B0B0B0
-            PieBrushes.Add(new SolidColorBrush(Color.FromArgb(255, 231, 114, 114))); // #E77272
-            PieBrushes.Add(new SolidColorBrush(Color.FromArgb(255, 245, 162, 122))); // #F5A27A
-            PieBrushes.Add(new SolidColorBrush(Color.FromArgb(255, 217, 144, 124))); // #D9907C
-            PieBrushes.Add(new SolidColorBrush(Color.FromArgb(255, 243, 156, 156))); // #F39C9C
-
-            // Bar palette (peach/pink/orange variations like the reference UI)
-            BarBrushes.Clear();
-            BarBrushes.Add(new SolidColorBrush(Color.FromArgb(255, 243, 156, 156))); // #F39C9C
-            BarBrushes.Add(new SolidColorBrush(Color.FromArgb(255, 239, 165, 138))); // #EFA58A
-            BarBrushes.Add(new SolidColorBrush(Color.FromArgb(255, 231, 114, 114))); // #E77272
-            BarBrushes.Add(new SolidColorBrush(Color.FromArgb(255, 245, 162, 122))); // #F5A27A
-            BarBrushes.Add(new SolidColorBrush(Color.FromArgb(255, 217, 144, 124))); // #D9907C
-
-            // Exam series colors (teal, purple, grey)
-            ExamBrushes.Clear();
-            ExamBrushes.Add(new SolidColorBrush(Color.FromArgb(255, 46, 211, 199)));  // #2ED3C7 Pass
-            ExamBrushes.Add(new SolidColorBrush(Color.FromArgb(255, 138, 79, 255)));  // #8A4FFF Fail
-            ExamBrushes.Add(new SolidColorBrush(Color.FromArgb(255, 142, 142, 142))); // #8E8E8E Not Attended
-        }
+        #region Methods
 
         private void SeedSampleData()
         {
@@ -469,8 +347,7 @@ namespace StudentPerformanceDashboard
             GradeDistributions.Add(new GradeDistribution { Grade = "F", Percentage = iF, Color = "#9C27B0" });
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-        private void OnPropertyChanged(string propertyName) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        #endregion
     }
 }
