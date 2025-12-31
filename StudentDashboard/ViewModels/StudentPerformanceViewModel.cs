@@ -119,7 +119,10 @@
             // Semester trend (no filter currently; clone to filtered)
             FilteredSemesterTrend.Clear();
             foreach (var item in SemesterGradeTrend)
+            {
+                item.Value = Math.Round(item.Value, 1);
                 FilteredSemesterTrend.Add(item);
+            }
 
             // Select single item for gauge view
             SelectedParticipationRate = (FilteredParticipationRates.Count == 1) ? FilteredParticipationRates[0] : null;
@@ -346,7 +349,6 @@
             GradeDistributions.Add(new GradeDistribution { Grade = "D", Percentage = iD, Color = "#F44336" });
             GradeDistributions.Add(new GradeDistribution { Grade = "F", Percentage = iF, Color = "#9C27B0" });
         }
-
 
         #endregion
     }
