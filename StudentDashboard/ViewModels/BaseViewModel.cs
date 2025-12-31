@@ -73,7 +73,6 @@ namespace StudentPerformanceDashboard
 
         // Score Tiles
         private double _physEdScore; public double PhysEdScore { get => _physEdScore; private set { if (_physEdScore != value) { _physEdScore = value; OnPropertyChanged(nameof(PhysEdScore)); } } }
-        private double _artsScore; public double ArtsScore { get => _artsScore; private set { if (_artsScore != value) { _artsScore = value; OnPropertyChanged(nameof(ArtsScore)); } } }
         private double _englishScore; public double EnglishScore { get => _englishScore; private set { if (_englishScore != value) { _englishScore = value; OnPropertyChanged(nameof(EnglishScore)); } } }
         private double _mathsScore; public double MathsScore { get => _mathsScore; private set { if (_mathsScore != value) { _mathsScore = value; OnPropertyChanged(nameof(MathsScore)); } } }
         private double _scienceScore; public double ScienceScore { get => _scienceScore; private set { if (_scienceScore != value) { _scienceScore = value; OnPropertyChanged(nameof(ScienceScore)); } } }

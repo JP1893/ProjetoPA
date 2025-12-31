@@ -15,7 +15,6 @@ namespace StudentPerformanceDashboard
     public class SubjectScores
     {
         public double PhysEd { get; set; }
-        public double Arts { get; set; }
         public double English { get; set; }
         public double Maths { get; set; }
         public double Science { get; set; }

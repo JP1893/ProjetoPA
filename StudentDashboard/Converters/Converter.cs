@@ -10,7 +10,7 @@ namespace StudentPerformanceDashboard
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is int count) return count == 1 ? Visibility.Visible : Visibility.Collapsed;
+            if (value is int count) return count == 2 ? Visibility.Visible : Visibility.Collapsed;
             return Visibility.Collapsed;
         }
 
@@ -22,7 +22,7 @@ namespace StudentPerformanceDashboard
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is int count) return count == 1 ? Visibility.Collapsed : Visibility.Visible;
+            if (value is int count) return count == 2 ? Visibility.Collapsed : Visibility.Visible;
             return Visibility.Visible;
         }
 

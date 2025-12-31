@@ -50,7 +50,7 @@
             </Grid>
 
             <!-- Score tiles -->
-            <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*,*">
+            <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*">
 
                 <Border Grid.Column="0" Style="{StaticResource border}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -61,26 +61,19 @@
 
                 <Border Grid.Column="1" Style="{StaticResource border}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Text="Arts  : " Style="{StaticResource kpiCard1}"/>
-                        <TextBlock Text="{Binding ArtsScore, StringFormat={}{0}%}" Style="{StaticResource kpiCard2}"/>
-                    </StackPanel>
-                </Border>
-
-                <Border Grid.Column="2" Style="{StaticResource border}">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock Text="English : " Style="{StaticResource kpiCard1}"/>
                         <TextBlock Text="{Binding EnglishScore, StringFormat={}{0}%}" Style="{StaticResource kpiCard2}"/>
                     </StackPanel>
                 </Border>
 
-                <Border Grid.Column="3" Style="{StaticResource border}">
+                <Border Grid.Column="2" Style="{StaticResource border}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock Text="Maths : " Style="{StaticResource kpiCard1}"/>
                         <TextBlock Text="{Binding MathsScore, StringFormat={}{0}%}"  Style="{StaticResource kpiCard2}"/>
                     </StackPanel>
                 </Border>
 
-                <Border Grid.Column="4" Style="{StaticResource border}">
+                <Border Grid.Column="3" Style="{StaticResource border}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock Text="Science  : "  Style="{StaticResource kpiCard1}"/>
                         <TextBlock Text="{Binding ScienceScore, StringFormat={}{0}%}" Style="{StaticResource kpiCard2}"/>
@@ -122,18 +115,18 @@
                             </chart:SfChart.ColorModel>
 
                             <!-- Pass -->
-                            <chart:ColumnSeries ItemsSource="{Binding FilteredExamResults}" XBindingPath="Subject.Name" 
-                                    YBindingPath="Pass" SegmentSpacing="0.1" Label="Pass">
+                            <chart:ColumnSeries ItemsSource="{Binding FilteredExamResults}" XBindingPath="Subject.Name" ShowTooltip="True" 
+                                    YBindingPath="Pass" EnableAnimation="True" SegmentSpacing="0.1" Label="Pass">
                             </chart:ColumnSeries>
 
                             <!-- Fail -->
-                            <chart:ColumnSeries ItemsSource="{Binding FilteredExamResults}" XBindingPath="Subject.Name"
-                             YBindingPath="Fail" SegmentSpacing="0.1" Label="Fail">
+                            <chart:ColumnSeries ItemsSource="{Binding FilteredExamResults}" XBindingPath="Subject.Name" ShowTooltip="True"
+                             YBindingPath="Fail" EnableAnimation="True" SegmentSpacing="0.1" Label="Fail">
                             </chart:ColumnSeries>
 
                             <!-- Not attended -->
-                            <chart:ColumnSeries ItemsSource="{Binding FilteredExamResults}" XBindingPath="Subject.Name"
-                             YBindingPath="NotAttended"  SegmentSpacing="0.1" Label="Not Attended"/>
+                            <chart:ColumnSeries ItemsSource="{Binding FilteredExamResults}" XBindingPath="Subject.Name" ShowTooltip="True"
+                             YBindingPath="NotAttended" EnableAnimation="True" SegmentSpacing="0.1" Label="Not Attended"/>
                         </chart:SfChart>
                     </StackPanel>
                 </Border>
@@ -158,7 +151,7 @@
                                 </chart:NumericalAxis>
                             </chart:SfChart.SecondaryAxis>
 
-                            <chart:SplineSeries ItemsSource="{Binding FilteredSemesterTrend}" XBindingPath="Label" YBindingPath="Value" Interior="#0BA7AC" ShowTooltip="True">
+                            <chart:SplineSeries ItemsSource="{Binding FilteredSemesterTrend}" EnableAnimation="True" XBindingPath="Label" YBindingPath="Value" Interior="#0BA7AC" ShowTooltip="True">
                                 <chart:SplineSeries.AdornmentsInfo>
                                     <chart:ChartAdornmentInfo ShowMarker="True" SymbolStroke="#0BA7AC" BorderThickness="1" SymbolInterior="#FFFFF8"
                                                               Symbol="Ellipse" SymbolHeight="8" SymbolWidth="8"/>
@@ -181,7 +174,7 @@
 
                             <chart:DoughnutSeries ItemsSource="{Binding GenderParticipationPie}" XBindingPath="Label" 
                                 YBindingPath="Value" LegendIcon="Pentagon" Palette="Custom" EnableSmartLabels="True" LabelPosition="Inside"
-                                StartAngle="140" EndAngle="400" DoughnutCoefficient="0.8" DoughnutSize="1">
+                                StartAngle="140" EnableAnimation="True" EndAngle="400" DoughnutCoefficient="0.8" DoughnutSize="1">
 
                                 <chart:DoughnutSeries.ColorModel>
                                     <chart:ChartColorModel>
@@ -226,7 +219,7 @@
                                 </chart:NumericalAxis>
                             </chart:SfChart.SecondaryAxis>
 
-                            <chart:SplineSeries ItemsSource="{Binding StudentsPerYear}" XBindingPath="Year" YBindingPath="Students" ShowTooltip="True"
+                            <chart:SplineSeries ItemsSource="{Binding StudentsPerYear}" EnableAnimation="True" XBindingPath="Year" YBindingPath="Students" ShowTooltip="True"
                                                 Interior="#F73039">
                                 <chart:SplineSeries.AdornmentsInfo>
                                     <chart:ChartAdornmentInfo ShowMarker="True" SymbolInterior="#FFFFF8" SymbolStroke="#F73039" BorderThickness="1"
@@ -256,7 +249,7 @@
                                     </chart:NumericalAxis>
                                 </chart:SfChart.SecondaryAxis>
 
-                                <chart:ColumnSeries ItemsSource="{Binding FilteredParticipationRates}" XBindingPath="Subject.Name"
+                                <chart:ColumnSeries EnableAnimation="True" ItemsSource="{Binding FilteredParticipationRates}" XBindingPath="Subject.Name"
                                       YBindingPath="Rate" Palette="Custom">
 
                                     <chart:ColumnSeries.ColorModel>
@@ -274,42 +267,35 @@
                                     </chart:ColumnSeries.AdornmentsInfo>
                                 </chart:ColumnSeries>
                             </chart:SfChart>
-
-                            <!--<gauge:SfCircularGauge VerticalContentAlignment="Top"
-                                     VerticalAlignment="Top" Visibility="{Binding FilteredParticipationRates.Count,
+                            <chart:SfChart VerticalAlignment="Center" Margin="5" Visibility="{Binding FilteredParticipationRates.Count,
                                    Converter={StaticResource OneItemVisibleConverter}}">
-                                    
-                                    <gauge:SfCircularGauge.Annotations>
-                                        <gauge:GaugeAnnotation VerticalContentAlignment="Top" Offset="0.1" Angle="270">
+
+                                <chart:DoughnutSeries ItemsSource="{Binding FilteredParticipationRates}" 
+                                                      XBindingPath="Subject.Name" YBindingPath="Rate" 
+                                                      DoughnutCoefficient="0.7"
+                                                      EnableAnimation="True" EndAngle="420" StartAngle="120" DoughnutSize="1"
+                                                      Palette="Custom">
+                                    <chart:DoughnutSeries.CenterView>
+                                        <ContentControl>
                                             <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center">
                                                 <TextBlock Text="{Binding FilteredParticipationRates[0].Subject.Name}"
-                                                    FontSize="24" HorizontalAlignment="Center"/>
+                                                        FontSize="24" HorizontalAlignment="Center" Foreground="White"/>
                                                 <TextBlock Text="{Binding FilteredParticipationRates[0].Rate}" FontSize="34"
-                                                     FontWeight="Bold" HorizontalAlignment="Center"/>
+                                                        FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
                                             </StackPanel>
-                                        </gauge:GaugeAnnotation>
-                                    </gauge:SfCircularGauge.Annotations>
+                                        </ContentControl>
+                                    </chart:DoughnutSeries.CenterView>
+                                    <chart:DoughnutSeries.ColorModel>
+                                        <chart:ChartColorModel>
+                                            <chart:ChartColorModel.CustomBrushes>
+                                                <SolidColorBrush Color="#f73039"/>
+                                                <SolidColorBrush Color="#ff6a71"/>
+                                            </chart:ChartColorModel.CustomBrushes>
+                                        </chart:ChartColorModel>
+                                    </chart:DoughnutSeries.ColorModel>
+                                </chart:DoughnutSeries>
 
-                                    <gauge:SfCircularGauge.Scales>
-                                        <gauge:CircularScale StartAngle="180" ShowLabels="False"
-                                           ShowRim="False" SweepAngle="180" Radius="0.8" ShowTicks="False"
-                                           ShowFirstLabel="False">
-                                            <gauge:CircularScale.Pointers>
-                                                <gauge:CircularPointer RangePointerStrokeThickness="25" PointerType="RangePointer"
-                                                     RangeCap="Both" EnableAnimation="False" Value="100"/>
-                                            </gauge:CircularScale.Pointers>
-                                        </gauge:CircularScale>
-
-                                        <gauge:CircularScale SweepAngle="180" ShowLabels="False" StartAngle="180"
-                                           Radius="0.8" ShowTicks="False" ShowRim="False" BindRangeStrokeToLabels="True">
-                                            <gauge:CircularScale.Pointers>
-                                                <gauge:CircularPointer RangePointerStrokeThickness="25" PointerType="RangePointer"
-                                                     RangeCap="Both" EnableAnimation="True" Value="{Binding FilteredParticipationRates[0].Rate}"/>
-                                            </gauge:CircularScale.Pointers>
-                                        </gauge:CircularScale>
-                                        
-                                    </gauge:SfCircularGauge.Scales>
-                                </gauge:SfCircularGauge>-->
+                            </chart:SfChart>
 
                         </Grid>
                     </StackPanel>

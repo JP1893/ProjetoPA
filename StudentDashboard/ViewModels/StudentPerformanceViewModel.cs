@@ -16,27 +16,27 @@
             AverageSubjectScores.Add(new AverageSubjectScore
             {
                 Year = 2021,
-                Scores = new SubjectScores { PhysEd = 82.5, Arts = 88.7, English = 74.2, Maths = 79.1, Science = 76.8 }
+                Scores = new SubjectScores { PhysEd = 82.5, English = 74.2, Maths = 79.1, Science = 76.8 }
             });
             AverageSubjectScores.Add(new AverageSubjectScore
             {
                 Year = 2022,
-                Scores = new SubjectScores { PhysEd = 84.1, Arts = 89.0, English = 75.5, Maths = 80.8, Science = 77.2 }
+                Scores = new SubjectScores { PhysEd = 84.1, English = 75.5, Maths = 80.8, Science = 77.2 }
             });
             AverageSubjectScores.Add(new AverageSubjectScore
             {
                 Year = 2023,
-                Scores = new SubjectScores { PhysEd = 85.7, Arts = 87.1, English = 77.2, Maths = 82.5, Science = 77.8 }
+                Scores = new SubjectScores { PhysEd = 85.7, English = 77.2, Maths = 82.5, Science = 77.8 }
             });
             AverageSubjectScores.Add(new AverageSubjectScore
             {
                 Year = 2024,
-                Scores = new SubjectScores { PhysEd = 84.9, Arts = 86.2, English = 76.1, Maths = 81.0, Science = 76.9 }
+                Scores = new SubjectScores { PhysEd = 84.9, English = 76.1, Maths = 81.0, Science = 76.9 }
             });
             AverageSubjectScores.Add(new AverageSubjectScore
             {
                 Year = 2025,
-                Scores = new SubjectScores { PhysEd = 83.8, Arts = 85.0, English = 75.0, Maths = 79.6, Science = 75.5 }
+                Scores = new SubjectScores { PhysEd = 83.8, English = 75.0, Maths = 79.6, Science = 75.5 }
             });
 
             // Year-wise gender totals (example realistic splits)
@@ -106,6 +106,8 @@
                     if (item.Subject != null && string.Equals(item.Subject.Name, targetName, StringComparison.OrdinalIgnoreCase))
                     {
                         FilteredParticipationRates.Add(item);
+                        var newitem = new SubjectRate() {Rate =  100-item.Rate };
+                        FilteredParticipationRates.Add(newitem);
                         break;
                     }
                 }
@@ -191,14 +193,13 @@
             var avgScores = AverageSubjectScores.FirstOrDefault(s => s.Year == SelectedYear)?.Scores ?? new SubjectScores();
 
             PhysEdScore = avgScores.PhysEd;
-            ArtsScore = avgScores.Arts;
             EnglishScore = avgScores.English;
             MathsScore = avgScores.Maths;
             ScienceScore = avgScores.Science;
 
             // Dynamic grade distribution based on the selected subject/overall score
             double scoreForGrades = (SelectedSubject is null || IsAll(SelectedSubject))
-                ? (avgScores.PhysEd + avgScores.Arts + avgScores.English + avgScores.Maths + avgScores.Science) / 5.0
+                ? (avgScores.PhysEd + avgScores.English + avgScores.Maths + avgScores.Science) / 5.0
                 : GetScoreBySubject(avgScores, SelectedSubject.Name);
             BuildGradeDistribution(scoreForGrades);
 
@@ -287,7 +288,6 @@
         private double GetScoreBySubject(SubjectScores scores, string subject) => subject switch
         {
             "PhysEd" => scores.PhysEd,
-            "Arts" => scores.Arts,
             "English" => scores.English,
             "Maths" => scores.Maths,
             "Science" => scores.Science,
