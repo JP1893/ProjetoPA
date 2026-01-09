@@ -87,8 +87,6 @@ Dynamic Chart Rendering: Column or Doughnut
 
     * Comparative view of participation rates
 
-
-
 * If a single subject selected → Doughnut Chart
 
     * Focused breakdown of participation for that subject
@@ -100,11 +98,5 @@ Dynamic Chart Rendering: Column or Doughnut
 ### Path Too Long Exception
 
 If you are facing a **path too long** exception when building this example project, close Visual Studio and rename the repository to a shorter name before building the project.**Path too long** exception when building this example project, close Visual Studio and rename the repository to a shorter name before building the project.
-
-### Phase 1: Calories and Steps Tracking
-
-Refer to the blog for step-by-step guidance on [visualizing calories burned and steps taken in the Health Tracker dashboard](https://www.syncfusion.com/blogs/post/wpf-health-tracker-chart-calories-steps).
-
-### Phase 2: Water and Sleep Tracking
 
 Refer to the blog for step-by-step guidance on [Building a Student Performance and Engagement Dashboard]().
