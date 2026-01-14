@@ -11,6 +11,7 @@
   <ItemGroup>
     <PackageReference Include="Syncfusion.SfChart.WPF" Version="*" />
     <PackageReference Include="Syncfusion.SfGauge.WPF" Version="*" />
+    <PackageReference Include="Syncfusion.Tools.WPF" Version="*" />
   </ItemGroup>
 
 </Project>

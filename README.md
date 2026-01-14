@@ -1,22 +1,55 @@
 # Student Performance and Engagement Dashboard 
 
-## Overview
-The application’s shell is structured using a clean WPF grid-based layout containing:
+## Syncfusion WPF SfChart
+
+This high-performance [charting library](https://help.syncfusion.com/wpf/charts/getting-started) is designed for WPF applications and offers rich data visualization capabilities. It supports various chart types, making it ideal to creating a Health Tracker App . With built-in interactivity features such as zooming, panning, tooltips, and exporting, users can explore complex datasets with ease.
+
+## Major Chart Types Used in This Dashboard
+
+Below are the key SfChart types included in the application and why they are useful:
+
+### 1. Column Chart
+
+- Best for comparison across categories
+- Clear representation of Pass/Fail/Not‑Attended results
+- Useful for subject‑wise performance analytics
+- Supports data labels, legends, and tooltip interaction
+
+### 2. Spline Chart
+
+- Smooth curve showing trends over time
+- Helps visualize semester progression or yearly enrollment changes
+- Great for spotting upward/downward performance patterns
+
+### 3. Doughnut Chart
+
+- Clean, modern representation of proportions
+- Used for gender distribution and subject participation
+- Provides a simple at‑a‑glance view
+- Highly readable and customizable
+
+## Dashboard Overview
+This dashboard provides a complete visual summary of student strength, engagement, and academic performance using a modern Syncfusion‑based WPF UI.
+Application Layout
+
+The UI is built using a clean grid‑based layout consisting of:
 
 ### 1. Header Section
 
-Dashboard title
-Subject and Year filter dropdowns (ComboBoxAdv)
+- Dashboard title
+- Subject filter (ComboBoxAdv)
+- Academic year filter (ComboBoxAdv)
 
-### 2. KPI Score Tiles
+### 2. KPI Tiles
 
-Visual highlights of key subject scores (Maths, Science, English, etc.)
+- Quick, visual representation of key subject scores (Maths, Science, English, etc.)
+- Highlights strengths and performance gaps
 
-### 3. Main Content Area
+### 3. Main Visualization Area
 
-Grid-based chart containers
-Each chart wrapped with styled Border elements for visual consistency
-
+- Multiple charts arranged in a responsive grid
+- Each chart wrapped in a styled Border for consistency
+- Smooth animations and tooltips using Syncfusion chart engine
 
 ## Dashboard Modules
 
