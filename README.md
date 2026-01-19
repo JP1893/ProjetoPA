@@ -5,7 +5,8 @@
 This high-performance [charting library](https://help.syncfusion.com/wpf/charts/getting-started) is designed for WPF applications and offers rich data visualization capabilities. It supports various chart types, making it ideal to creating a Student Performance and Engagement Dashboard. With built-in interactivity features such as zooming, panning, tooltips, and exporting, users can explore complex datasets with ease.
 
 ## Overview
-This WPF application demonstrates how to build a comprehensive Student Performance and Engagement Dashboard using the Syncfusion® WPF SfChart. The SfChart control is a powerful and flexible visualization tool enabling developers to create interactive and visually rich dashboards that deliver clear academic insights.
+
+This WPF application showcases how to build a comprehensive Student Performance and Engagement Dashboard using Syncfusion® WPF SfChart. The SfChart control provides a powerful and flexible charting framework that enables developers to create interactive, visually appealing dashboards capable of delivering clear, actionable academic insights.
 
 ## Column Chart?
 A Column Chart is an intuitive data visualization technique used to compare numerical values across different categories. In the context of academic analytics, it effectively highlights variations in performance—such as pass, fail, and absence rates—across multiple subjects.
