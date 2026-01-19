@@ -54,6 +54,6 @@ This blog will get the output that resembles the following image.
 
 ### Path Too Long Exception
 
-If you are facing a **path too long** exception when building this example project, close Visual Studio and rename the repository to a shorter name before building the project.**Path too long** exception when building this example project, close Visual Studio and rename the repository to a shorter name before building the project.
+If you are facing a **path too long** exception when building this example project, close Visual Studio and rename the repository to a shorter name before building the project. **Path too long** exception when building this example project, close Visual Studio and rename the repository to a shorter name before building the project.
 
 Refer to the blog for step-by-step guidance on [Building a Student Performance and Engagement Dashboard]().
