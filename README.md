@@ -1,4 +1,4 @@
-# Building a Student Performance and Engagement Dashboard in Using WPF Charts
+# Building a Student Performance and Engagement Dashboard Using WPF Charts
 
 ## Syncfusion WPF SfChart
 
@@ -6,10 +6,10 @@ This high-performance [charting library](https://help.syncfusion.com/wpf/charts/
 
 ## Overview
 
-This WPF application showcases how to build a comprehensive Student Performance and Engagement Dashboard using Syncfusion® WPF SfChart. The SfChart control provides a powerful and flexible charting framework that enables developers to create interactive, visually appealing dashboards capable of delivering clear, actionable academic insights.
+This WPF application showcases how to build a comprehensive Student Performance and Engagement Dashboard using [Syncfusion® WPF SfChart](https://www.syncfusion.com/wpf-controls/charts). The SfChart control provides a powerful and flexible charting framework that enables developers to create interactive, visually appealing dashboards capable of delivering clear, actionable academic insights.
 
 ## Column Chart?
-A Column Chart is an intuitive data visualization technique used to compare numerical values across different categories. In the context of academic analytics, it effectively highlights variations in performance—such as pass, fail, and absence rates—across multiple subjects.
+A [Column Chart](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Charts.ColumnSeries.html) is an intuitive data visualization technique used to compare numerical values across different categories. In the context of academic analytics, it effectively highlights variations in performance—such as pass, fail, and absence rates—across multiple subjects.
 It provides:
 
  - Clear category‑wise comparison
@@ -18,7 +18,7 @@ It provides:
 
 
 ## Spline Chart?
-A Spline Chart uses smooth, curved lines to connect data points, making it ideal for visualizing continuous progress over time. This chart type is especially useful in academic dashboards where trends such as semester performance or yearly enrollment need to be monitored.
+A [Spline Chart](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Charts.SplineSeries.html) uses smooth, curved lines to connect data points, making it ideal for visualizing continuous progress over time. This chart type is especially useful in academic dashboards where trends such as semester performance or yearly enrollment need to be monitored.
 It offers:
 
  - Smooth representation of upward/downward trends
@@ -27,7 +27,7 @@ It offers:
 
 
 ## Doughnut Chart?
-A Doughnut Chart is a circular visualization technique used to represent proportions within a whole. Its clean and modern layout makes it a great choice for demographic or distribution‑based insights such as gender participation or subject engagement.
+A [Doughnut Chart](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Charts.DoughnutSeries.html) is a circular visualization technique used to represent proportions within a whole. Its clean and modern layout makes it a great choice for demographic or distribution‑based insights such as gender participation or subject engagement.
 This chart helps:
 
  - Display category proportions at a glance
@@ -36,7 +36,7 @@ This chart helps:
 
 
 ## Purpose
-This dashboard uses a combination of Column, Spline, and Doughnut charts to:
+This dashboard uses a combination of [Column](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Charts.ColumnSeries.html), [Spline](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Charts.SplineSeries.html), and [Doughnut](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Charts.DoughnutSeries.html) charts to:
 
  - Compare performance outcomes across subjects
  - Track grade evolution across semesters
