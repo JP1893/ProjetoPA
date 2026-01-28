@@ -8,7 +8,7 @@ This high-performance [charting library](https://help.syncfusion.com/wpf/charts/
 
 This WPF application showcases how to build a comprehensive Student Performance and Engagement Dashboard using [Syncfusion® WPF SfChart](https://www.syncfusion.com/wpf-controls/charts). The SfChart control provides a powerful and flexible charting framework that enables developers to create interactive, visually appealing dashboards capable of delivering clear, actionable academic insights.
 
-## Column Chart?
+## Column Chart
 A [Column Chart](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Charts.ColumnSeries.html) is an intuitive data visualization technique used to compare numerical values across different categories. In the context of academic analytics, it effectively highlights variations in performance such as pass, fail, and absence rates across multiple subjects.
 It provides:
 
@@ -17,7 +17,7 @@ It provides:
  - Easy interpretation of subject‑level performance gaps
 
 
-## Spline Chart?
+## Spline Chart
 A [Spline Chart](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Charts.SplineSeries.html) uses smooth, curved lines to connect data points, making it ideal for visualizing continuous progress over time. This chart type is especially useful in academic dashboards where trends such as semester performance or yearly enrollment need to be monitored.
 It offers:
 
@@ -26,7 +26,7 @@ It offers:
  - Insightful visualization of academic progression
 
 
-## Doughnut Chart?
+## Doughnut Chart
 A [Doughnut Chart](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Charts.DoughnutSeries.html) is a circular visualization technique used to represent proportions within a whole. Its clean and modern layout makes it a great choice for demographic or distribution‑based insights such as gender participation or subject engagement.
 This chart helps:
 
