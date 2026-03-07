@@ -1,0 +1,5 @@
+C:\projeto programacao avancada\Student-Performance-Dashboard-Using-WPF-Charts\StudentDashboard\obj\Debug\net8.0-windows7.0\StudentDashBoard.csproj.AssemblyReference.cache
+C:\projeto programacao avancada\Student-Performance-Dashboard-Using-WPF-Charts\StudentDashboard\obj\Debug\net8.0-windows7.0\App.g.cs
+C:\projeto programacao avancada\Student-Performance-Dashboard-Using-WPF-Charts\StudentDashboard\obj\Debug\net8.0-windows7.0\GeneratedInternalTypeHelper.g.cs
+C:\projeto programacao avancada\Student-Performance-Dashboard-Using-WPF-Charts\StudentDashboard\obj\Debug\net8.0-windows7.0\StudentDashBoard_MarkupCompile.cache
+C:\projeto programacao avancada\Student-Performance-Dashboard-Using-WPF-Charts\StudentDashboard\obj\Debug\net8.0-windows7.0\StudentDashBoard_MarkupCompile.lref

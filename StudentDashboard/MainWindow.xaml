@@ -116,7 +116,7 @@
 
                             <!-- Pass -->
                             <chart:ColumnSeries ItemsSource="{Binding FilteredExamResults}" XBindingPath="Subject.Name" ShowTooltip="True" 
-                                    YBindingPath="Pass" EnableAnimation="True" SegmentSpacing="0.1" Label="Pass">
+                                    YBindingPath="Pass" EnableAnimation="True" SegmentSpacing="0.1" Label="Passo">
                             </chart:ColumnSeries>
 
                             <!-- Fail -->
