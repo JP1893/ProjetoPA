@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "IU42NJmGG+M=",
+  "dgSpecHash": "mLBdOXRRJ40=",
   "success": true,
   "projectFilePath": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\StudentDashboard\\StudentDashBoard.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Tester\\.nuget\\packages\\syncfusion.licensing\\32.2.8\\syncfusion.licensing.32.2.8.nupkg.sha512",
-    "C:\\Users\\Tester\\.nuget\\packages\\syncfusion.sfchart.wpf\\32.2.8\\syncfusion.sfchart.wpf.32.2.8.nupkg.sha512",
-    "C:\\Users\\Tester\\.nuget\\packages\\syncfusion.sfgauge.wpf\\32.2.8\\syncfusion.sfgauge.wpf.32.2.8.nupkg.sha512",
-    "C:\\Users\\Tester\\.nuget\\packages\\syncfusion.shared.wpf\\32.2.8\\syncfusion.shared.wpf.32.2.8.nupkg.sha512",
-    "C:\\Users\\Tester\\.nuget\\packages\\syncfusion.tools.wpf\\32.2.8\\syncfusion.tools.wpf.32.2.8.nupkg.sha512"
+    "C:\\Users\\Tester\\.nuget\\packages\\syncfusion.licensing\\32.2.9\\syncfusion.licensing.32.2.9.nupkg.sha512",
+    "C:\\Users\\Tester\\.nuget\\packages\\syncfusion.sfchart.wpf\\32.2.9\\syncfusion.sfchart.wpf.32.2.9.nupkg.sha512",
+    "C:\\Users\\Tester\\.nuget\\packages\\syncfusion.sfgauge.wpf\\32.2.9\\syncfusion.sfgauge.wpf.32.2.9.nupkg.sha512",
+    "C:\\Users\\Tester\\.nuget\\packages\\syncfusion.shared.wpf\\32.2.9\\syncfusion.shared.wpf.32.2.9.nupkg.sha512",
+    "C:\\Users\\Tester\\.nuget\\packages\\syncfusion.tools.wpf\\32.2.9\\syncfusion.tools.wpf.32.2.9.nupkg.sha512"
   ],
   "logs": []
 }

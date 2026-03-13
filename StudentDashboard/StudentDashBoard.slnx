@@ -1,3 +1,4 @@
 <Solution>
-  <Project Path="StudentDashBoard.csproj" />
+  <Project Path="../../../../../../../../projeto programacao avancada/Student-Performance-Dashboard-Using-WPF-Charts/BusinessLayer/BusinessLayer.csproj" Id="11c43bd6-d49b-4d6e-9e3b-0075cc47f590" />
+  <Project Path="../../../../../../../../projeto programacao avancada/Student-Performance-Dashboard-Using-WPF-Charts/StudentDashboard/StudentDashBoard.csproj" />
 </Solution>

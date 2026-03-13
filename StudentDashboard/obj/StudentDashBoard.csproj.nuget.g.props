@@ -14,9 +14,9 @@
     <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgSyncfusion_Shared_WPF Condition=" '$(PkgSyncfusion_Shared_WPF)' == '' ">C:\Users\Tester\.nuget\packages\syncfusion.shared.wpf\32.2.8</PkgSyncfusion_Shared_WPF>
-    <PkgSyncfusion_Tools_WPF Condition=" '$(PkgSyncfusion_Tools_WPF)' == '' ">C:\Users\Tester\.nuget\packages\syncfusion.tools.wpf\32.2.8</PkgSyncfusion_Tools_WPF>
-    <PkgSyncfusion_SfGauge_WPF Condition=" '$(PkgSyncfusion_SfGauge_WPF)' == '' ">C:\Users\Tester\.nuget\packages\syncfusion.sfgauge.wpf\32.2.8</PkgSyncfusion_SfGauge_WPF>
-    <PkgSyncfusion_SfChart_WPF Condition=" '$(PkgSyncfusion_SfChart_WPF)' == '' ">C:\Users\Tester\.nuget\packages\syncfusion.sfchart.wpf\32.2.8</PkgSyncfusion_SfChart_WPF>
+    <PkgSyncfusion_Shared_WPF Condition=" '$(PkgSyncfusion_Shared_WPF)' == '' ">C:\Users\Tester\.nuget\packages\syncfusion.shared.wpf\32.2.9</PkgSyncfusion_Shared_WPF>
+    <PkgSyncfusion_Tools_WPF Condition=" '$(PkgSyncfusion_Tools_WPF)' == '' ">C:\Users\Tester\.nuget\packages\syncfusion.tools.wpf\32.2.9</PkgSyncfusion_Tools_WPF>
+    <PkgSyncfusion_SfGauge_WPF Condition=" '$(PkgSyncfusion_SfGauge_WPF)' == '' ">C:\Users\Tester\.nuget\packages\syncfusion.sfgauge.wpf\32.2.9</PkgSyncfusion_SfGauge_WPF>
+    <PkgSyncfusion_SfChart_WPF Condition=" '$(PkgSyncfusion_SfChart_WPF)' == '' ">C:\Users\Tester\.nuget\packages\syncfusion.sfchart.wpf\32.2.9</PkgSyncfusion_SfChart_WPF>
   </PropertyGroup>
 </Project>
