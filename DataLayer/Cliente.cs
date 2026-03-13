@@ -1,6 +1,6 @@
 ﻿namespace DataLayer
 {
-    public class Class1
+    public class Cliente
     {
 
     }

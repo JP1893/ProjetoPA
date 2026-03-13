@@ -14,4 +14,8 @@
     <PackageReference Include="Syncfusion.Tools.WPF" Version="*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj" />
+  </ItemGroup>
+
 </Project>

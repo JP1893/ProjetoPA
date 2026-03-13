@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StudentDashBoard")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+975cc2bf0330e362a04a8654ac3d305a3263f305")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c021210a3f86c188355ae56e4414999f6f56f55")]
 [assembly: System.Reflection.AssemblyProductAttribute("StudentDashBoard")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StudentDashBoard")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
