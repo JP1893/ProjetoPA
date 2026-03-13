@@ -3,6 +3,39 @@
   "WorkspaceRootPath": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\StudentDashboard\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F0B6CDDB-0EE9-4065-8F14-B95C728E13D3}|..\\BusinessLayer\\BusinessLayer.csproj|c:\\projeto programacao avancada\\student-performance-dashboard-using-wpf-charts\\businesslayer\\enumsegmentocliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0B6CDDB-0EE9-4065-8F14-B95C728E13D3}|..\\BusinessLayer\\BusinessLayer.csproj|c:\\projeto programacao avancada\\student-performance-dashboard-using-wpf-charts\\businesslayer\\categoriaprodutocollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0B6CDDB-0EE9-4065-8F14-B95C728E13D3}|..\\BusinessLayer\\BusinessLayer.csproj|c:\\projeto programacao avancada\\student-performance-dashboard-using-wpf-charts\\businesslayer\\produtocollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0B6CDDB-0EE9-4065-8F14-B95C728E13D3}|..\\BusinessLayer\\BusinessLayer.csproj|c:\\projeto programacao avancada\\student-performance-dashboard-using-wpf-charts\\businesslayer\\paiscollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0B6CDDB-0EE9-4065-8F14-B95C728E13D3}|..\\BusinessLayer\\BusinessLayer.csproj|c:\\projeto programacao avancada\\student-performance-dashboard-using-wpf-charts\\businesslayer\\cidadecollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0B6CDDB-0EE9-4065-8F14-B95C728E13D3}|..\\BusinessLayer\\BusinessLayer.csproj|c:\\projeto programacao avancada\\student-performance-dashboard-using-wpf-charts\\businesslayer\\clientecollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0B6CDDB-0EE9-4065-8F14-B95C728E13D3}|..\\BusinessLayer\\BusinessLayer.csproj|c:\\projeto programacao avancada\\student-performance-dashboard-using-wpf-charts\\businesslayer\\categoriaproduto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0B6CDDB-0EE9-4065-8F14-B95C728E13D3}|..\\BusinessLayer\\BusinessLayer.csproj|c:\\projeto programacao avancada\\student-performance-dashboard-using-wpf-charts\\businesslayer\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0B6CDDB-0EE9-4065-8F14-B95C728E13D3}|..\\BusinessLayer\\BusinessLayer.csproj|c:\\projeto programacao avancada\\student-performance-dashboard-using-wpf-charts\\businesslayer\\pais.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0B6CDDB-0EE9-4065-8F14-B95C728E13D3}|..\\BusinessLayer\\BusinessLayer.csproj|c:\\projeto programacao avancada\\student-performance-dashboard-using-wpf-charts\\businesslayer\\cidade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0B6CDDB-0EE9-4065-8F14-B95C728E13D3}|..\\BusinessLayer\\BusinessLayer.csproj|c:\\projeto programacao avancada\\student-performance-dashboard-using-wpf-charts\\businesslayer\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -21,6 +54,149 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "EnumSegmentoCliente.cs",
+              "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\EnumSegmentoCliente.cs",
+              "RelativeDocumentMoniker": "..\\BusinessLayer\\EnumSegmentoCliente.cs",
+              "ToolTip": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\EnumSegmentoCliente.cs",
+              "RelativeToolTip": "..\\BusinessLayer\\EnumSegmentoCliente.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T21:48:50.32Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CategoriaProdutoCollection.cs",
+              "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\CategoriaProdutoCollection.cs",
+              "RelativeDocumentMoniker": "..\\BusinessLayer\\CategoriaProdutoCollection.cs",
+              "ToolTip": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\CategoriaProdutoCollection.cs",
+              "RelativeToolTip": "..\\BusinessLayer\\CategoriaProdutoCollection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T21:48:34.211Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProdutoCollection.cs",
+              "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\ProdutoCollection.cs",
+              "RelativeDocumentMoniker": "..\\BusinessLayer\\ProdutoCollection.cs",
+              "ToolTip": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\ProdutoCollection.cs",
+              "RelativeToolTip": "..\\BusinessLayer\\ProdutoCollection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T21:48:21.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PaisCollection.cs",
+              "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\PaisCollection.cs",
+              "RelativeDocumentMoniker": "..\\BusinessLayer\\PaisCollection.cs",
+              "ToolTip": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\PaisCollection.cs",
+              "RelativeToolTip": "..\\BusinessLayer\\PaisCollection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T21:48:12.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CidadeCollection.cs",
+              "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\CidadeCollection.cs",
+              "RelativeDocumentMoniker": "..\\BusinessLayer\\CidadeCollection.cs",
+              "ToolTip": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\CidadeCollection.cs",
+              "RelativeToolTip": "..\\BusinessLayer\\CidadeCollection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T21:48:02.332Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ClienteCollection.cs",
+              "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\ClienteCollection.cs",
+              "RelativeDocumentMoniker": "..\\BusinessLayer\\ClienteCollection.cs",
+              "ToolTip": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\ClienteCollection.cs",
+              "RelativeToolTip": "..\\BusinessLayer\\ClienteCollection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T21:47:50.765Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CategoriaProduto.cs",
+              "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\CategoriaProduto.cs",
+              "RelativeDocumentMoniker": "..\\BusinessLayer\\CategoriaProduto.cs",
+              "ToolTip": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\CategoriaProduto.cs",
+              "RelativeToolTip": "..\\BusinessLayer\\CategoriaProduto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T21:45:43.881Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Produto.cs",
+              "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\Produto.cs",
+              "RelativeDocumentMoniker": "..\\BusinessLayer\\Produto.cs",
+              "ToolTip": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\Produto.cs",
+              "RelativeToolTip": "..\\BusinessLayer\\Produto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T21:45:25.735Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Pais.cs",
+              "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\Pais.cs",
+              "RelativeDocumentMoniker": "..\\BusinessLayer\\Pais.cs",
+              "ToolTip": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\Pais.cs",
+              "RelativeToolTip": "..\\BusinessLayer\\Pais.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T21:45:12.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Cidade.cs",
+              "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\Cidade.cs",
+              "RelativeDocumentMoniker": "..\\BusinessLayer\\Cidade.cs",
+              "ToolTip": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\Cidade.cs",
+              "RelativeToolTip": "..\\BusinessLayer\\Cidade.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T21:44:55.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Cliente.cs",
+              "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\Cliente.cs",
+              "RelativeDocumentMoniker": "..\\BusinessLayer\\Cliente.cs",
+              "ToolTip": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\Cliente.cs",
+              "RelativeToolTip": "..\\BusinessLayer\\Cliente.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T21:43:48.606Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\Program.cs",
               "RelativeDocumentMoniker": "..\\BusinessLayer\\Program.cs",
@@ -31,7 +207,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 12,
               "Title": "Microsoft.NET.TargetFrameworkInference.targets",
               "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\9.0.311\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.TargetFrameworkInference.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\Program Files\\dotnet\\sdk\\9.0.311\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.TargetFrameworkInference.targets",
