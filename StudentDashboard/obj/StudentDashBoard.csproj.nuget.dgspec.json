@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\StudentDashboard\\StudentDashBoard.csproj": {}
+    "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\StudentDashboard\\StudentDashBoard.csproj": {}
   },
   "projects": {
-    "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\BusinessLayer.csproj": {
+    "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BusinessLayer\\BusinessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\BusinessLayer.csproj",
+        "projectUniqueName": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BusinessLayer\\BusinessLayer.csproj",
         "projectName": "BusinessLayer",
-        "projectPath": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\BusinessLayer.csproj",
-        "packagesPath": "C:\\Users\\Tester\\.nuget\\packages\\",
-        "outputPath": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\obj\\",
+        "projectPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BusinessLayer\\BusinessLayer.csproj",
+        "packagesPath": "C:\\Users\\josen\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BusinessLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Tester\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\josen\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\DataLayer\\DataLayer.csproj": {
-                "projectPath": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\DataLayer\\DataLayer.csproj"
+              "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\DataLayer\\DataLayer.csproj": {
+                "projectPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\DataLayer\\DataLayer.csproj"
               }
             }
           }
@@ -48,7 +49,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -69,24 +70,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.104/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\DataLayer\\DataLayer.csproj": {
+    "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\DataLayer\\DataLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\DataLayer\\DataLayer.csproj",
+        "projectUniqueName": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\DataLayer\\DataLayer.csproj",
         "projectName": "DataLayer",
-        "projectPath": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\DataLayer\\DataLayer.csproj",
-        "packagesPath": "C:\\Users\\Tester\\.nuget\\packages\\",
-        "outputPath": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\DataLayer\\obj\\",
+        "projectPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\DataLayer\\DataLayer.csproj",
+        "packagesPath": "C:\\Users\\josen\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\DataLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Tester\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\josen\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -95,6 +96,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -113,7 +115,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -140,24 +142,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.104/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\StudentDashboard\\StudentDashBoard.csproj": {
+    "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\StudentDashboard\\StudentDashBoard.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\StudentDashboard\\StudentDashBoard.csproj",
+        "projectUniqueName": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\StudentDashboard\\StudentDashBoard.csproj",
         "projectName": "StudentDashBoard",
-        "projectPath": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\StudentDashboard\\StudentDashBoard.csproj",
-        "packagesPath": "C:\\Users\\Tester\\.nuget\\packages\\",
-        "outputPath": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\StudentDashboard\\obj\\",
+        "projectPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\StudentDashboard\\StudentDashBoard.csproj",
+        "packagesPath": "C:\\Users\\josen\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\StudentDashboard\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Tester\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\josen\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -166,14 +168,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net10.0-windows7.0": {
             "targetAlias": "net10.0-windows7.0",
             "projectReferences": {
-              "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\BusinessLayer.csproj": {
-                "projectPath": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\BusinessLayer.csproj"
+              "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BusinessLayer\\BusinessLayer.csproj": {
+                "projectPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BusinessLayer\\BusinessLayer.csproj"
               }
             }
           }
@@ -188,7 +191,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net10.0-windows7.0": {
@@ -226,7 +229,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.104/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",

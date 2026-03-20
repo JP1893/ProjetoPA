@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
-    internal class EnumSegmentoCliente
+    public enum EnumSegmentoCliente : int
     {
+        Particular = 1,
+        Empresa = 2
     }
 }

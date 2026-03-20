@@ -395,7 +395,7 @@
           }
         }
       },
-      "Syncfusion.Licensing/32.2.9": {
+      "Syncfusion.Licensing/33.1.44": {
         "type": "package",
         "compile": {
           "lib/net10.0/Syncfusion.Licensing.dll": {}
@@ -404,10 +404,10 @@
           "lib/net10.0/Syncfusion.Licensing.dll": {}
         }
       },
-      "Syncfusion.SfChart.WPF/32.2.9": {
+      "Syncfusion.SfChart.WPF/33.1.44": {
         "type": "package",
         "dependencies": {
-          "Syncfusion.Licensing": "32.2.9"
+          "Syncfusion.Licensing": "33.1.44"
         },
         "compile": {
           "lib/net10.0-windows7.0/Syncfusion.SfChart.WPF.dll": {
@@ -420,11 +420,11 @@
           }
         }
       },
-      "Syncfusion.SfGauge.WPF/32.2.9": {
+      "Syncfusion.SfGauge.WPF/33.1.44": {
         "type": "package",
         "dependencies": {
-          "Syncfusion.Licensing": "32.2.9",
-          "Syncfusion.Shared.WPF": "32.2.9"
+          "Syncfusion.Licensing": "33.1.44",
+          "Syncfusion.Shared.WPF": "33.1.44"
         },
         "compile": {
           "lib/net10.0-windows7.0/Syncfusion.SfGauge.WPF.dll": {
@@ -437,10 +437,10 @@
           }
         }
       },
-      "Syncfusion.Shared.WPF/32.2.9": {
+      "Syncfusion.Shared.WPF/33.1.44": {
         "type": "package",
         "dependencies": {
-          "Syncfusion.Licensing": "32.2.9"
+          "Syncfusion.Licensing": "33.1.44"
         },
         "compile": {
           "lib/net10.0-windows7.0/Syncfusion.Shared.WPF.dll": {
@@ -453,11 +453,11 @@
           }
         }
       },
-      "Syncfusion.Tools.WPF/32.2.9": {
+      "Syncfusion.Tools.WPF/33.1.44": {
         "type": "package",
         "dependencies": {
-          "Syncfusion.Licensing": "32.2.9",
-          "Syncfusion.Shared.WPF": "32.2.9"
+          "Syncfusion.Licensing": "33.1.44",
+          "Syncfusion.Shared.WPF": "33.1.44"
         },
         "compile": {
           "lib/net10.0-windows7.0/Syncfusion.Tools.WPF.dll": {
@@ -1130,10 +1130,10 @@
         "microsoft.sqlserver.server.nuspec"
       ]
     },
-    "Syncfusion.Licensing/32.2.9": {
-      "sha512": "CcI2kfaETSFxNjefoXjwHG9GfZU0HSvz7QvN6tOu529f5753/vdfDjrhVEcOz8hzANBVtIAfvWBTdgYAWiYY/g==",
+    "Syncfusion.Licensing/33.1.44": {
+      "sha512": "6KMmTr6rvaLUsB57s5l2xoXpLVvwovbLQFIlgJOLx0ewllV7j0vPTwOWYdQSCl6+KeGZ9rff20JewhmPChVa7w==",
       "type": "package",
-      "path": "syncfusion.licensing/32.2.9",
+      "path": "syncfusion.licensing/33.1.44",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1145,15 +1145,15 @@
         "lib/net9.0/Syncfusion.Licensing.dll",
         "lib/netstandard2.0/Syncfusion.Licensing.dll",
         "lib/uap10.0/Syncfusion.Licensing.dll",
-        "syncfusion.licensing.32.2.9.nupkg.sha512",
+        "syncfusion.licensing.33.1.44.nupkg.sha512",
         "syncfusion.licensing.nuspec",
         "syncfusion_logo.png"
       ]
     },
-    "Syncfusion.SfChart.WPF/32.2.9": {
-      "sha512": "S1ejsu4Uwi0ICNpgWElNSeDhzULpZQMTz9naR3SuXA3BB7dZAY0fRipyG/ib1rqL838w0igvDgKyet9SVpvlog==",
+    "Syncfusion.SfChart.WPF/33.1.44": {
+      "sha512": "oy/6+B+1yxqJMrj9V2oAVOn65eQQO0la5haMMZy19wmscJaFwP8vEn7sVduT/5HL7fIm0EzlxIa1Z6CubBfBYQ==",
       "type": "package",
-      "path": "syncfusion.sfchart.wpf/32.2.9",
+      "path": "syncfusion.sfchart.wpf/33.1.44",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -1175,16 +1175,16 @@
         "lib/net9.0-windows7.0/Design/Syncfusion.SfChart.WPF.DesignTools.dll",
         "lib/net9.0-windows7.0/Syncfusion.SfChart.WPF.dll",
         "lib/net9.0-windows7.0/Syncfusion.SfChart.WPF.xml",
-        "syncfusion.sfchart.wpf.32.2.9.nupkg.sha512",
+        "syncfusion.sfchart.wpf.33.1.44.nupkg.sha512",
         "syncfusion.sfchart.wpf.nuspec",
         "syncfusion_logo.png",
         "tools/VisualStudioToolsManifest.xml"
       ]
     },
-    "Syncfusion.SfGauge.WPF/32.2.9": {
-      "sha512": "duneRA7q8S70hfPv/23qWuS53IH/a7n0PJicFoIpmP/47SFXRT1uiLnr0+8LlTluVexeiY7eyGgk3Y7QAuWWcw==",
+    "Syncfusion.SfGauge.WPF/33.1.44": {
+      "sha512": "fx9NJVH0kss6nxrLv2o62PneP92bPYLWC52kO61eBqWVD/+2aCP/kfIFZCmmEQfV90svPzkjQBllJthZF9lQ9g==",
       "type": "package",
-      "path": "syncfusion.sfgauge.wpf/32.2.9",
+      "path": "syncfusion.sfgauge.wpf/33.1.44",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -1206,16 +1206,16 @@
         "lib/net9.0-windows7.0/Design/Syncfusion.SfGauge.WPF.DesignTools.dll",
         "lib/net9.0-windows7.0/Syncfusion.SfGauge.WPF.dll",
         "lib/net9.0-windows7.0/Syncfusion.SfGauge.WPF.xml",
-        "syncfusion.sfgauge.wpf.32.2.9.nupkg.sha512",
+        "syncfusion.sfgauge.wpf.33.1.44.nupkg.sha512",
         "syncfusion.sfgauge.wpf.nuspec",
         "syncfusion_logo.png",
         "tools/VisualStudioToolsManifest.xml"
       ]
     },
-    "Syncfusion.Shared.WPF/32.2.9": {
-      "sha512": "r2PNNZK+clgXw/8fJV66AVCYYonVa2OaIXJQnKKq2e/0BJsZWobRm1uobHnfGZAT3eGk4aqCHQwMSIy2sOIfdA==",
+    "Syncfusion.Shared.WPF/33.1.44": {
+      "sha512": "RnEF93ZdFIk3fCsMOe/5suW/OQDwusnBg1ynEAe6BERbfuizE/aHkNNuHqcKuIP2OpjQ4tBgLbtXdG8nRDHjuw==",
       "type": "package",
-      "path": "syncfusion.shared.wpf/32.2.9",
+      "path": "syncfusion.shared.wpf/33.1.44",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -1238,16 +1238,16 @@
         "lib/net9.0-windows7.0/Design/Syncfusion.Shared.WPF.DesignTools.dll",
         "lib/net9.0-windows7.0/Syncfusion.Shared.WPF.dll",
         "lib/net9.0-windows7.0/Syncfusion.Shared.WPF.xml",
-        "syncfusion.shared.wpf.32.2.9.nupkg.sha512",
+        "syncfusion.shared.wpf.33.1.44.nupkg.sha512",
         "syncfusion.shared.wpf.nuspec",
         "syncfusion_logo.png",
         "tools/VisualStudioToolsManifest.xml"
       ]
     },
-    "Syncfusion.Tools.WPF/32.2.9": {
-      "sha512": "NZRDn8ZRzCxoPo1PtKDsf33oCm5yWvj8uZdS6QR4P1cOi/HS01V4VsJmDUur5x/NFTxu9QW0+v/QMa8W0/vn2g==",
+    "Syncfusion.Tools.WPF/33.1.44": {
+      "sha512": "v/5G6M/lTkSMBGxG7jrO5Z748rCKFFsSoaAfYxyyARjp51tEkj2/+9zmu7yMkBcSK/KCigpomyr9ZoUUxgHrtQ==",
       "type": "package",
-      "path": "syncfusion.tools.wpf/32.2.9",
+      "path": "syncfusion.tools.wpf/33.1.44",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -1270,7 +1270,7 @@
         "lib/net9.0-windows7.0/Design/Syncfusion.Tools.WPF.DesignTools.dll",
         "lib/net9.0-windows7.0/Syncfusion.Tools.WPF.dll",
         "lib/net9.0-windows7.0/Syncfusion.Tools.WPF.xml",
-        "syncfusion.tools.wpf.32.2.9.nupkg.sha512",
+        "syncfusion.tools.wpf.33.1.44.nupkg.sha512",
         "syncfusion.tools.wpf.nuspec",
         "syncfusion_logo.png",
         "tools/VisualStudioToolsManifest.xml"
@@ -1370,23 +1370,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Tester\\.nuget\\packages\\": {},
+    "C:\\Users\\josen\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\StudentDashboard\\StudentDashBoard.csproj",
+      "projectUniqueName": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\StudentDashboard\\StudentDashBoard.csproj",
       "projectName": "StudentDashBoard",
-      "projectPath": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\StudentDashboard\\StudentDashBoard.csproj",
-      "packagesPath": "C:\\Users\\Tester\\.nuget\\packages\\",
-      "outputPath": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\StudentDashboard\\obj\\",
+      "projectPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\StudentDashboard\\StudentDashBoard.csproj",
+      "packagesPath": "C:\\Users\\josen\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\StudentDashboard\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Tester\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\josen\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1395,14 +1395,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net10.0-windows7.0": {
           "targetAlias": "net10.0-windows7.0",
           "projectReferences": {
-            "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\BusinessLayer.csproj": {
-              "projectPath": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\BusinessLayer.csproj"
+            "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BusinessLayer\\BusinessLayer.csproj": {
+              "projectPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BusinessLayer\\BusinessLayer.csproj"
             }
           }
         }
@@ -1417,7 +1418,7 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.100"
+      "SdkAnalysisLevel": "10.0.200"
     },
     "frameworks": {
       "net10.0-windows7.0": {
@@ -1455,7 +1456,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.104/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",

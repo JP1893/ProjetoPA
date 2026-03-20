@@ -1,0 +1,16 @@
+C:\Users\josen\OneDrive - islagaia.pt\2Ano\2Semestre\ProgramacaoAvancada\ProjetoPA\BusinessLayer\obj\Debug\net9.0\BusinessLayer.csproj.AssemblyReference.cache
+C:\Users\josen\OneDrive - islagaia.pt\2Ano\2Semestre\ProgramacaoAvancada\ProjetoPA\BusinessLayer\obj\Debug\net9.0\BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\josen\OneDrive - islagaia.pt\2Ano\2Semestre\ProgramacaoAvancada\ProjetoPA\BusinessLayer\obj\Debug\net9.0\BusinessLayer.AssemblyInfoInputs.cache
+C:\Users\josen\OneDrive - islagaia.pt\2Ano\2Semestre\ProgramacaoAvancada\ProjetoPA\BusinessLayer\obj\Debug\net9.0\BusinessLayer.AssemblyInfo.cs
+C:\Users\josen\OneDrive - islagaia.pt\2Ano\2Semestre\ProgramacaoAvancada\ProjetoPA\BusinessLayer\obj\Debug\net9.0\BusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\josen\OneDrive - islagaia.pt\2Ano\2Semestre\ProgramacaoAvancada\ProjetoPA\BusinessLayer\obj\Debug\net9.0\BusinessLayer.sourcelink.json
+C:\Users\josen\OneDrive - islagaia.pt\2Ano\2Semestre\ProgramacaoAvancada\ProjetoPA\BusinessLayer\bin\Debug\net9.0\BusinessLayer.deps.json
+C:\Users\josen\OneDrive - islagaia.pt\2Ano\2Semestre\ProgramacaoAvancada\ProjetoPA\BusinessLayer\bin\Debug\net9.0\BusinessLayer.dll
+C:\Users\josen\OneDrive - islagaia.pt\2Ano\2Semestre\ProgramacaoAvancada\ProjetoPA\BusinessLayer\bin\Debug\net9.0\BusinessLayer.pdb
+C:\Users\josen\OneDrive - islagaia.pt\2Ano\2Semestre\ProgramacaoAvancada\ProjetoPA\BusinessLayer\bin\Debug\net9.0\DataLayer.dll
+C:\Users\josen\OneDrive - islagaia.pt\2Ano\2Semestre\ProgramacaoAvancada\ProjetoPA\BusinessLayer\bin\Debug\net9.0\DataLayer.pdb
+C:\Users\josen\OneDrive - islagaia.pt\2Ano\2Semestre\ProgramacaoAvancada\ProjetoPA\BusinessLayer\obj\Debug\net9.0\Business.EA331CBA.Up2Date
+C:\Users\josen\OneDrive - islagaia.pt\2Ano\2Semestre\ProgramacaoAvancada\ProjetoPA\BusinessLayer\obj\Debug\net9.0\BusinessLayer.dll
+C:\Users\josen\OneDrive - islagaia.pt\2Ano\2Semestre\ProgramacaoAvancada\ProjetoPA\BusinessLayer\obj\Debug\net9.0\refint\BusinessLayer.dll
+C:\Users\josen\OneDrive - islagaia.pt\2Ano\2Semestre\ProgramacaoAvancada\ProjetoPA\BusinessLayer\obj\Debug\net9.0\BusinessLayer.pdb
+C:\Users\josen\OneDrive - islagaia.pt\2Ano\2Semestre\ProgramacaoAvancada\ProjetoPA\BusinessLayer\obj\Debug\net9.0\ref\BusinessLayer.dll
