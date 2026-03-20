@@ -1,0 +1,46 @@
+CREATE OR ALTER PROCEDURE Listar_CategoriaProduto
+AS
+BEGIN
+    SELECT CategoriaId, NomeCategoria
+    FROM CategoriaProduto
+    ORDER BY NomeCategoria;
+END
+GO
+ 
+CREATE OR ALTER PROCEDURE Obter_CategoriaProduto
+    @CategoriaId INT
+AS
+BEGIN
+    SELECT CategoriaId, NomeCategoria
+    FROM CategoriaProduto
+    WHERE CategoriaId = @CategoriaId;
+END
+GO
+ 
+CREATE OR ALTER PROCEDURE Eliminar_CategoriaProduto
+    @CategoriaId INT
+AS
+BEGIN
+    DELETE FROM CategoriaProduto
+    WHERE CategoriaId = @CategoriaId;
+END
+GO
+ 
+CREATE OR ALTER PROCEDURE Gravar_CategoriaProduto
+    @CategoriaId INT,
+    @NomeCategoria NVARCHAR(100)
+AS
+BEGIN
+    IF EXISTS (SELECT 1 FROM CategoriaProduto WHERE CategoriaId = @CategoriaId)
+    BEGIN
+        UPDATE CategoriaProduto
+        SET NomeCategoria = @NomeCategoria
+        WHERE CategoriaId = @CategoriaId;
+    END
+    ELSE
+    BEGIN
+        INSERT INTO CategoriaProduto (NomeCategoria)
+        VALUES (@NomeCategoria);
+    END
+END
+GO

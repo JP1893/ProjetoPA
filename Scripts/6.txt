@@ -1,0 +1,48 @@
+REATE OR ALTER PROCEDURE Listar_Cidade
+AS
+BEGIN
+    SELECT CidadeId, NomeCidade, PaisId
+    FROM Cidade
+    ORDER BY NomeCidade;
+END
+GO
+ 
+CREATE OR ALTER PROCEDURE Obter_Cidade
+    @CidadeId INT
+AS
+BEGIN
+    SELECT CidadeId, NomeCidade, PaisId
+    FROM Cidade
+    WHERE CidadeId = @CidadeId;
+END
+GO
+ 
+CREATE OR ALTER PROCEDURE Eliminar_Cidade
+    @CidadeId INT
+AS
+BEGIN
+    DELETE FROM Cidade
+    WHERE CidadeId = @CidadeId;
+END
+GO
+ 
+CREATE OR ALTER PROCEDURE Gravar_Cidade
+    @CidadeId INT,
+    @NomeCidade NVARCHAR(100),
+    @PaisId INT
+AS
+BEGIN
+    IF EXISTS (SELECT 1 FROM Cidade WHERE CidadeId = @CidadeId)
+    BEGIN
+        UPDATE Cidade
+        SET NomeCidade = @NomeCidade,
+            PaisId = @PaisId
+        WHERE CidadeId = @CidadeId;
+    END
+    ELSE
+    BEGIN
+        INSERT INTO Cidade (NomeCidade, PaisId)
+        VALUES (@NomeCidade, @PaisId);
+    END
+END
+GO

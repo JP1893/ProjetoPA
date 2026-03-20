@@ -7,7 +7,7 @@ namespace DataLayer
     public class Cliente
     {
         private static string ConnectionString =>
-            @"Server=.\SQLEXPRESS;Database=ProjetoPAEmpresa;Trusted_Connection=True;TrustServerCertificate=True";
+            @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=ProjetoPAEmpresa;Data Source=MIGUELNOVO\SQLEXPRESS";
 
         public static bool Gravar(
             int clienteId, string nome, string email, string? telefone, int cidadeId,

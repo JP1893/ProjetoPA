@@ -15,10 +15,10 @@ namespace DataLayer
 
             try
             {
-                using SqlConnection con = new SqlConnection(ConnectionString);
+                SqlConnection con = new SqlConnection(ConnectionString);
                 con.Open();
 
-                using SqlCommand cmd = new SqlCommand("Gravar_CategoriaProduto", con);
+                SqlCommand cmd = new SqlCommand("Gravar_CategoriaProduto", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@CategoriaId", SqlDbType.Int) { Value = categoriaId });
@@ -64,10 +64,10 @@ namespace DataLayer
 
             try
             {
-                using SqlConnection con = new SqlConnection(ConnectionString);
+                SqlConnection con = new SqlConnection(ConnectionString);
                 con.Open();
 
-                using SqlCommand cmd = new SqlCommand("Listar_CategoriaProduto", con);
+                SqlCommand cmd = new SqlCommand("Listar_CategoriaProduto", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 using SqlDataAdapter da = new SqlDataAdapter(cmd);

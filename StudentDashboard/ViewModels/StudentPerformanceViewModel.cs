@@ -1,4 +1,7 @@
-﻿namespace StudentPerformanceDashboard
+﻿
+using StudentDashBoard.Models;
+
+namespace StudentPerformanceDashboard
 {
     public partial class StudentPerformanceViewModel
     {
@@ -88,6 +91,22 @@
                 var subject = new Subject { Name = name };
                 _subjectsByName[name] = subject;
                 Subjects.Add(subject);
+            }
+        }
+
+        private void InitializeCategoriaProdutos()
+        {
+            CategoriaProdutos.Clear();
+            //string[] names = new[] { "All", "PhysEd2", "English2", "Maths2", "Science2" };
+
+            BusinessLayer.CategoriaProdutoCollection categoriaProdutos = BusinessLayer.CategoriaProduto.Listar();
+
+            foreach (BusinessLayer.CategoriaProduto item in categoriaProdutos)
+            //foreach (var name in names)
+            {
+                var categoriaProduto = new StudentDashBoard.Models.CategoriaProduto { Name = item.NomeCategoria };
+                _categoriaProdutosByName[item.NomeCategoria] = categoriaProduto;
+                CategoriaProdutos.Add(categoriaProduto);
             }
         }
 

@@ -1,0 +1,71 @@
+CREATE DATABASE ProjetoPAEmpresa;
+GO
+ 
+USE ProjetoPAEmpresa;
+GO
+ 
+CREATE TABLE Pais
+(
+    PaisId INT IDENTITY(1,1) PRIMARY KEY,
+    NomePais NVARCHAR(100) NOT NULL
+);
+GO
+ 
+CREATE TABLE Cidade
+(
+    CidadeId INT IDENTITY(1,1) PRIMARY KEY,
+    NomeCidade NVARCHAR(100) NOT NULL,
+    PaisId INT NOT NULL,
+    CONSTRAINT FK_Cidade_Pais
+        FOREIGN KEY (PaisId) REFERENCES Pais(PaisId)
+);
+GO
+ 
+CREATE TABLE CategoriaProduto
+(
+    CategoriaId INT IDENTITY(1,1) PRIMARY KEY,
+    NomeCategoria NVARCHAR(100) NOT NULL
+);
+GO
+ 
+CREATE TABLE Cliente
+(
+    ClienteId INT IDENTITY(1,1) PRIMARY KEY,
+    Nome NVARCHAR(150) NOT NULL,
+    Email NVARCHAR(150) NOT NULL,
+    Telefone NVARCHAR(30) NULL,
+    CidadeId INT NOT NULL,
+    SegmentoId INT NOT NULL,
+    DataRegisto DATE NOT NULL,
+    Ativo BIT NOT NULL,
+    CONSTRAINT FK_Cliente_Cidade
+        FOREIGN KEY (CidadeId) REFERENCES Cidade(CidadeId),
+    CONSTRAINT CK_Cliente_Segmento
+        CHECK (SegmentoId IN (1, 2))
+);
+GO
+ 
+CREATE TABLE Produto
+(
+    ProdutoId INT IDENTITY(1,1) PRIMARY KEY,
+    NomeProduto NVARCHAR(150) NOT NULL,
+    CategoriaId INT NOT NULL,
+    PrecoVenda DECIMAL(10,2) NOT NULL,
+    PrecoCusto DECIMAL(10,2) NOT NULL,
+    Quantidade INT NOT NULL,
+    Ativo BIT NOT NULL,
+    DataCriacao DATE NOT NULL,
+    DataVenda DATE NULL,
+    ClienteId INT NULL,
+    CONSTRAINT FK_Produto_Categoria
+        FOREIGN KEY (CategoriaId) REFERENCES CategoriaProduto(CategoriaId),
+    CONSTRAINT FK_Produto_Cliente
+        FOREIGN KEY (ClienteId) REFERENCES Cliente(ClienteId),
+    CONSTRAINT CK_Produto_Quantidade
+        CHECK (Quantidade >= 0),
+    CONSTRAINT CK_Produto_PrecoVenda
+        CHECK (PrecoVenda >= 0),
+    CONSTRAINT CK_Produto_PrecoCusto
+        CHECK (PrecoCusto >= 0)
+);
+GO

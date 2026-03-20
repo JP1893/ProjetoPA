@@ -1,0 +1,72 @@
+CREATE OR ALTER PROCEDURE Listar_Produto
+AS
+BEGIN
+    SELECT ProdutoId, NomeProduto, CategoriaId, PrecoVenda, PrecoCusto, Quantidade,
+           Ativo, DataCriacao, DataVenda, ClienteId
+    FROM Produto
+    ORDER BY NomeProduto;
+END
+GO
+
+CREATE OR ALTER PROCEDURE Obter_Produto
+    @ProdutoId INT
+AS
+BEGIN
+    SELECT ProdutoId, NomeProduto, CategoriaId, PrecoVenda, PrecoCusto, Quantidade,
+           Ativo, DataCriacao, DataVenda, ClienteId
+    FROM Produto
+    WHERE ProdutoId = @ProdutoId;
+END
+GO
+
+CREATE OR ALTER PROCEDURE Eliminar_Produto
+    @ProdutoId INT
+AS
+BEGIN
+    DELETE FROM Produto
+    WHERE ProdutoId = @ProdutoId;
+END
+GO
+
+CREATE OR ALTER PROCEDURE Gravar_Produto
+    @ProdutoId INT,
+    @NomeProduto NVARCHAR(150),
+    @CategoriaId INT,
+    @PrecoVenda DECIMAL(10,2),
+    @PrecoCusto DECIMAL(10,2),
+    @Quantidade INT,
+    @Ativo BIT,
+    @DataCriacao DATE,
+    @DataVenda DATE = NULL,
+    @ClienteId INT = NULL
+AS
+BEGIN
+    IF EXISTS (SELECT 1 FROM Produto WHERE ProdutoId = @ProdutoId)
+    BEGIN
+        UPDATE Produto
+        SET NomeProduto = @NomeProduto,
+            CategoriaId = @CategoriaId,
+            PrecoVenda = @PrecoVenda,
+            PrecoCusto = @PrecoCusto,
+            Quantidade = @Quantidade,
+            Ativo = @Ativo,
+            DataCriacao = @DataCriacao,
+            DataVenda = @DataVenda,
+            ClienteId = @ClienteId
+        WHERE ProdutoId = @ProdutoId;
+    END
+    ELSE
+    BEGIN
+        INSERT INTO Produto
+        (
+            NomeProduto, CategoriaId, PrecoVenda, PrecoCusto,
+            Quantidade, Ativo, DataCriacao, DataVenda, ClienteId
+        )
+        VALUES
+        (
+            @NomeProduto, @CategoriaId, @PrecoVenda, @PrecoCusto,
+            @Quantidade, @Ativo, @DataCriacao, @DataVenda, @ClienteId
+        );
+    END
+END
+GO

@@ -1,0 +1,61 @@
+USE ProjetoPAEmpresa;
+GO
+
+CREATE OR ALTER PROCEDURE Listar_Cliente
+AS
+BEGIN
+    SELECT ClienteId, Nome, Email, Telefone, CidadeId, SegmentoId, DataRegisto, Ativo
+    FROM Cliente
+    ORDER BY Nome;
+END
+GO
+
+CREATE OR ALTER PROCEDURE Obter_Cliente
+    @ClienteId INT
+AS
+BEGIN
+    SELECT ClienteId, Nome, Email, Telefone, CidadeId, SegmentoId, DataRegisto, Ativo
+    FROM Cliente
+    WHERE ClienteId = @ClienteId;
+END
+GO
+
+CREATE OR ALTER PROCEDURE Eliminar_Cliente
+    @ClienteId INT
+AS
+BEGIN
+    DELETE FROM Cliente
+    WHERE ClienteId = @ClienteId;
+END
+GO
+
+CREATE OR ALTER PROCEDURE Gravar_Cliente
+    @ClienteId INT,
+    @Nome NVARCHAR(150),
+    @Email NVARCHAR(150),
+    @Telefone NVARCHAR(30),
+    @CidadeId INT,
+    @SegmentoId INT,
+    @DataRegisto DATE,
+    @Ativo BIT
+AS
+BEGIN
+    IF EXISTS (SELECT 1 FROM Cliente WHERE ClienteId = @ClienteId)
+    BEGIN
+        UPDATE Cliente
+        SET Nome = @Nome,
+            Email = @Email,
+            Telefone = @Telefone,
+            CidadeId = @CidadeId,
+            SegmentoId = @SegmentoId,
+            DataRegisto = @DataRegisto,
+            Ativo = @Ativo
+        WHERE ClienteId = @ClienteId;
+    END
+    ELSE
+    BEGIN
+        INSERT INTO Cliente (Nome, Email, Telefone, CidadeId, SegmentoId, DataRegisto, Ativo)
+        VALUES (@Nome, @Email, @Telefone, @CidadeId, @SegmentoId, @DataRegisto, @Ativo);
+    END
+END
+GO

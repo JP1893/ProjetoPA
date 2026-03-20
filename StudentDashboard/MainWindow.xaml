@@ -25,7 +25,7 @@
         <Grid RowDefinitions="1*,1*,3.5*,4.5*" Background="#290D5C">
 
             <!-- Header -->
-            <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto,Auto" Margin="5">
+            <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto,Auto,Auto" Margin="5">
 
                 <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -39,11 +39,18 @@
                 <editors:ComboBoxAdv Grid.Column="2" Style="{StaticResource comboBoxStyle}"
                      Width="160"
                      DisplayMemberPath="Name"
+                     ItemsSource="{Binding CategoriaProdutos}"
+                     SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"
+                     VerticalAlignment="Center"/>
+                
+                <editors:ComboBoxAdv Grid.Column="3" Style="{StaticResource comboBoxStyle}"
+                     Width="160"
+                     DisplayMemberPath="Name"
                      ItemsSource="{Binding Subjects}"
                      SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"
                      VerticalAlignment="Center"/>
 
-                <editors:ComboBoxAdv Grid.Column="3" Style="{StaticResource comboBoxStyle}" Margin="10,0,0,0"
+                <editors:ComboBoxAdv Grid.Column="4" Style="{StaticResource comboBoxStyle}" Margin="10,0,0,0"
                      Width="120" VerticalAlignment="Center"
                      ItemsSource="{Binding Years}"
                      SelectedItem="{Binding SelectedYear, Mode=TwoWay}"/>

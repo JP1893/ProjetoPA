@@ -1,0 +1,37 @@
+USE ProjetoPAEmpresa;
+GO
+
+INSERT INTO Pais (NomePais)
+VALUES
+('Portugal'),
+('Espanha');
+GO
+
+INSERT INTO Cidade (NomeCidade, PaisId)
+VALUES
+('Porto', 1),
+('Lisboa', 1),
+('Madrid', 2);
+GO
+
+INSERT INTO CategoriaProduto (NomeCategoria)
+VALUES
+('Informática'),
+('Escritório'),
+('Acessório');
+GO
+
+INSERT INTO Cliente (Nome, Email, Telefone, CidadeId, SegmentoId, DataRegisto, Ativo)
+VALUES
+('Renato Ferreira', 'renato@email.com', '912345678', 1, 1, '2026-01-10', 1),
+('Tech Solutions Lda', 'geral@techsolutions.pt', '220000111', 2, 2, '2026-01-15', 1),
+('Office Prime SA', 'contacto@officeprime.pt', '219999888', 2, 2, '2026-02-01', 1);
+GO
+
+INSERT INTO Produto (NomeProduto, CategoriaId, PrecoVenda, PrecoCusto, Quantidade, Ativo, DataCriacao, DataVenda, ClienteId)
+VALUES
+('Portátil Dell', 1, 950.00, 700.00, 10, 1, '2026-01-05', '2026-02-10', 2),
+('Cadeira Escritório', 2, 180.00, 120.00, 25, 1, '2026-01-08', NULL, NULL),
+('Rato Sem Fios', 3, 25.00, 10.00, 100, 1, '2026-01-12', '2026-02-20', 1),
+('Monitor 24', 1, 210.00, 150.00, 15, 1, '2026-01-20', '2026-03-01', 3);
+GO

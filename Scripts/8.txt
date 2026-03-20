@@ -1,0 +1,10 @@
+CREATE OR ALTER PROCEDURE Obter_Produto
+    @ProdutoId INT
+AS
+BEGIN
+    SELECT ProdutoId, NomeProduto, CategoriaId, PrecoVenda, PrecoCusto,
+           Quantidade, Ativo, DataCriacao, DataVenda, ClienteId
+    FROM Produto
+    WHERE ProdutoId = @ProdutoId;
+END
+GO

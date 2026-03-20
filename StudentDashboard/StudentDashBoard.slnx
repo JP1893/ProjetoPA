@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="../BDGlobal/BDGlobal.csproj" Id="1218cabf-60ef-455b-ae93-486da832d57c" />
   <Project Path="../BusinessLayer/BusinessLayer.csproj" Id="f0b6cddb-0ee9-4065-8f14-b95c728e13d3" />
   <Project Path="../DataLayer/DataLayer.csproj" Id="651d755f-2857-4af8-88d8-6841895abba8" />
   <Project Path="StudentDashBoard.csproj" />

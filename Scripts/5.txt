@@ -1,0 +1,46 @@
+CREATE OR ALTER PROCEDURE Listar_Pais
+AS
+BEGIN
+    SELECT PaisId, NomePais
+    FROM Pais
+    ORDER BY NomePais;
+END
+GO
+ 
+CREATE OR ALTER PROCEDURE Obter_Pais
+    @PaisId INT
+AS
+BEGIN
+    SELECT PaisId, NomePais
+    FROM Pais
+    WHERE PaisId = @PaisId;
+END
+GO
+ 
+CREATE OR ALTER PROCEDURE Eliminar_Pais
+    @PaisId INT
+AS
+BEGIN
+    DELETE FROM Pais
+    WHERE PaisId = @PaisId;
+END
+GO
+ 
+CREATE OR ALTER PROCEDURE Gravar_Pais
+    @PaisId INT,
+    @NomePais NVARCHAR(100)
+AS
+BEGIN
+    IF EXISTS (SELECT 1 FROM Pais WHERE PaisId = @PaisId)
+    BEGIN
+        UPDATE Pais
+        SET NomePais = @NomePais
+        WHERE PaisId = @PaisId;
+    END
+    ELSE
+    BEGIN
+        INSERT INTO Pais (NomePais)
+        VALUES (@NomePais);
+    END
+END
+GO
