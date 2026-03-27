@@ -137,5 +137,29 @@ namespace DataLayer
 
             return dt;
         }
+
+        public static DataTable ListarCompleto(out string erro)
+        {
+            erro = string.Empty;
+            DataTable dt = new DataTable();
+
+            try
+            {
+                using SqlConnection con = new SqlConnection(ConnectionString);
+                con.Open();
+
+                using SqlCommand cmd = new SqlCommand("Listar_ProdutoCompleto", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                erro = ex.Message;
+            }
+
+            return dt;
+        }
     }
 }

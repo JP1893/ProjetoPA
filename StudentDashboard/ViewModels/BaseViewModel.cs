@@ -110,7 +110,11 @@ namespace StudentPerformanceDashboard
             {
                 if (value is null || _selectedPais == value) return;
                 _selectedPais = value;
+
+                InitializeCidades(_selectedPais.PaisID);
+
                 OnPropertyChanged(nameof(SelectedPais));
+                OnPropertyChanged(nameof(SelectedCidade));
                 UpdateFilteredData();
             }
         }
@@ -154,6 +158,20 @@ namespace StudentPerformanceDashboard
             }
         }
 
+
+        private double _lucro;
+        public double Lucro
+        {
+            get => _lucro;
+            private set
+            {
+                if (_lucro != value)
+                {
+                    _lucro = value;
+                    OnPropertyChanged(nameof(Lucro));
+                }
+            }
+        }
         // Score Tiles
         private double _physEdScore; public double PhysEdScore { get => _physEdScore; private set { if (_physEdScore != value) { _physEdScore = value; OnPropertyChanged(nameof(PhysEdScore)); } } }
         private double _totalVendas; public double TotalVendas { get => _totalVendas; private set { if (_totalVendas != value) { _totalVendas = value; OnPropertyChanged(nameof(TotalVendas)); } } }
@@ -172,7 +190,8 @@ namespace StudentPerformanceDashboard
 
             InitializeCategoriaProdutos();
             InitializePaises();
-            InitializeCidades();
+            int paisID = 0;
+            InitializeCidades(paisID);
             InitializeProdutos();
             InitializeClientes();
 

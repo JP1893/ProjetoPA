@@ -106,5 +106,15 @@ namespace BusinessLayer
             }
             return isCategoriaId;
         }
+
+        public bool IsPaisId(int paisId)
+        {
+            bool isPaisId = true;
+            if (paisId > 0 && this.ClienteId != paisId)
+            {
+                isPaisId = false;
+            }
+            return isPaisId;
+        }
     }
 }

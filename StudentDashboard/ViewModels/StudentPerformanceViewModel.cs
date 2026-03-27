@@ -115,7 +115,7 @@ namespace StudentPerformanceDashboard
             Paises.Clear();
             _paisesByName.Clear();
 
-            var paisTodos = new StudentDashBoard.Models.Pais { Name = "All" };
+            var paisTodos = new StudentDashBoard.Models.Pais { PaisID = 0, Name = "All" };
             _paisesByName["All"] = paisTodos;
             Paises.Add(paisTodos);
 
@@ -125,6 +125,7 @@ namespace StudentPerformanceDashboard
             {
                 var pais = new StudentDashBoard.Models.Pais
                 {
+                    PaisID = item.PaisId,
                     Name = item.NomePais
                 };
 
@@ -133,7 +134,7 @@ namespace StudentPerformanceDashboard
             }
         }
 
-        private void InitializeCidades()
+        private void InitializeCidades(int paisID)
         {
             Cidades.Clear();
             _cidadesByName.Clear();
@@ -142,17 +143,22 @@ namespace StudentPerformanceDashboard
             _cidadesByName["All"] = cidadeTodos;
             Cidades.Add(cidadeTodos);
 
-            BusinessLayer.CidadeCollection cidades = BusinessLayer.Cidade.Listar();
-
-            foreach (BusinessLayer.Cidade item in cidades)
+            if (paisID > 0)
             {
-                var cidade = new StudentDashBoard.Models.Cidade
-                {
-                    Name = item.NomeCidade
-                };
+                BusinessLayer.CidadeCollection cidades = BusinessLayer.Cidade.Listar();
 
-                _cidadesByName[cidade.Name] = cidade;
-                Cidades.Add(cidade);
+                IEnumerable<BusinessLayer.Cidade> cidadesPorPais = cidades.Where(k => k.PaisId == paisID);
+
+                foreach (BusinessLayer.Cidade item in cidadesPorPais)
+                {
+                    var cidade = new StudentDashBoard.Models.Cidade
+                    {
+                        Name = item.NomeCidade
+                    };
+
+                    _cidadesByName[cidade.Name] = cidade;
+                    Cidades.Add(cidade);
+                }
             }
         }
 
@@ -311,8 +317,15 @@ namespace StudentPerformanceDashboard
                 categoriaId = this.SelectedCategoriaProduto.CategoriaID;
             }
 
-            this.TotalVendas = this.AllProdutos.ObterTotalVendas(categoriaId);
-            EnglishScore = avgScores.English;
+            int paisID = 0;
+            if (SelectedPais != null)
+            {
+                paisID = this.SelectedPais.PaisID;
+            }
+
+            this.TotalVendas = this.AllProdutos.ObterTotalVendas(categoriaId, paisID);
+            this.Lucro = this.AllProdutos.ObterLucro(categoriaId);
+            
             MathsScore = avgScores.Maths;
             ScienceScore = avgScores.Science;
 

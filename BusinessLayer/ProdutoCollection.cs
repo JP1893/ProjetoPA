@@ -41,13 +41,20 @@ namespace BusinessLayer
             }
         }
 
-        public double ObterTotalVendas(int categoriaID)
+        public double ObterTotalVendas(int categoriaID, int paisID)
         {
             double totalVendas = (double)(from element in this
-                                          where element.IsCategoriaId(categoriaID)
-                     select element.PrecoVenda).Sum();
+                                          where element.IsCategoriaId(categoriaID) && element.IsPaisId(paisID)
+                                          select element.PrecoVenda).Sum();
 
             return totalVendas;
+        }
+
+        public double ObterLucro(int categoriaID)
+        {
+            return (double)this
+                .Where(p => p.IsCategoriaId(categoriaID))
+                .Sum(p => p.PrecoVenda - p.PrecoCusto);
         }
     }
 }
