@@ -104,7 +104,7 @@ namespace StudentPerformanceDashboard
             foreach (BusinessLayer.CategoriaProduto item in categoriaProdutos)
             //foreach (var name in names)
             {
-                var categoriaProduto = new StudentDashBoard.Models.CategoriaProduto { Name = item.NomeCategoria };
+                var categoriaProduto = new StudentDashBoard.Models.CategoriaProduto { CategoriaID = item.CategoriaId, Name = item.NomeCategoria };
                 _categoriaProdutosByName[item.NomeCategoria] = categoriaProduto;
                 CategoriaProdutos.Add(categoriaProduto);
             }
@@ -217,7 +217,7 @@ namespace StudentPerformanceDashboard
                     if (item.Subject != null && string.Equals(item.Subject.Name, targetName, StringComparison.OrdinalIgnoreCase))
                     {
                         FilteredParticipationRates.Add(item);
-                        var newitem = new SubjectRate() {Rate =  100-item.Rate };
+                        var newitem = new SubjectRate() { Rate = 100 - item.Rate };
                         FilteredParticipationRates.Add(newitem);
                         break;
                     }
@@ -304,7 +304,14 @@ namespace StudentPerformanceDashboard
             var avgScores = AverageSubjectScores.FirstOrDefault(s => s.Year == SelectedYear)?.Scores ?? new SubjectScores();
 
             PhysEdScore = avgScores.PhysEd;
-            this.TotalVendas = this.AllProdutos.ObterTotalVendas();
+
+            int categoriaId = 0;
+            if (SelectedCategoriaProduto != null)
+            {
+                categoriaId = this.SelectedCategoriaProduto.CategoriaID;
+            }
+
+            this.TotalVendas = this.AllProdutos.ObterTotalVendas(categoriaId);
             EnglishScore = avgScores.English;
             MathsScore = avgScores.Maths;
             ScienceScore = avgScores.Science;

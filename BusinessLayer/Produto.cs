@@ -96,5 +96,15 @@ namespace BusinessLayer
             DataTable dt = Listar(out erro);
             return new ProdutoCollection(dt);
         }
+
+        public bool IsCategoriaId(int categoriaId)
+        {
+            bool isCategoriaId = true;
+            if (categoriaId > 0 && this.CategoriaId != categoriaId)
+            {
+                isCategoriaId = false;
+            }
+            return isCategoriaId;
+        }
     }
 }

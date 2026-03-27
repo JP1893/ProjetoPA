@@ -41,9 +41,10 @@ namespace BusinessLayer
             }
         }
 
-        public double ObterTotalVendas()
+        public double ObterTotalVendas(int categoriaID)
         {
             double totalVendas = (double)(from element in this
+                                          where element.IsCategoriaId(categoriaID)
                      select element.PrecoVenda).Sum();
 
             return totalVendas;
