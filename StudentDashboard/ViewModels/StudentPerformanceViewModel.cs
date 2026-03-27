@@ -110,6 +110,98 @@ namespace StudentPerformanceDashboard
             }
         }
 
+        private void InitializePaises()
+        {
+            Paises.Clear();
+            _paisesByName.Clear();
+
+            var paisTodos = new StudentDashBoard.Models.Pais { Name = "All" };
+            _paisesByName["All"] = paisTodos;
+            Paises.Add(paisTodos);
+
+            BusinessLayer.PaisCollection paises = BusinessLayer.Pais.Listar();
+
+            foreach (BusinessLayer.Pais item in paises)
+            {
+                var pais = new StudentDashBoard.Models.Pais
+                {
+                    Name = item.NomePais
+                };
+
+                _paisesByName[pais.Name] = pais;
+                Paises.Add(pais);
+            }
+        }
+
+        private void InitializeCidades()
+        {
+            Cidades.Clear();
+            _cidadesByName.Clear();
+
+            var cidadeTodos = new StudentDashBoard.Models.Cidade { Name = "All" };
+            _cidadesByName["All"] = cidadeTodos;
+            Cidades.Add(cidadeTodos);
+
+            BusinessLayer.CidadeCollection cidades = BusinessLayer.Cidade.Listar();
+
+            foreach (BusinessLayer.Cidade item in cidades)
+            {
+                var cidade = new StudentDashBoard.Models.Cidade
+                {
+                    Name = item.NomeCidade
+                };
+
+                _cidadesByName[cidade.Name] = cidade;
+                Cidades.Add(cidade);
+            }
+        }
+
+        private void InitializeProdutos()
+        {
+            Produtos.Clear();
+            _produtosByName.Clear();
+
+            var produtoTodos = new StudentDashBoard.Models.Produto { Name = "All" };
+            _produtosByName["All"] = produtoTodos;
+            Produtos.Add(produtoTodos);
+
+            BusinessLayer.ProdutoCollection produtos = BusinessLayer.Produto.Listar();
+
+            foreach (BusinessLayer.Produto item in produtos)
+            {
+                var produto = new StudentDashBoard.Models.Produto
+                {
+                    Name = item.NomeProduto
+                };
+
+                _produtosByName[produto.Name] = produto;
+                Produtos.Add(produto);
+            }
+        }
+
+        private void InitializeClientes()
+        {
+            Clientes.Clear();
+            _clientesByName.Clear();
+
+            var clienteTodos = new StudentDashBoard.Models.Cliente { Name = "All" };
+            _clientesByName["All"] = clienteTodos;
+            Clientes.Add(clienteTodos);
+
+            BusinessLayer.ClienteCollection clientes = BusinessLayer.Cliente.Listar();
+
+            foreach (BusinessLayer.Cliente item in clientes)
+            {
+                var cliente = new StudentDashBoard.Models.Cliente
+                {
+                    Name = item.Nome
+                };
+
+                _clientesByName[cliente.Name] = cliente;
+                Clientes.Add(cliente);
+            }
+        }
+
         private void UpdateFilteredData()
         {
             BuildProjections();

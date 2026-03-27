@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using BDGlobal;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Data;
 
@@ -6,17 +7,13 @@ namespace DataLayer
 {
     public class Cidade
     {
-        private static string ConnectionString =>
-            @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=ProjetoPAEmpresa;Data Source=MIGUELNOVO\SQLEXPRESS";
-
         public static bool Gravar(int cidadeId, string nomeCidade, int paisId, out string erro)
         {
             erro = string.Empty;
 
             try
             {
-                using SqlConnection con = new SqlConnection(ConnectionString);
-                con.Open();
+                using SqlConnection con = BaseDadosGlobal.AbrirBaseDados();
 
                 using SqlCommand cmd = new SqlCommand("Gravar_Cidade", con);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -41,8 +38,7 @@ namespace DataLayer
 
             try
             {
-                using SqlConnection con = new SqlConnection(ConnectionString);
-                con.Open();
+                using SqlConnection con = BaseDadosGlobal.AbrirBaseDados();
 
                 using SqlCommand cmd = new SqlCommand("Eliminar_Cidade", con);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -60,26 +56,7 @@ namespace DataLayer
 
         public static DataTable Listar(out string erro)
         {
-            erro = string.Empty;
-            DataTable dt = new DataTable();
-
-            try
-            {
-                using SqlConnection con = new SqlConnection(ConnectionString);
-                con.Open();
-
-                using SqlCommand cmd = new SqlCommand("Listar_Cidade", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                using SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                erro = ex.Message;
-            }
-
-            return dt;
+            return BaseDadosGlobal.ObterLista("Listar_Cidade", out erro);
         }
 
         public static bool Obter(int cidadeId, ref string nomeCidade, ref int paisId, out string erro)
@@ -88,8 +65,7 @@ namespace DataLayer
 
             try
             {
-                using SqlConnection con = new SqlConnection(ConnectionString);
-                con.Open();
+                using SqlConnection con = BaseDadosGlobal.AbrirBaseDados();
 
                 using SqlCommand cmd = new SqlCommand("Obter_Cidade", con);
                 cmd.CommandType = CommandType.StoredProcedure;

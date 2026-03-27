@@ -25,35 +25,126 @@
         <Grid RowDefinitions="1*,1*,3.5*,4.5*" Background="#290D5C">
 
             <!-- Header -->
-            <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto,Auto,Auto" Margin="5">
+
+            <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Margin="5">
 
                 <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <Path Data="{StaticResource PathData1}" Margin="10,0,0,0"  Fill="#FAEFF6"/>
-                        <TextBlock Margin="20,0,0,0" Text="Student Performance and Engagement Hub" Foreground="#FAEFF6" FontSize="24"/>
-                    </StackPanel>
+                    <Path Data="{StaticResource PathData1}" Margin="10,0,0,0" Fill="#FAEFF6"/>
+                    <TextBlock Margin="20,0,0,0"
+                   Text="Student Performance and Engagement Hub"
+                   Foreground="#FAEFF6"
+                   FontSize="24"
+                   VerticalAlignment="Center"/>
                 </StackPanel>
 
-                <TextBlock Grid.Column="1" FontSize="15" Foreground="#FAEFF6" Text="Subject" FontWeight="SemiBold" Margin="20,10,10,10" VerticalAlignment="Center"/>
+                <!--<TextBlock Grid.Column="1"
+               FontSize="15"
+               Foreground="#FAEFF6"
+               Text="Subject"
+               FontWeight="SemiBold"
+               Margin="20,10,10,10"
+               VerticalAlignment="Center"/>
 
-                <editors:ComboBoxAdv Grid.Column="2" Style="{StaticResource comboBoxStyle}"
-                     Width="160"
+                <editors:ComboBoxAdv Grid.Column="2"
+                         Style="{StaticResource comboBoxStyle}"
+                         Width="160"
+                         DisplayMemberPath="Name"
+                         ItemsSource="{Binding Subjects}"
+                         SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"
+                         VerticalAlignment="Center"/>-->
+
+                <editors:ComboBoxAdv Grid.Column="3"
+                         Style="{StaticResource comboBoxStyle}"
+                         Margin="10,0,0,0"
+                         Width="120"
+                         VerticalAlignment="Center"
+                         ItemsSource="{Binding Years}"
+                         SelectedItem="{Binding SelectedYear, Mode=TwoWay}"/>
+
+                <TextBlock Grid.Column="4"
+               FontSize="15"
+               Foreground="#FAEFF6"
+               Text="Categoria"
+               FontWeight="SemiBold"
+               Margin="20,10,10,10"
+               VerticalAlignment="Center"/>
+
+                <editors:ComboBoxAdv Grid.Column="5"
+                         Style="{StaticResource comboBoxStyle}"
+                         Margin="10,0,0,0"
+                         Width="160"
+                         DisplayMemberPath="Name"
+                         ItemsSource="{Binding CategoriaProdutos}"
+                         SelectedItem="{Binding SelectedCategoriaProduto, Mode=TwoWay}"
+                         VerticalAlignment="Center"/>
+
+                <TextBlock Grid.Column="6"
+               FontSize="15"
+               Foreground="#FAEFF6"
+               Text="País"
+               FontWeight="SemiBold"
+               Margin="20,10,10,10"
+               VerticalAlignment="Center"/>
+
+                <editors:ComboBoxAdv Grid.Column="7"
+                         Style="{StaticResource comboBoxStyle}"
+                         Margin="10,0,0,0"
+                         Width="160"
+                         DisplayMemberPath="Name"
+                         ItemsSource="{Binding Paises}"
+                         SelectedItem="{Binding SelectedPais, Mode=TwoWay}"
+                         VerticalAlignment="Center"/>
+
+                <TextBlock Grid.Column="8"
+               FontSize="15"
+               Foreground="#FAEFF6"
+               Text="Cidade"
+               FontWeight="SemiBold"
+               Margin="20,10,10,10"
+               VerticalAlignment="Center"/>
+
+                <editors:ComboBoxAdv Grid.Column="9"
+                         Style="{StaticResource comboBoxStyle}"
+                         Margin="10,0,0,0"
+                         Width="160"
+                         DisplayMemberPath="Name"
+                         ItemsSource="{Binding Cidades}"
+                         SelectedItem="{Binding SelectedCidade, Mode=TwoWay}"
+                         VerticalAlignment="Center"/>
+
+                <TextBlock Grid.Column="10"
+           FontSize="15"
+           Foreground="#FAEFF6"
+           Text="Produto"
+           FontWeight="SemiBold"
+           Margin="20,10,10,10"
+           VerticalAlignment="Center"/>
+
+                <editors:ComboBoxAdv Grid.Column="11"
+                     Style="{StaticResource comboBoxStyle}"
+                     Margin="10,0,0,0"
+                     Width="170"
                      DisplayMemberPath="Name"
-                     ItemsSource="{Binding CategoriaProdutos}"
-                     SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"
-                     VerticalAlignment="Center"/>
-                
-                <editors:ComboBoxAdv Grid.Column="3" Style="{StaticResource comboBoxStyle}"
-                     Width="160"
-                     DisplayMemberPath="Name"
-                     ItemsSource="{Binding Subjects}"
-                     SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"
+                     ItemsSource="{Binding Produtos}"
+                     SelectedItem="{Binding SelectedProduto, Mode=TwoWay}"
                      VerticalAlignment="Center"/>
 
-                <editors:ComboBoxAdv Grid.Column="4" Style="{StaticResource comboBoxStyle}" Margin="10,0,0,0"
-                     Width="120" VerticalAlignment="Center"
-                     ItemsSource="{Binding Years}"
-                     SelectedItem="{Binding SelectedYear, Mode=TwoWay}"/>
+                <TextBlock Grid.Column="12"
+           FontSize="15"
+           Foreground="#FAEFF6"
+           Text="Cliente"
+           FontWeight="SemiBold"
+           Margin="20,10,10,10"
+           VerticalAlignment="Center"/>
+
+                <editors:ComboBoxAdv Grid.Column="13"
+                     Style="{StaticResource comboBoxStyle}"
+                     Margin="10,0,0,0"
+                     Width="180"
+                     DisplayMemberPath="Name"
+                     ItemsSource="{Binding Clientes}"
+                     SelectedItem="{Binding SelectedCliente, Mode=TwoWay}"
+                     VerticalAlignment="Center"/>
             </Grid>
 
             <!-- Score tiles -->

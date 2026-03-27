@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using BDGlobal;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Data;
 
@@ -6,19 +7,15 @@ namespace DataLayer
 {
     public class CategoriaProduto
     {
-        private static string ConnectionString =>
-            @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=ProjetoPAEmpresa;TrustServerCertificate = true;Data Source=MIGUELNOVO\SQLEXPRESS";
-
         public static bool Gravar(int categoriaId, string nomeCategoria, out string erro)
         {
             erro = string.Empty;
 
             try
             {
-                SqlConnection con = new SqlConnection(ConnectionString);
-                con.Open();
+                using SqlConnection con = BaseDadosGlobal.AbrirBaseDados();
 
-                SqlCommand cmd = new SqlCommand("Gravar_CategoriaProduto", con);
+                using SqlCommand cmd = new SqlCommand("Gravar_CategoriaProduto", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@CategoriaId", SqlDbType.Int) { Value = categoriaId });
@@ -40,8 +37,7 @@ namespace DataLayer
 
             try
             {
-                using SqlConnection con = new SqlConnection(ConnectionString);
-                con.Open();
+                using SqlConnection con = BaseDadosGlobal.AbrirBaseDados();
 
                 using SqlCommand cmd = new SqlCommand("Eliminar_CategoriaProduto", con);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -59,26 +55,7 @@ namespace DataLayer
 
         public static DataTable Listar(out string erro)
         {
-            erro = string.Empty;
-            DataTable dt = new DataTable();
-
-            try
-            {
-                SqlConnection con = new SqlConnection(ConnectionString);
-                con.Open();
-
-                SqlCommand cmd = new SqlCommand("Listar_CategoriaProduto", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                using SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                erro = ex.Message;
-            }
-
-            return dt;
+            return BDGlobal.BaseDadosGlobal.ObterLista("Listar_CategoriaProduto", out erro);
         }
 
         public static bool Obter(int categoriaId, ref string nomeCategoria, out string erro)
@@ -87,8 +64,7 @@ namespace DataLayer
 
             try
             {
-                using SqlConnection con = new SqlConnection(ConnectionString);
-                con.Open();
+                using SqlConnection con = BaseDadosGlobal.AbrirBaseDados();
 
                 using SqlCommand cmd = new SqlCommand("Obter_CategoriaProduto", con);
                 cmd.CommandType = CommandType.StoredProcedure;
