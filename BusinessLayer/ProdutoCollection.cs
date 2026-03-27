@@ -40,5 +40,13 @@ namespace BusinessLayer
                 Add(produto);
             }
         }
+
+        public double ObterTotalVendas()
+        {
+            double totalVendas = (double)(from element in this
+                     select element.PrecoVenda).Sum();
+
+            return totalVendas;
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace StudentPerformanceDashboard
         // Data Collections
         public ObservableCollection<StudentsPerYear> StudentsPerYear { get; } = new();
         public ObservableCollection<AverageSubjectScore> AverageSubjectScores { get; } = new();
+        public BusinessLayer.ProdutoCollection AllProdutos { get; set; }
         public StudentsByGradeAndGender StudentsByGradeAndGender { get; private set; } = new();
         // Year-wise gender totals so pie responds to year changes
         private readonly Dictionary<int, StudentsByGradeAndGender> _genderTotalsByYear = new();
@@ -155,6 +156,7 @@ namespace StudentPerformanceDashboard
 
         // Score Tiles
         private double _physEdScore; public double PhysEdScore { get => _physEdScore; private set { if (_physEdScore != value) { _physEdScore = value; OnPropertyChanged(nameof(PhysEdScore)); } } }
+        private double _totalVendas; public double TotalVendas { get => _totalVendas; private set { if (_totalVendas != value) { _totalVendas = value; OnPropertyChanged(nameof(TotalVendas)); } } }
         private double _englishScore; public double EnglishScore { get => _englishScore; private set { if (_englishScore != value) { _englishScore = value; OnPropertyChanged(nameof(EnglishScore)); } } }
         private double _mathsScore; public double MathsScore { get => _mathsScore; private set { if (_mathsScore != value) { _mathsScore = value; OnPropertyChanged(nameof(MathsScore)); } } }
         private double _scienceScore; public double ScienceScore { get => _scienceScore; private set { if (_scienceScore != value) { _scienceScore = value; OnPropertyChanged(nameof(ScienceScore)); } } }

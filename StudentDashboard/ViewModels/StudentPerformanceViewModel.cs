@@ -165,9 +165,9 @@ namespace StudentPerformanceDashboard
             _produtosByName["All"] = produtoTodos;
             Produtos.Add(produtoTodos);
 
-            BusinessLayer.ProdutoCollection produtos = BusinessLayer.Produto.Listar();
+            this.AllProdutos = BusinessLayer.Produto.Listar();
 
-            foreach (BusinessLayer.Produto item in produtos)
+            foreach (BusinessLayer.Produto item in this.AllProdutos)
             {
                 var produto = new StudentDashBoard.Models.Produto
                 {
@@ -304,6 +304,7 @@ namespace StudentPerformanceDashboard
             var avgScores = AverageSubjectScores.FirstOrDefault(s => s.Year == SelectedYear)?.Scores ?? new SubjectScores();
 
             PhysEdScore = avgScores.PhysEd;
+            this.TotalVendas = this.AllProdutos.ObterTotalVendas();
             EnglishScore = avgScores.English;
             MathsScore = avgScores.Maths;
             ScienceScore = avgScores.Science;

@@ -152,8 +152,8 @@
 
                 <Border Grid.Column="0" Style="{StaticResource border}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Text="PhysEd : " Style="{StaticResource kpiCard1}"/>
-                        <TextBlock Text="{Binding PhysEdScore, StringFormat={}{0}%}" Style="{StaticResource kpiCard2}"/>
+                        <TextBlock Text="Total $ : " Style="{StaticResource kpiCard1}"/>
+                        <TextBlock Text="{Binding TotalVendas, StringFormat={}{0}€}" Style="{StaticResource kpiCard2}"/>
                     </StackPanel>
                 </Border>
 
