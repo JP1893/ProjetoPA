@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BusinessLayer\\BusinessLayer.csproj": {}
+    "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\BusinessLayer\\BusinessLayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BDGlobal\\BDGlobal.csproj": {
+    "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\BDGlobal\\BDGlobal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BDGlobal\\BDGlobal.csproj",
+        "projectUniqueName": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\BDGlobal\\BDGlobal.csproj",
         "projectName": "BDGlobal",
-        "projectPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BDGlobal\\BDGlobal.csproj",
+        "projectPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\BDGlobal\\BDGlobal.csproj",
         "packagesPath": "C:\\Users\\josen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BDGlobal\\obj\\",
+        "outputPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\BDGlobal\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -31,6 +31,7 @@
         },
         "frameworks": {
           "net9.0": {
+            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {}
           }
@@ -49,6 +50,7 @@
       },
       "frameworks": {
         "net9.0": {
+          "framework": "net9.0",
           "targetAlias": "net9.0",
           "dependencies": {
             "Microsoft.Data.SqlClient": {
@@ -72,18 +74,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BusinessLayer\\BusinessLayer.csproj": {
+    "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\BusinessLayer\\BusinessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BusinessLayer\\BusinessLayer.csproj",
+        "projectUniqueName": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\BusinessLayer\\BusinessLayer.csproj",
         "projectName": "BusinessLayer",
-        "projectPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BusinessLayer\\BusinessLayer.csproj",
+        "projectPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\BusinessLayer\\BusinessLayer.csproj",
         "packagesPath": "C:\\Users\\josen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BusinessLayer\\obj\\",
+        "outputPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\BusinessLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -103,10 +105,11 @@
         },
         "frameworks": {
           "net9.0": {
+            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\DataLayer\\DataLayer.csproj": {
-                "projectPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\DataLayer\\DataLayer.csproj"
+              "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\DataLayer\\DataLayer.csproj": {
+                "projectPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\DataLayer\\DataLayer.csproj"
               }
             }
           }
@@ -125,6 +128,7 @@
       },
       "frameworks": {
         "net9.0": {
+          "framework": "net9.0",
           "targetAlias": "net9.0",
           "imports": [
             "net461",
@@ -142,18 +146,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\DataLayer\\DataLayer.csproj": {
+    "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\DataLayer\\DataLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\DataLayer\\DataLayer.csproj",
+        "projectUniqueName": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\DataLayer\\DataLayer.csproj",
         "projectName": "DataLayer",
-        "projectPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\DataLayer\\DataLayer.csproj",
+        "projectPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\DataLayer\\DataLayer.csproj",
         "packagesPath": "C:\\Users\\josen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\DataLayer\\obj\\",
+        "outputPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\DataLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -173,10 +177,11 @@
         },
         "frameworks": {
           "net9.0": {
+            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BDGlobal\\BDGlobal.csproj": {
-                "projectPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BDGlobal\\BDGlobal.csproj"
+              "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\BDGlobal\\BDGlobal.csproj": {
+                "projectPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\BDGlobal\\BDGlobal.csproj"
               }
             }
           }
@@ -195,6 +200,7 @@
       },
       "frameworks": {
         "net9.0": {
+          "framework": "net9.0",
           "targetAlias": "net9.0",
           "dependencies": {
             "Microsoft.Data.SqlClient": {
@@ -218,7 +224,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

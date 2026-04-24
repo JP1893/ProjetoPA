@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6WVs5Q4G7vU=",
+  "dgSpecHash": "OhBKSrGeyRw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BusinessLayer\\BusinessLayer.csproj",
+  "projectFilePath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\BusinessLayer\\BusinessLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\josen\\.nuget\\packages\\microsoft.bcl.cryptography\\9.0.13\\microsoft.bcl.cryptography.9.0.13.nupkg.sha512",
     "C:\\Users\\josen\\.nuget\\packages\\microsoft.data.sqlclient\\7.0.0\\microsoft.data.sqlclient.7.0.0.nupkg.sha512",

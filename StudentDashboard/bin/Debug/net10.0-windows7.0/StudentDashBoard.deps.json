@@ -9,9 +9,9 @@
       "StudentDashBoard/1.0.0": {
         "dependencies": {
           "BusinessLayer": "1.0.0",
-          "Syncfusion.SfChart.WPF": "33.1.45",
-          "Syncfusion.SfGauge.WPF": "33.1.45",
-          "Syncfusion.Tools.WPF": "33.1.45"
+          "Syncfusion.SfChart.WPF": "33.2.3",
+          "Syncfusion.SfGauge.WPF": "33.2.3",
+          "Syncfusion.Tools.WPF": "33.2.3"
         },
         "runtime": {
           "StudentDashBoard.dll": {}
@@ -274,57 +274,57 @@
           }
         }
       },
-      "Syncfusion.Licensing/33.1.45": {
+      "Syncfusion.Licensing/33.2.3": {
         "runtime": {
           "lib/net10.0/Syncfusion.Licensing.dll": {
-            "assemblyVersion": "33.1.45.0",
-            "fileVersion": "33.1.45.0"
+            "assemblyVersion": "33.2.3.0",
+            "fileVersion": "33.2.3.0"
           }
         }
       },
-      "Syncfusion.SfChart.WPF/33.1.45": {
+      "Syncfusion.SfChart.WPF/33.2.3": {
         "dependencies": {
-          "Syncfusion.Licensing": "33.1.45"
+          "Syncfusion.Licensing": "33.2.3"
         },
         "runtime": {
           "lib/net10.0-windows7.0/Syncfusion.SfChart.WPF.dll": {
-            "assemblyVersion": "33.1.45.0",
-            "fileVersion": "33.1.45.0"
+            "assemblyVersion": "33.2.3.0",
+            "fileVersion": "33.2.3.0"
           }
         }
       },
-      "Syncfusion.SfGauge.WPF/33.1.45": {
+      "Syncfusion.SfGauge.WPF/33.2.3": {
         "dependencies": {
-          "Syncfusion.Licensing": "33.1.45",
-          "Syncfusion.Shared.WPF": "33.1.45"
+          "Syncfusion.Licensing": "33.2.3",
+          "Syncfusion.Shared.WPF": "33.2.3"
         },
         "runtime": {
           "lib/net10.0-windows7.0/Syncfusion.SfGauge.WPF.dll": {
-            "assemblyVersion": "33.1.45.0",
-            "fileVersion": "33.1.45.0"
+            "assemblyVersion": "33.2.3.0",
+            "fileVersion": "33.2.3.0"
           }
         }
       },
-      "Syncfusion.Shared.WPF/33.1.45": {
+      "Syncfusion.Shared.WPF/33.2.3": {
         "dependencies": {
-          "Syncfusion.Licensing": "33.1.45"
+          "Syncfusion.Licensing": "33.2.3"
         },
         "runtime": {
           "lib/net10.0-windows7.0/Syncfusion.Shared.WPF.dll": {
-            "assemblyVersion": "33.1.45.0",
-            "fileVersion": "33.1.45.0"
+            "assemblyVersion": "33.2.3.0",
+            "fileVersion": "33.2.3.0"
           }
         }
       },
-      "Syncfusion.Tools.WPF/33.1.45": {
+      "Syncfusion.Tools.WPF/33.2.3": {
         "dependencies": {
-          "Syncfusion.Licensing": "33.1.45",
-          "Syncfusion.Shared.WPF": "33.1.45"
+          "Syncfusion.Licensing": "33.2.3",
+          "Syncfusion.Shared.WPF": "33.2.3"
         },
         "runtime": {
           "lib/net10.0-windows7.0/Syncfusion.Tools.WPF.dll": {
-            "assemblyVersion": "33.1.45.0",
-            "fileVersion": "33.1.45.0"
+            "assemblyVersion": "33.2.3.0",
+            "fileVersion": "33.2.3.0"
           }
         }
       },
@@ -508,40 +508,40 @@
       "path": "microsoft.sqlserver.server/1.0.0",
       "hashPath": "microsoft.sqlserver.server.1.0.0.nupkg.sha512"
     },
-    "Syncfusion.Licensing/33.1.45": {
+    "Syncfusion.Licensing/33.2.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-bXm3SoWv1OOGStt8XtgaxFjuvZjMsUBxLXEsuc0qCfMKU3Xq1ze1QW8uY0YQ649MHQvHDm7+TMypjjZZh0G3/Q==",
-      "path": "syncfusion.licensing/33.1.45",
-      "hashPath": "syncfusion.licensing.33.1.45.nupkg.sha512"
+      "sha512": "sha512-kkCbHXRZvUbsGUnraJN8RsiwFI116RcmoJtRoJhcjEOt3PKbUW/pvJgtN2JD6O7PTSVDvQE2qtCkrBUP5F1hzA==",
+      "path": "syncfusion.licensing/33.2.3",
+      "hashPath": "syncfusion.licensing.33.2.3.nupkg.sha512"
     },
-    "Syncfusion.SfChart.WPF/33.1.45": {
+    "Syncfusion.SfChart.WPF/33.2.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-NvPeXm0LECsDI7lbm1TPBw0A+npp8sjp8ED+oN6jea9qUnu7TT31nN8fMnJcjGdmuIlU1TJ0kBOpi7bj2+aOsQ==",
-      "path": "syncfusion.sfchart.wpf/33.1.45",
-      "hashPath": "syncfusion.sfchart.wpf.33.1.45.nupkg.sha512"
+      "sha512": "sha512-cmPXyCJcyYdBFnyGp/NenyqMhhHuHYzx6DelaoKKW5U77GkqIgCkhlrMTcU0H/7iHGSsN/URTVlRBXZCH81Zuw==",
+      "path": "syncfusion.sfchart.wpf/33.2.3",
+      "hashPath": "syncfusion.sfchart.wpf.33.2.3.nupkg.sha512"
     },
-    "Syncfusion.SfGauge.WPF/33.1.45": {
+    "Syncfusion.SfGauge.WPF/33.2.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-b4UydW/wCEw0DHJbHPpb8USQUzsg77Uvsr/+IYbnxA3FrPqKVJ/i3UFNci2x/mDLZ2GCDccJ3Yn6CutiAIyo8g==",
-      "path": "syncfusion.sfgauge.wpf/33.1.45",
-      "hashPath": "syncfusion.sfgauge.wpf.33.1.45.nupkg.sha512"
+      "sha512": "sha512-a36lHyJULSQYL9R+FRr+8cFzo/iEtvC8EN+aRmPwV/4XOxRMO4OcHQp4qJG+/Bmu1y0EAPWd5O8OCWFjSjrX+g==",
+      "path": "syncfusion.sfgauge.wpf/33.2.3",
+      "hashPath": "syncfusion.sfgauge.wpf.33.2.3.nupkg.sha512"
     },
-    "Syncfusion.Shared.WPF/33.1.45": {
+    "Syncfusion.Shared.WPF/33.2.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-4t79Rwz6HG1G8rQ9i99udw3xe+6hBRHt337b4NXyamOh7M79TcP2HvZEVZwmPyvZuBeB7vIqrobVyv3i8auwFA==",
-      "path": "syncfusion.shared.wpf/33.1.45",
-      "hashPath": "syncfusion.shared.wpf.33.1.45.nupkg.sha512"
+      "sha512": "sha512-ARY9Qz/GpgOPH0LR+wOcgi9auXqGA0T/wWSE9RzNbP4XpZKziSAFxWJeu4g7oBnwtVJLED4uYNPdzPJ/cjRAFw==",
+      "path": "syncfusion.shared.wpf/33.2.3",
+      "hashPath": "syncfusion.shared.wpf.33.2.3.nupkg.sha512"
     },
-    "Syncfusion.Tools.WPF/33.1.45": {
+    "Syncfusion.Tools.WPF/33.2.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Y4bt8VA55ExLCoYw/gtbPos1lArFbveAYyZ7e18OmqWYknMCamAqWBvthyR7y0wmiLQxCu+nG3O4rsO3MLWBDQ==",
-      "path": "syncfusion.tools.wpf/33.1.45",
-      "hashPath": "syncfusion.tools.wpf.33.1.45.nupkg.sha512"
+      "sha512": "sha512-1m4vDOimHBCRaL9mmHwaetwsOZBbd5W4jalvYFiI/vJSGgqASY33PCG1CPa9uj9GDNgq/gi1K51DppSqMRJDAA==",
+      "path": "syncfusion.tools.wpf/33.2.3",
+      "hashPath": "syncfusion.tools.wpf.33.2.3.nupkg.sha512"
     },
     "System.IdentityModel.Tokens.Jwt/8.16.0": {
       "type": "package",

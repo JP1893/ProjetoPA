@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FMqk/8Zbt0I=",
+  "dgSpecHash": "XNKt5GywOFk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\StudentDashboard\\StudentDashBoard.csproj",
+  "projectFilePath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\StudentDashboard\\StudentDashBoard.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\josen\\.nuget\\packages\\microsoft.bcl.cryptography\\9.0.13\\microsoft.bcl.cryptography.9.0.13.nupkg.sha512",
     "C:\\Users\\josen\\.nuget\\packages\\microsoft.data.sqlclient\\7.0.0\\microsoft.data.sqlclient.7.0.0.nupkg.sha512",
@@ -22,11 +22,11 @@
     "C:\\Users\\josen\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\8.16.0\\microsoft.identitymodel.protocols.openidconnect.8.16.0.nupkg.sha512",
     "C:\\Users\\josen\\.nuget\\packages\\microsoft.identitymodel.tokens\\8.16.0\\microsoft.identitymodel.tokens.8.16.0.nupkg.sha512",
     "C:\\Users\\josen\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
-    "C:\\Users\\josen\\.nuget\\packages\\syncfusion.licensing\\33.1.45\\syncfusion.licensing.33.1.45.nupkg.sha512",
-    "C:\\Users\\josen\\.nuget\\packages\\syncfusion.sfchart.wpf\\33.1.45\\syncfusion.sfchart.wpf.33.1.45.nupkg.sha512",
-    "C:\\Users\\josen\\.nuget\\packages\\syncfusion.sfgauge.wpf\\33.1.45\\syncfusion.sfgauge.wpf.33.1.45.nupkg.sha512",
-    "C:\\Users\\josen\\.nuget\\packages\\syncfusion.shared.wpf\\33.1.45\\syncfusion.shared.wpf.33.1.45.nupkg.sha512",
-    "C:\\Users\\josen\\.nuget\\packages\\syncfusion.tools.wpf\\33.1.45\\syncfusion.tools.wpf.33.1.45.nupkg.sha512",
+    "C:\\Users\\josen\\.nuget\\packages\\syncfusion.licensing\\33.2.3\\syncfusion.licensing.33.2.3.nupkg.sha512",
+    "C:\\Users\\josen\\.nuget\\packages\\syncfusion.sfchart.wpf\\33.2.3\\syncfusion.sfchart.wpf.33.2.3.nupkg.sha512",
+    "C:\\Users\\josen\\.nuget\\packages\\syncfusion.sfgauge.wpf\\33.2.3\\syncfusion.sfgauge.wpf.33.2.3.nupkg.sha512",
+    "C:\\Users\\josen\\.nuget\\packages\\syncfusion.shared.wpf\\33.2.3\\syncfusion.shared.wpf.33.2.3.nupkg.sha512",
+    "C:\\Users\\josen\\.nuget\\packages\\syncfusion.tools.wpf\\33.2.3\\syncfusion.tools.wpf.33.2.3.nupkg.sha512",
     "C:\\Users\\josen\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.16.0\\system.identitymodel.tokens.jwt.8.16.0.nupkg.sha512"
   ],
   "logs": []
