@@ -1,0 +1,12 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+# Build
+bin/
+obj/
+# Cache
+*.cache
+*.log
+# Rider / JetBrains, se algum dia usares
+.idea/

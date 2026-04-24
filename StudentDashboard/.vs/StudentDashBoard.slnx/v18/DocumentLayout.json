@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\StudentDashboard\\",
+  "WorkspaceRootPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\ProjetoPA\\StudentDashboard\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{052A90A5-DEAE-84FE-1660-FF0002E5126A}|StudentDashBoard.csproj|c:\\users\\josen\\onedrive - islagaia.pt\\2ano\\2semestre\\programacaoavancada\\projetopa (5)\\projetopa\\studentdashboard\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{052A90A5-DEAE-84FE-1660-FF0002E5126A}|StudentDashBoard.csproj|c:\\users\\josen\\onedrive - islagaia.pt\\2ano\\2semestre\\programacaoavancada\\projetopa\\projetopa\\studentdashboard\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{052A90A5-DEAE-84FE-1660-FF0002E5126A}|StudentDashBoard.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
@@ -29,19 +29,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\StudentDashboard\\MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\ProjetoPA\\StudentDashboard\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA (5)\\ProjetoPA\\StudentDashboard\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\ProjetoPA\\StudentDashboard\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-04-24T18:43:10.683Z",
@@ -52,22 +48,21 @@
               "DocumentIndex": 1,
               "Title": "Produto.cs",
               "DocumentMoniker": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\DataLayer\\Produto.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\ProjetoPA\\DataLayer\\Produto.cs",
+              "RelativeDocumentMoniker": "..\\..\\DataLayer\\Produto.cs",
               "ToolTip": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\DataLayer\\Produto.cs",
-              "RelativeToolTip": "..\\..\\..\\ProjetoPA\\DataLayer\\Produto.cs",
+              "RelativeToolTip": "..\\..\\DataLayer\\Produto.cs",
               "ViewState": "AgIAAKUAAAAAAAAAAAAAAJ8AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T21:32:39.876Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-27T21:32:39.876Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Produto.cs",
               "DocumentMoniker": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BusinessLayer\\Produto.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\ProjetoPA\\BusinessLayer\\Produto.cs",
+              "RelativeDocumentMoniker": "..\\..\\BusinessLayer\\Produto.cs",
               "ToolTip": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BusinessLayer\\Produto.cs",
-              "RelativeToolTip": "..\\..\\..\\ProjetoPA\\BusinessLayer\\Produto.cs",
+              "RelativeToolTip": "..\\..\\BusinessLayer\\Produto.cs",
               "ViewState": "AgIAADsAAAAAAAAAAAAywHAAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-27T20:17:25.736Z"
@@ -77,9 +72,9 @@
               "DocumentIndex": 3,
               "Title": "ProdutoCollection.cs",
               "DocumentMoniker": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BusinessLayer\\ProdutoCollection.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\ProjetoPA\\BusinessLayer\\ProdutoCollection.cs",
+              "RelativeDocumentMoniker": "..\\..\\BusinessLayer\\ProdutoCollection.cs",
               "ToolTip": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\BusinessLayer\\ProdutoCollection.cs",
-              "RelativeToolTip": "..\\..\\..\\ProjetoPA\\BusinessLayer\\ProdutoCollection.cs",
+              "RelativeToolTip": "..\\..\\BusinessLayer\\ProdutoCollection.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAIAzwBMAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-27T19:29:46.339Z"
@@ -89,9 +84,9 @@
               "DocumentIndex": 4,
               "Title": "Cidade.cs",
               "DocumentMoniker": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\DataLayer\\Cidade.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\ProjetoPA\\DataLayer\\Cidade.cs",
+              "RelativeDocumentMoniker": "..\\..\\DataLayer\\Cidade.cs",
               "ToolTip": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\DataLayer\\Cidade.cs",
-              "RelativeToolTip": "..\\..\\..\\ProjetoPA\\DataLayer\\Cidade.cs",
+              "RelativeToolTip": "..\\..\\DataLayer\\Cidade.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-21T11:18:34.312Z"
@@ -101,9 +96,9 @@
               "DocumentIndex": 5,
               "Title": "CategoriaProduto.cs",
               "DocumentMoniker": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\DataLayer\\CategoriaProduto.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\ProjetoPA\\DataLayer\\CategoriaProduto.cs",
+              "RelativeDocumentMoniker": "..\\..\\DataLayer\\CategoriaProduto.cs",
               "ToolTip": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\DataLayer\\CategoriaProduto.cs",
-              "RelativeToolTip": "..\\..\\..\\ProjetoPA\\DataLayer\\CategoriaProduto.cs",
+              "RelativeToolTip": "..\\..\\DataLayer\\CategoriaProduto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-20T13:17:56.967Z"

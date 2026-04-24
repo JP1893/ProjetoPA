@@ -1,26 +1,23 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\StudentDashboard\\",
+  "WorkspaceRootPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\ProjetoPA\\StudentDashboard\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6C67113D-D014-73C0-0102-DC0F568DCAE3}|..\\DataLayer\\DataLayer.csproj|c:\\projeto programacao avancada\\student-performance-dashboard-using-wpf-charts\\datalayer\\cidade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6C67113D-D014-73C0-0102-DC0F568DCAE3}|..\\DataLayer\\DataLayer.csproj|c:\\projeto programacao avancada\\student-performance-dashboard-using-wpf-charts\\datalayer\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6C67113D-D014-73C0-0102-DC0F568DCAE3}|..\\DataLayer\\DataLayer.csproj|c:\\projeto programacao avancada\\student-performance-dashboard-using-wpf-charts\\datalayer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DF3FCABF-CB13-FEEE-4987-CA4AF20CFAFF}|StudentDashBoard.csproj|c:\\projeto programacao avancada\\student-performance-dashboard-using-wpf-charts\\studentdashboard\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{DF3FCABF-CB13-FEEE-4987-CA4AF20CFAFF}|StudentDashBoard.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\Class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\9.0.311\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.TargetFrameworkInference.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DF3FCABF-CB13-FEEE-4987-CA4AF20CFAFF}|StudentDashBoard.csproj|c:\\projeto programacao avancada\\student-performance-dashboard-using-wpf-charts\\studentdashboard\\studentdashboard.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{DF3FCABF-CB13-FEEE-4987-CA4AF20CFAFF}|StudentDashBoard.csproj|solutionrelative:studentdashboard.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\DataLayer\\Class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{052A90A5-DEAE-84FE-1660-FF0002E5126A}|StudentDashBoard.csproj|c:\\users\\josen\\onedrive - islagaia.pt\\2ano\\2semestre\\programacaoavancada\\projetopa\\projetopa\\studentdashboard\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{052A90A5-DEAE-84FE-1660-FF0002E5126A}|StudentDashBoard.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{052A90A5-DEAE-84FE-1660-FF0002E5126A}|StudentDashBoard.csproj|c:\\users\\josen\\onedrive - islagaia.pt\\2ano\\2semestre\\programacaoavancada\\projetopa\\projetopa\\studentdashboard\\studentdashboard.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{052A90A5-DEAE-84FE-1660-FF0002E5126A}|StudentDashBoard.csproj|solutionrelative:studentdashboard.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,77 +32,56 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Cidade.cs",
-              "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\DataLayer\\Cidade.cs",
-              "RelativeDocumentMoniker": "..\\DataLayer\\Cidade.cs",
-              "ToolTip": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\DataLayer\\Cidade.cs",
-              "RelativeToolTip": "..\\DataLayer\\Cidade.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\Class1.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\..\\..\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\Class1.cs",
+              "ToolTip": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\Class1.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\..\\..\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\BusinessLayer\\Class1.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-13T21:22:15.766Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Cliente.cs",
-              "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\DataLayer\\Cliente.cs",
-              "RelativeDocumentMoniker": "..\\DataLayer\\Cliente.cs",
-              "ToolTip": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\DataLayer\\Cliente.cs",
-              "RelativeToolTip": "..\\DataLayer\\Cliente.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-13T21:21:53.18Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-13T21:35:50.088Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\DataLayer\\Program.cs",
-              "RelativeDocumentMoniker": "..\\DataLayer\\Program.cs",
-              "ToolTip": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\DataLayer\\Program.cs",
-              "RelativeToolTip": "..\\DataLayer\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\DataLayer\\Class1.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\..\\..\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\DataLayer\\Class1.cs",
+              "ToolTip": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\DataLayer\\Class1.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\..\\..\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\DataLayer\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-13T21:18:47.503Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "WhenOpened": "2026-03-13T21:35:23.083Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\StudentDashboard\\MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\ProjetoPA\\StudentDashboard\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\StudentDashboard\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\ProjetoPA\\StudentDashboard\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-03-06T20:46:57.415Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-06T20:46:57.415Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "StudentDashBoard",
-              "DocumentMoniker": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\StudentDashboard\\StudentDashBoard.csproj",
+              "DocumentMoniker": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\ProjetoPA\\StudentDashboard\\StudentDashBoard.csproj",
               "RelativeDocumentMoniker": "StudentDashBoard.csproj",
-              "ToolTip": "C:\\projeto programacao avancada\\Student-Performance-Dashboard-Using-WPF-Charts\\StudentDashboard\\StudentDashBoard.csproj",
+              "ToolTip": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\ProjetoPA\\StudentDashboard\\StudentDashBoard.csproj",
               "RelativeToolTip": "StudentDashBoard.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2026-03-06T20:46:22.631Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Microsoft.NET.TargetFrameworkInference.targets",
               "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\9.0.311\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.TargetFrameworkInference.targets",
-              "RelativeDocumentMoniker": "..\\..\\..\\Program Files\\dotnet\\sdk\\9.0.311\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.TargetFrameworkInference.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\9.0.311\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.TargetFrameworkInference.targets",
               "ToolTip": "C:\\Program Files\\dotnet\\sdk\\9.0.311\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.TargetFrameworkInference.targets",
-              "RelativeToolTip": "..\\..\\..\\Program Files\\dotnet\\sdk\\9.0.311\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.TargetFrameworkInference.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\9.0.311\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.TargetFrameworkInference.targets",
               "ViewState": "AgIAAJUAAAAAAAAAAAD4v6oAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
               "WhenOpened": "2026-03-06T20:46:10.812Z"
