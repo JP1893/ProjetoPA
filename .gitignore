@@ -10,3 +10,4 @@ obj/
 *.log
 # Rider / JetBrains, se algum dia usares
 .idea/
+/BDGlobal/BaseDadosGlobal.cs

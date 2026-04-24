@@ -6,6 +6,12 @@ namespace StudentPerformanceDashboard
         public int Students { get; set; }
     }
 
+    public class ValorGrafico
+    {
+        public string ValorX { get; set; }
+        public int ValorY { get; set; }
+    }
+
     public class AverageSubjectScore
     {
         public int Year { get; set; }

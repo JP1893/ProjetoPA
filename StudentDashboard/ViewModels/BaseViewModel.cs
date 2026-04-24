@@ -12,6 +12,7 @@ namespace StudentPerformanceDashboard
 
         // Data Collections
         public ObservableCollection<StudentsPerYear> StudentsPerYear { get; } = new();
+        public ObservableCollection<ValorGrafico> ValoresGrafico { get; } = new();
         public ObservableCollection<AverageSubjectScore> AverageSubjectScores { get; } = new();
         public BusinessLayer.ProdutoCollection AllProdutos { get; set; }
         public StudentsByGradeAndGender StudentsByGradeAndGender { get; private set; } = new();

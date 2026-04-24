@@ -1,4 +1,5 @@
 ﻿
+using BusinessLayer;
 using StudentDashBoard.Models;
 
 namespace StudentPerformanceDashboard
@@ -255,7 +256,7 @@ namespace StudentPerformanceDashboard
                     e.Subject != null &&
                     string.Equals(e.Subject.Name, SelectedSubject.Name, StringComparison.OrdinalIgnoreCase));
             }
-            foreach (var item in examData)
+            foreach (SubjectExamResult item in examData)
                 FilteredExamResults.Add(item);
         }
 
@@ -325,7 +326,24 @@ namespace StudentPerformanceDashboard
 
             this.TotalVendas = this.AllProdutos.ObterTotalVendas(categoriaId, paisID);
             this.Lucro = this.AllProdutos.ObterLucro(categoriaId);
-            
+
+            LucroPorAnoCollection lucroPorAnos = this.AllProdutos.ObterLucroPorAno(categoriaId);
+
+
+            this.ValoresGrafico.Clear();
+
+            if (lucroPorAnos != null)
+            {
+                foreach (LucroPorAno lucroPorAno in lucroPorAnos)
+                {
+                    this.ValoresGrafico.Add(new ValorGrafico { ValorX = lucroPorAno.Ano.ToString(), ValorY = (int)lucroPorAno.Lucro });
+                }
+            }
+            //this.ValoresGrafico.Add(new ValorGrafico { ValorX = "2025A", ValorY = 900 });
+            //this.ValoresGrafico.Add(new ValorGrafico { ValorX = "2025B", ValorY = 400 });
+            //this.ValoresGrafico.Add(new ValorGrafico { ValorX = "2025C", ValorY = 600 });
+
+
             MathsScore = avgScores.Maths;
             ScienceScore = avgScores.Science;
 

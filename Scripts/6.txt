@@ -1,4 +1,4 @@
-REATE OR ALTER PROCEDURE Listar_Cidade
+CREATE OR ALTER PROCEDURE Listar_Cidade
 AS
 BEGIN
     SELECT CidadeId, NomeCidade, PaisId

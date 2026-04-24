@@ -317,7 +317,7 @@
                                 </chart:NumericalAxis>
                             </chart:SfChart.SecondaryAxis>
 
-                            <chart:SplineSeries ItemsSource="{Binding StudentsPerYear}" EnableAnimation="True" XBindingPath="Year" YBindingPath="Students" ShowTooltip="True"
+                            <chart:SplineSeries ItemsSource="{Binding ValoresGrafico}" EnableAnimation="True" XBindingPath="ValorX" YBindingPath="ValorY" ShowTooltip="True"
                                                 Interior="#F73039">
                                 <chart:SplineSeries.AdornmentsInfo>
                                     <chart:ChartAdornmentInfo ShowMarker="True" SymbolInterior="#FFFFF8" SymbolStroke="#F73039" BorderThickness="1"

@@ -116,5 +116,28 @@ namespace BusinessLayer
             }
             return isPaisId;
         }
+
+        internal int? ObterAnoVenda()
+        {
+            if (this.FoiVendido())
+            {
+                return this.DataVenda.Value.Year;
+            }
+            return null;
+        }
+
+        internal bool FoiVendido()
+        {
+            if (this.DataVenda.HasValue)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        internal float ObterLucro()
+        {
+            return (float)(this.PrecoVenda - this.PrecoCusto);
+        }
     }
 }

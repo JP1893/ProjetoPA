@@ -54,7 +54,29 @@ namespace BusinessLayer
         {
             return (double)this
                 .Where(p => p.IsCategoriaId(categoriaID))
-                .Sum(p => p.PrecoVenda - p.PrecoCusto);
+                .Sum(p => p.ObterLucro());
+        }
+
+        public LucroPorAnoCollection ObterLucroPorAno(int categoriaId)
+        {
+            LucroPorAnoCollection lucroPorAnos = new LucroPorAnoCollection();
+
+            foreach (Produto produto in this)
+            {
+                if (produto.IsCategoriaId(categoriaId) &&
+                    produto.FoiVendido())
+                {
+                    int? ano = produto.ObterAnoVenda();
+                    if (ano.HasValue)
+                    {
+                        float lucro = produto.ObterLucro();
+
+                        lucroPorAnos.Adicionar(ano.Value, lucro);
+                    }
+                }
+            }
+
+            return lucroPorAnos;
         }
     }
 }
