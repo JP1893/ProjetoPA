@@ -166,15 +166,15 @@
 
                 <Border Grid.Column="2" Style="{StaticResource border}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Text="Maths : " Style="{StaticResource kpiCard1}"/>
-                        <TextBlock Text="{Binding MathsScore, StringFormat={}{0}%}"  Style="{StaticResource kpiCard2}"/>
+                        <TextBlock Text="Vendidos : " Style="{StaticResource kpiCard1}"/>
+                        <TextBlock Text="{Binding ProdutosVendidos}" Style="{StaticResource kpiCard2}"/>
                     </StackPanel>
                 </Border>
 
                 <Border Grid.Column="3" Style="{StaticResource border}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Text="Science  : "  Style="{StaticResource kpiCard1}"/>
-                        <TextBlock Text="{Binding ScienceScore, StringFormat={}{0}%}" Style="{StaticResource kpiCard2}"/>
+                        <TextBlock Text="Stock : " Style="{StaticResource kpiCard1}"/>
+                        <TextBlock Text="{Binding StockDisponivel}" Style="{StaticResource kpiCard2}"/>
                     </StackPanel>
                 </Border>
             </Grid>
@@ -183,7 +183,7 @@
 
                 <Border Grid.Column="0" Style="{StaticResource border}">
                     <StackPanel>
-                        <TextBlock Text="Examination Results by Subject" Style="{StaticResource titleStyle}"/>
+                        <TextBlock Text="Produtos por Categoria" Style="{StaticResource titleStyle}"/>
                         <chart:SfChart Palette="Custom">
                             <chart:SfChart.PrimaryAxis>
                                 <chart:CategoryAxis ShowGridLines="False" LabelPlacement="BetweenTicks" AxisLineStyle="{StaticResource axisLineStyle}"
@@ -192,9 +192,11 @@
                             </chart:SfChart.PrimaryAxis>
 
                             <chart:SfChart.SecondaryAxis>
-                                <chart:NumericalAxis LabelStyle="{StaticResource axisLabelStyle}" EdgeLabelsDrawingMode="Center"
-                                                     MajorGridLineStyle="{StaticResource gridLineStyle}" Interval="200"
-                                                     AxisLineStyle="{StaticResource axisLineStyle}" MajorTickLineStyle="{StaticResource axisLineStyle}">
+                                <chart:NumericalAxis LabelStyle="{StaticResource axisLabelStyle}" 
+                     EdgeLabelsDrawingMode="Center"
+                     MajorGridLineStyle="{StaticResource gridLineStyle}"
+                     AxisLineStyle="{StaticResource axisLineStyle}" 
+                     MajorTickLineStyle="{StaticResource axisLineStyle}">
                                 </chart:NumericalAxis>
                             </chart:SfChart.SecondaryAxis>
 
@@ -214,24 +216,24 @@
 
                             <!-- Pass -->
                             <chart:ColumnSeries ItemsSource="{Binding FilteredExamResults}" XBindingPath="Subject.Name" ShowTooltip="True" 
-                                    YBindingPath="Pass" EnableAnimation="True" SegmentSpacing="0.1" Label="Passo">
+                                    YBindingPath="Pass" EnableAnimation="True" SegmentSpacing="0.1" Label="Vendidos">
                             </chart:ColumnSeries>
 
                             <!-- Fail -->
                             <chart:ColumnSeries ItemsSource="{Binding FilteredExamResults}" XBindingPath="Subject.Name" ShowTooltip="True"
-                             YBindingPath="Fail" EnableAnimation="True" SegmentSpacing="0.1" Label="Fail">
+                             YBindingPath="Fail" EnableAnimation="True" SegmentSpacing="0.1" Label="Em Stock">
                             </chart:ColumnSeries>
 
                             <!-- Not attended -->
                             <chart:ColumnSeries ItemsSource="{Binding FilteredExamResults}" XBindingPath="Subject.Name" ShowTooltip="True"
-                             YBindingPath="NotAttended" EnableAnimation="True" SegmentSpacing="0.1" Label="Not Attended"/>
+                             YBindingPath="NotAttended" EnableAnimation="True" SegmentSpacing="0.1" Label="Inativos"/>
                         </chart:SfChart>
                     </StackPanel>
                 </Border>
 
                 <Border Grid.Column="1" Style="{StaticResource border}">
                     <StackPanel>
-                        <TextBlock Text="Semester Grade Trends" Style="{StaticResource titleStyle}"/>
+                        <TextBlock Text="Lucro por Ano e Categoria" Style="{StaticResource titleStyle}"/>
 
                         <chart:SfChart>
                             <chart:SfChart.PrimaryAxis>
@@ -249,10 +251,20 @@
                                 </chart:NumericalAxis>
                             </chart:SfChart.SecondaryAxis>
 
-                            <chart:SplineSeries ItemsSource="{Binding FilteredSemesterTrend}" EnableAnimation="True" XBindingPath="Label" YBindingPath="Value" Interior="#0BA7AC" ShowTooltip="True">
+                            <chart:SplineSeries ItemsSource="{Binding ValoresGrafico}" 
+                    EnableAnimation="True" 
+                    XBindingPath="ValorX" 
+                    YBindingPath="ValorY" 
+                    Interior="#0BA7AC" 
+                    ShowTooltip="True">
                                 <chart:SplineSeries.AdornmentsInfo>
-                                    <chart:ChartAdornmentInfo ShowMarker="True" SymbolStroke="#0BA7AC" BorderThickness="1" SymbolInterior="#FFFFF8"
-                                                              Symbol="Ellipse" SymbolHeight="8" SymbolWidth="8"/>
+                                    <chart:ChartAdornmentInfo ShowMarker="True" 
+                                  SymbolStroke="#0BA7AC" 
+                                  BorderThickness="1" 
+                                  SymbolInterior="#FFFFF8"
+                                  Symbol="Ellipse" 
+                                  SymbolHeight="8" 
+                                  SymbolWidth="8"/>
                                 </chart:SplineSeries.AdornmentsInfo>
                             </chart:SplineSeries>
 
@@ -262,7 +274,7 @@
 
                 <Border Grid.Column="2" Style="{StaticResource border}">
                     <StackPanel>
-                        <TextBlock Text="Gender Participation" Style="{StaticResource titleStyle}"/>
+                        <TextBlock Text="Distribuição de Vendas" Style="{StaticResource titleStyle}"/>
 
                         <chart:SfChart>
 
@@ -300,7 +312,7 @@
 
                 <Border Grid.Column="0" Style="{StaticResource border}">
                     <StackPanel>
-                        <TextBlock Text="Students per Year" Style="{StaticResource titleStyle}"/>
+                        <TextBlock Text="Evolução de Vendas" Style="{StaticResource titleStyle}"/>
                         <chart:SfChart>
 
                             <chart:SfChart.PrimaryAxis>

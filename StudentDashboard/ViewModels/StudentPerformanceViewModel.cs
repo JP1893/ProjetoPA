@@ -98,14 +98,27 @@ namespace StudentPerformanceDashboard
         private void InitializeCategoriaProdutos()
         {
             CategoriaProdutos.Clear();
-            //string[] names = new[] { "All", "PhysEd2", "English2", "Maths2", "Science2" };
+            _categoriaProdutosByName.Clear();
+
+            var categoriaTodos = new StudentDashBoard.Models.CategoriaProduto
+            {
+                CategoriaID = 0,
+                Name = "Todas"
+            };
+
+            _categoriaProdutosByName["Todas"] = categoriaTodos;
+            CategoriaProdutos.Add(categoriaTodos);
 
             BusinessLayer.CategoriaProdutoCollection categoriaProdutos = BusinessLayer.CategoriaProduto.Listar();
 
             foreach (BusinessLayer.CategoriaProduto item in categoriaProdutos)
-            //foreach (var name in names)
             {
-                var categoriaProduto = new StudentDashBoard.Models.CategoriaProduto { CategoriaID = item.CategoriaId, Name = item.NomeCategoria };
+                var categoriaProduto = new StudentDashBoard.Models.CategoriaProduto
+                {
+                    CategoriaID = item.CategoriaId,
+                    Name = item.NomeCategoria
+                };
+
                 _categoriaProdutosByName[item.NomeCategoria] = categoriaProduto;
                 CategoriaProdutos.Add(categoriaProduto);
             }
@@ -249,15 +262,11 @@ namespace StudentPerformanceDashboard
 
             // Exam results (name-based filter to avoid object reference issues)
             FilteredExamResults.Clear();
-            IEnumerable<SubjectExamResult> examData = ExamResultsBySubject;
-            if (SelectedSubject is not null && !IsAll(SelectedSubject))
+
+            foreach (SubjectExamResult item in ExamResultsBySubject)
             {
-                examData = examData.Where(e =>
-                    e.Subject != null &&
-                    string.Equals(e.Subject.Name, SelectedSubject.Name, StringComparison.OrdinalIgnoreCase));
-            }
-            foreach (SubjectExamResult item in examData)
                 FilteredExamResults.Add(item);
+            }
         }
 
         // Compute exam results for each year and subject so that:
@@ -304,6 +313,11 @@ namespace StudentPerformanceDashboard
 
         private void BuildProjections()
         {
+            if (this.AllProdutos == null)
+            {
+                return;
+            }
+
             // refresh current year gender snapshot for bindings that read it
             if (_genderTotalsByYear.TryGetValue(SelectedYear, out var yearGender))
                 StudentsByGradeAndGender = yearGender;
@@ -339,13 +353,23 @@ namespace StudentPerformanceDashboard
                     this.ValoresGrafico.Add(new ValorGrafico { ValorX = lucroPorAno.Ano.ToString(), ValorY = (int)lucroPorAno.Lucro });
                 }
             }
+
+            System.Diagnostics.Debug.WriteLine("Dados do gráfico:");
+
+            foreach (var item in this.ValoresGrafico)
+            {
+                System.Diagnostics.Debug.WriteLine($"{item.ValorX} - {item.ValorY}");
+            }
             //this.ValoresGrafico.Add(new ValorGrafico { ValorX = "2025A", ValorY = 900 });
             //this.ValoresGrafico.Add(new ValorGrafico { ValorX = "2025B", ValorY = 400 });
             //this.ValoresGrafico.Add(new ValorGrafico { ValorX = "2025C", ValorY = 600 });
 
 
-            MathsScore = avgScores.Maths;
-            ScienceScore = avgScores.Science;
+            //MathsScore = avgScores.Maths;
+            //ScienceScore = avgScores.Science;
+
+            ProdutosVendidos = this.AllProdutos.ObterProdutosVendidos(categoriaId, SelectedYear);
+            StockDisponivel = this.AllProdutos.ObterStockDisponivel(categoriaId);
 
             // Dynamic grade distribution based on the selected subject/overall score
             double scoreForGrades = (SelectedSubject is null || IsAll(SelectedSubject))
@@ -354,28 +378,55 @@ namespace StudentPerformanceDashboard
             BuildGradeDistribution(scoreForGrades);
 
             // Gender participation pie (dynamic by year/subject)
+            // Distribuição de vendas
             GenderParticipationPie.Clear();
-            // pick rate: selected subject's participation rate; for "All" use the average across subjects
-            double selectedRate = 0;
-            var yearRates = StudentParticipationRateByBranch.FirstOrDefault(r => r.Year == SelectedYear)?.Rates;
-            if (yearRates != null)
+
+            var produtosVendidos = this.AllProdutos
+                .Where(p => p.DataVenda.HasValue
+                            && p.DataVenda.Value.Year == SelectedYear
+                            && (paisID == 0 || p.IsPaisId(paisID)))
+                .ToList();
+
+            if (categoriaId > 0)
             {
-                if (SelectedSubject == null || IsAll(SelectedSubject))
+                produtosVendidos = produtosVendidos
+                    .Where(p => p.CategoriaId == categoriaId)
+                    .ToList();
+
+                var vendasPorProduto = produtosVendidos
+                    .GroupBy(p => p.NomeProduto)
+                    .Select(g => new LabelValue
+                    {
+                        Label = g.Key,
+                        Value = (double)g.Sum(p => p.PrecoVenda)
+                    })
+                    .Where(x => x.Value > 0)
+                    .OrderByDescending(x => x.Value);
+
+                foreach (var item in vendasPorProduto)
                 {
-                    selectedRate = new[] { yearRates.PhysEd, yearRates.Arts, yearRates.English, yearRates.Maths, yearRates.Science }.Average();
-                }
-                else
-                {
-                    selectedRate = GetRateBySubject(yearRates, SelectedSubject.Name);
+                    GenderParticipationPie.Add(item);
                 }
             }
-            // convert rate to participation counts per gender using current gender totals
-            double male = StudentsByGradeAndGender.Male * selectedRate / 100.0;
-            double female = StudentsByGradeAndGender.Female * selectedRate / 100.0;
-            double others = StudentsByGradeAndGender.Others * selectedRate / 100.0;
-            GenderParticipationPie.Add(new LabelValue { Label = "Male", Value = male });
-            GenderParticipationPie.Add(new LabelValue { Label = "Female", Value = female });
-            GenderParticipationPie.Add(new LabelValue { Label = "Others", Value = others });
+            else
+            {
+                var vendasPorCategoria = produtosVendidos
+                    .GroupBy(p => p.CategoriaId)
+                    .Select(g => new LabelValue
+                    {
+                        Label = CategoriaProdutos
+                            .FirstOrDefault(c => c.CategoriaID == g.Key)?.Name ?? $"Categoria {g.Key}",
+
+                        Value = (double)g.Sum(p => p.PrecoVenda)
+                    })
+                    .Where(x => x.Value > 0)
+                    .OrderByDescending(x => x.Value);
+
+                foreach (var item in vendasPorCategoria)
+                {
+                    GenderParticipationPie.Add(item);
+                }
+            }
 
             // Participation by subject (reuse Subject instances)
             ParticipationBySubject.Clear();
@@ -386,18 +437,40 @@ namespace StudentPerformanceDashboard
             ParticipationBySubject.Add(new SubjectRate { Subject = _subjectsByName["Science"], Rate = rates.Science });
 
             // Exam results (reuse Subject instances)
+            // Produtos por categoria
             ExamResultsBySubject.Clear();
-            var exams = ExaminationResultsByBranch.FirstOrDefault(e => e.Year == SelectedYear)?.Results ?? new Dictionary<string, ExaminationResult>();
-            foreach (var kvp in exams)
+
+            IEnumerable<StudentDashBoard.Models.CategoriaProduto> categoriasParaMostrar =
+                CategoriaProdutos.Where(c => c.CategoriaID > 0);
+
+            if (SelectedCategoriaProduto != null && SelectedCategoriaProduto.CategoriaID > 0)
             {
-                var subject = _subjectsByName.TryGetValue(kvp.Key, out var s) ? s : new Subject { Name = kvp.Key };
-                if (!_subjectsByName.ContainsKey(kvp.Key)) _subjectsByName[kvp.Key] = subject;
+                categoriasParaMostrar = categoriasParaMostrar
+                    .Where(c => c.CategoriaID == SelectedCategoriaProduto.CategoriaID);
+            }
+
+            foreach (var categoria in categoriasParaMostrar)
+            {
+                var produtosDaCategoria = this.AllProdutos
+                    .Where(p => p.CategoriaId == categoria.CategoriaID)
+                    .ToList();
+
+                int vendidos = produtosDaCategoria
+                    .Count(p => p.DataVenda.HasValue &&
+                                p.DataVenda.Value.Year == SelectedYear);
+
+                int emStock = produtosDaCategoria
+                    .Count(p => p.Ativo && !p.DataVenda.HasValue);
+
+                int inativos = produtosDaCategoria
+                    .Count(p => !p.Ativo);
+
                 ExamResultsBySubject.Add(new SubjectExamResult
                 {
-                    Subject = subject,
-                    Pass = kvp.Value.Pass,
-                    Fail = kvp.Value.Fail,
-                    NotAttended = kvp.Value.NotAttended
+                    Subject = new Subject { Name = categoria.Name },
+                    Pass = vendidos,
+                    Fail = emStock,
+                    NotAttended = inativos
                 });
             }
 
@@ -447,9 +520,23 @@ namespace StudentPerformanceDashboard
         private void InitializeCollections()
         {
             Years.Clear();
-            // Show latest years first in the dropdown for quick access
-            foreach (var year in StudentsPerYear.Select(y => y.Year).Distinct().OrderByDescending(y => y))
+
+            var anosComVendas = AllProdutos
+                .Where(p => p.DataVenda.HasValue)
+                .Select(p => p.DataVenda.Value.Year)
+                .Distinct()
+                .OrderByDescending(y => y)
+                .ToList();
+
+            foreach (var year in anosComVendas)
+            {
                 Years.Add(year);
+            }
+
+            if (Years.Count > 0)
+            {
+                SelectedYear = Years[0];
+            }
         }
 
         // Build grade distribution from the current average score using a normal model.

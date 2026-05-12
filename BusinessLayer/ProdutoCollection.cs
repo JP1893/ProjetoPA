@@ -53,30 +53,54 @@ namespace BusinessLayer
         public double ObterLucro(int categoriaID)
         {
             return (double)this
-                .Where(p => p.IsCategoriaId(categoriaID))
+                .Where(p => (categoriaID == 0 || p.CategoriaId == categoriaID)
+                            && p.DataVenda.HasValue)
                 .Sum(p => p.ObterLucro());
+        }
+
+        public int ObterProdutosVendidos(int categoriaID, int ano)
+        {
+            return this
+                .Where(p => (categoriaID == 0 || p.CategoriaId == categoriaID)
+                            && p.DataVenda.HasValue
+                            && p.DataVenda.Value.Year == ano)
+                .Count();
+        }
+
+        public int ObterStockDisponivel(int categoriaID)
+        {
+            return this
+                .Where(p => (categoriaID == 0 || p.CategoriaId == categoriaID)
+                            && p.Ativo
+                            && !p.DataVenda.HasValue)
+                .Sum(p => p.Quantidade);
         }
 
         public LucroPorAnoCollection ObterLucroPorAno(int categoriaId)
         {
-            LucroPorAnoCollection lucroPorAnos = new LucroPorAnoCollection();
+            LucroPorAnoCollection resultado = new LucroPorAnoCollection();
 
-            foreach (Produto produto in this)
-            {
-                if (produto.IsCategoriaId(categoriaId) &&
-                    produto.FoiVendido())
+            var dados = this
+                .Where(p => p.DataVenda.HasValue
+                            && (categoriaId == 0 || p.CategoriaId == categoriaId))
+                .GroupBy(p => p.DataVenda.Value.Year)
+                .Select(g => new
                 {
-                    int? ano = produto.ObterAnoVenda();
-                    if (ano.HasValue)
-                    {
-                        float lucro = produto.ObterLucro();
+                    Ano = g.Key,
+                    Lucro = g.Sum(p => p.ObterLucro())
+                })
+                .OrderBy(x => x.Ano);
 
-                        lucroPorAnos.Adicionar(ano.Value, lucro);
-                    }
-                }
+            foreach (var item in dados)
+            {
+                resultado.Adicionar(item.Ano, item.Lucro);
             }
 
-            return lucroPorAnos;
+            return resultado;
         }
+
+
+
+
     }
 }

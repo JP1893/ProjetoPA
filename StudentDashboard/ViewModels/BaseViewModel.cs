@@ -180,6 +180,33 @@ namespace StudentPerformanceDashboard
         private double _mathsScore; public double MathsScore { get => _mathsScore; private set { if (_mathsScore != value) { _mathsScore = value; OnPropertyChanged(nameof(MathsScore)); } } }
         private double _scienceScore; public double ScienceScore { get => _scienceScore; private set { if (_scienceScore != value) { _scienceScore = value; OnPropertyChanged(nameof(ScienceScore)); } } }
 
+        private int _produtosVendidos;
+        public int ProdutosVendidos
+        {
+            get => _produtosVendidos;
+            private set
+            {
+                if (_produtosVendidos != value)
+                {
+                    _produtosVendidos = value;
+                    OnPropertyChanged(nameof(ProdutosVendidos));
+                }
+            }
+        }
+
+        private int _stockDisponivel;
+        public int StockDisponivel
+        {
+            get => _stockDisponivel;
+            private set
+            {
+                if (_stockDisponivel != value)
+                {
+                    _stockDisponivel = value;
+                    OnPropertyChanged(nameof(StockDisponivel));
+                }
+            }
+        }
         #endregion
 
         #region Constructor
