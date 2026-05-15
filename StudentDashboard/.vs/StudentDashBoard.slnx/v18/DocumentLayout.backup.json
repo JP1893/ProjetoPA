@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\ProjetoPA\\StudentDashboard\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{052A90A5-DEAE-84FE-1660-FF0002E5126A}|StudentDashBoard.csproj|c:\\users\\josen\\onedrive - islagaia.pt\\2ano\\2semestre\\programacaoavancada\\projetopa\\projetopa\\studentdashboard\\viewmodels\\baseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{052A90A5-DEAE-84FE-1660-FF0002E5126A}|StudentDashBoard.csproj|solutionrelative:viewmodels\\baseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{052A90A5-DEAE-84FE-1660-FF0002E5126A}|StudentDashBoard.csproj|c:\\users\\josen\\onedrive - islagaia.pt\\2ano\\2semestre\\programacaoavancada\\projetopa\\projetopa\\studentdashboard\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{052A90A5-DEAE-84FE-1660-FF0002E5126A}|StudentDashBoard.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{052A90A5-DEAE-84FE-1660-FF0002E5126A}|StudentDashBoard.csproj|c:\\users\\josen\\onedrive - islagaia.pt\\2ano\\2semestre\\programacaoavancada\\projetopa\\projetopa\\studentdashboard\\viewmodels\\studentperformanceviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{052A90A5-DEAE-84FE-1660-FF0002E5126A}|StudentDashBoard.csproj|solutionrelative:viewmodels\\studentperformanceviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{052A90A5-DEAE-84FE-1660-FF0002E5126A}|StudentDashBoard.csproj|c:\\users\\josen\\onedrive - islagaia.pt\\2ano\\2semestre\\programacaoavancada\\projetopa\\projetopa\\studentdashboard\\viewmodels\\baseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{052A90A5-DEAE-84FE-1660-FF0002E5126A}|StudentDashBoard.csproj|solutionrelative:viewmodels\\baseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F0B6CDDB-0EE9-4065-8F14-B95C728E13D3}|..\\BusinessLayer\\BusinessLayer.csproj|c:\\users\\josen\\onedrive - islagaia.pt\\2ano\\2semestre\\programacaoavancada\\projetopa\\projetopa\\businesslayer\\produtocollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -56,7 +56,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
@@ -132,12 +132,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "StudentPerformanceViewModel.cs",
               "DocumentMoniker": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\ProjetoPA\\StudentDashboard\\ViewModels\\StudentPerformanceViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\StudentPerformanceViewModel.cs",
-              "ToolTip": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\ProjetoPA\\StudentDashboard\\ViewModels\\StudentPerformanceViewModel.cs*",
-              "RelativeToolTip": "ViewModels\\StudentPerformanceViewModel.cs*",
+              "ToolTip": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\ProjetoPA\\StudentDashboard\\ViewModels\\StudentPerformanceViewModel.cs",
+              "RelativeToolTip": "ViewModels\\StudentPerformanceViewModel.cs",
               "ViewState": "AgIAAE4BAAAAAAAAAADwv18BAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-24T20:57:32.616Z",
@@ -145,25 +145,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "BaseViewModel.cs",
               "DocumentMoniker": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\ProjetoPA\\StudentDashboard\\ViewModels\\BaseViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\BaseViewModel.cs",
               "ToolTip": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\ProjetoPA\\StudentDashboard\\ViewModels\\BaseViewModel.cs",
               "RelativeToolTip": "ViewModels\\BaseViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABYAAAAAAAAAA==",
+              "ViewState": "AgIAAIkBAAAAAAAAAAAIwJEBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-24T20:57:32.616Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\ProjetoPA\\StudentDashboard\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\ProjetoPA\\StudentDashboard\\MainWindow.xaml*",
-              "RelativeToolTip": "MainWindow.xaml*",
+              "ToolTip": "C:\\Users\\josen\\OneDrive - islagaia.pt\\2Ano\\2Semestre\\ProgramacaoAvancada\\ProjetoPA\\ProjetoPA\\StudentDashboard\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-04-24T20:57:32.624Z",
               "EditorCaption": ""
