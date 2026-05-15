@@ -183,7 +183,7 @@
 
                 <Border Grid.Column="0" Style="{StaticResource border}">
                     <StackPanel>
-                        <TextBlock Text="Produtos por Categoria" Style="{StaticResource titleStyle}"/>
+                        <TextBlock Text="Produtos por Estado" Style="{StaticResource titleStyle}"/>
                         <chart:SfChart Palette="Custom">
                             <chart:SfChart.PrimaryAxis>
                                 <chart:CategoryAxis ShowGridLines="False" LabelPlacement="BetweenTicks" AxisLineStyle="{StaticResource axisLineStyle}"
@@ -420,7 +420,7 @@
 
                 <Border Grid.Column="2" Style="{StaticResource border}">
                     <Grid RowDefinitions="1.5*, 8.5*" ColumnDefinitions="Auto,Auto">
-                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Distribuição da Margem" Style="{StaticResource titleStyle}"/>
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Estado dos Produtos" Style="{StaticResource titleStyle}"/>
 
                         <ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding GradeDistributions}">
 
@@ -459,8 +459,8 @@
                         </ItemsControl>
 
                         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Margin="30,30,0,0">
-                            <TextBlock Text="Cada venda mostra" FontStyle="Italic" Foreground="#FAEFF6" FontWeight="SemiBold" FontSize="17"/>
-                            <TextBlock Text="a sua rentabilidade!" FontStyle="Italic" Foreground="#FAEFF6" FontWeight="SemiBold" FontSize="17"/>
+                            <TextBlock Text="Gestão clara" FontStyle="Italic" Foreground="#FAEFF6" FontWeight="SemiBold" FontSize="17"/>
+                            <TextBlock Text="do inventário." FontStyle="Italic" Foreground="#FAEFF6" FontWeight="SemiBold" FontSize="17"/>
                             <Path  Data="{StaticResource PathData2}" Stroke="#FAEFF6" StrokeThickness="0.6" Margin="0,20,0,0">
                                 <Path.RenderTransform>
                                     <ScaleTransform ScaleX="4.5" ScaleY="5"/>

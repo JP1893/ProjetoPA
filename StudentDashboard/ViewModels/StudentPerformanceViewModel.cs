@@ -357,7 +357,7 @@ namespace StudentPerformanceDashboard
             StockDisponivel = this.AllProdutos.ObterStockDisponivel(categoriaId);
 
             // Dynamic grade distribution based on the selected subject/overall score
-            BuildDistribuicaoMargem(categoriaId, paisID);
+            BuildEstadoProdutos(categoriaId, paisID);
 
             // Gender participation pie (dynamic by year/subject)
             // Distribuição de vendas
@@ -475,41 +475,87 @@ namespace StudentPerformanceDashboard
             }
             // Exam results (reuse Subject instances)
             // Produtos por categoria
-            // Produtos por categoria
+            // Produtos por estado
             ExamResultsBySubject.Clear();
 
-            IEnumerable<StudentDashBoard.Models.CategoriaProduto> categoriasParaGraficoProdutos =
-                CategoriaProdutos.Where(c => c.CategoriaID > 0);
+            string produtoSelecionado = SelectedProduto?.Name ?? "All";
 
-            if (SelectedCategoriaProduto != null && SelectedCategoriaProduto.CategoriaID > 0)
+            bool temProdutoSelecionado =
+                !string.Equals(produtoSelecionado, "All", StringComparison.OrdinalIgnoreCase);
+
+            IEnumerable<BusinessLayer.Produto> produtosBase = this.AllProdutos;
+
+            // Filtrar por categoria, se não estiver em Todas
+            if (categoriaId > 0)
             {
-                categoriasParaGraficoProdutos = categoriasParaGraficoProdutos
-                    .Where(c => c.CategoriaID == SelectedCategoriaProduto.CategoriaID);
+                produtosBase = produtosBase.Where(p => p.CategoriaId == categoriaId);
             }
 
-            foreach (var categoria in categoriasParaGraficoProdutos)
+            // Filtrar por produto, se não estiver em All
+            if (temProdutoSelecionado)
             {
-                var produtosDaCategoria = this.AllProdutos
-                    .Where(p => p.CategoriaId == categoria.CategoriaID)
-                    .ToList();
+                produtosBase = produtosBase.Where(p =>
+                    string.Equals(p.NomeProduto, produtoSelecionado, StringComparison.OrdinalIgnoreCase));
+            }
 
-                int vendidos = produtosDaCategoria
-                    .Count(p => p.DataVenda.HasValue &&
-                                p.DataVenda.Value.Year == SelectedYear);
+            List<BusinessLayer.Produto> produtosFiltrados = produtosBase.ToList();
 
-                int emStock = produtosDaCategoria
-                    .Count(p => p.Ativo && !p.DataVenda.HasValue);
+            void AdicionarEstado(string nome, IEnumerable<BusinessLayer.Produto> produtos)
+            {
+                List<BusinessLayer.Produto> lista = produtos.ToList();
 
-                int inativos = produtosDaCategoria
-                    .Count(p => !p.Ativo);
+                int vendidos = lista.Count(p =>
+                    p.DataVenda.HasValue &&
+                    p.DataVenda.Value.Year == SelectedYear &&
+                    (paisID == 0 || p.IsPaisId(paisID)));
+
+                int emStock = lista
+                    .Where(p => p.Ativo && !p.DataVenda.HasValue)
+                    .Sum(p => p.Quantidade);
+
+                int inativos = lista.Count(p => !p.Ativo);
 
                 ExamResultsBySubject.Add(new SubjectExamResult
                 {
-                    Subject = new Subject { Name = categoria.Name },
+                    Subject = new Subject { Name = nome },
                     Pass = vendidos,
                     Fail = emStock,
                     NotAttended = inativos
                 });
+            }
+
+            // Se escolher produto específico, mostra só esse produto
+            if (temProdutoSelecionado)
+            {
+                AdicionarEstado(produtoSelecionado, produtosFiltrados);
+            }
+            // Se escolher categoria específica, mostra produtos dessa categoria individualmente
+            else if (categoriaId > 0)
+            {
+                var produtosAgrupados = produtosFiltrados
+                    .GroupBy(p => p.NomeProduto)
+                    .OrderBy(g => g.Key);
+
+                foreach (var grupo in produtosAgrupados)
+                {
+                    AdicionarEstado(grupo.Key, grupo);
+                }
+            }
+            // Se estiver em Todas, mostra por categoria
+            else
+            {
+                var categoriasAgrupadas = produtosFiltrados
+                    .GroupBy(p => p.CategoriaId)
+                    .OrderBy(g => g.Key);
+
+                foreach (var grupo in categoriasAgrupadas)
+                {
+                    string nomeCategoria = CategoriaProdutos
+                        .FirstOrDefault(c => c.CategoriaID == grupo.Key)?.Name
+                        ?? $"Categoria {grupo.Key}";
+
+                    AdicionarEstado(nomeCategoria, grupo);
+                }
             }
 
             // Scores over years (fallback to Maths when "All")
@@ -625,69 +671,59 @@ namespace StudentPerformanceDashboard
             GradeDistributions.Add(new GradeDistribution { Grade = "F", Percentage = iF, Color = "#9C27B0" });
         }
 
-        private void BuildDistribuicaoMargem(int categoriaId, int paisId)
+        private void BuildEstadoProdutos(int categoriaId, int paisId)
         {
             GradeDistributions.Clear();
 
-            var produtosVendidos = this.AllProdutos
-                .Where(p => p.DataVenda.HasValue
-                            && p.DataVenda.Value.Year == SelectedYear
-                            && (categoriaId == 0 || p.CategoriaId == categoriaId)
-                            && (paisId == 0 || p.IsPaisId(paisId)))
+            var produtosCategoria = this.AllProdutos
+                .Where(p => categoriaId == 0 || p.CategoriaId == categoriaId)
                 .ToList();
 
-            if (produtosVendidos.Count == 0)
-            {
-                GradeDistributions.Add(new GradeDistribution { Grade = ">=40", Percentage = 0, Color = "#00C851" });
-                GradeDistributions.Add(new GradeDistribution { Grade = "25-39", Percentage = 0, Color = "#2196F3" });
-                GradeDistributions.Add(new GradeDistribution { Grade = "10-24", Percentage = 0, Color = "#FF9800" });
-                GradeDistributions.Add(new GradeDistribution { Grade = "0-9", Percentage = 0, Color = "#F44336" });
-                GradeDistributions.Add(new GradeDistribution { Grade = "<0", Percentage = 0, Color = "#9C27B0" });
-                return;
-            }
+            int vendidos = produtosCategoria
+                .Count(p => p.DataVenda.HasValue
+                            && p.DataVenda.Value.Year == SelectedYear
+                            && (paisId == 0 || p.IsPaisId(paisId)));
 
-            double CalcularMargemPercentual(BusinessLayer.Produto p)
-            {
-                if (p.PrecoVenda <= 0)
-                    return 0;
+            int emStock = produtosCategoria
+                .Count(p => p.Ativo && !p.DataVenda.HasValue);
 
-                return (double)((p.PrecoVenda - p.PrecoCusto) / p.PrecoVenda) * 100.0;
-            }
+            int inativos = produtosCategoria
+                .Count(p => !p.Ativo);
 
-            int excelente = produtosVendidos.Count(p => CalcularMargemPercentual(p) >= 40);
-            int boa = produtosVendidos.Count(p =>
+            int total = vendidos + emStock + inativos;
+
+            int percentVendidos = total > 0
+                ? (int)Math.Round((double)vendidos * 100 / total)
+                : 0;
+
+            int percentStock = total > 0
+                ? (int)Math.Round((double)emStock * 100 / total)
+                : 0;
+
+            int percentInativos = total > 0
+                ? 100 - percentVendidos - percentStock
+                : 0;
+
+            GradeDistributions.Add(new GradeDistribution
             {
-                double margem = CalcularMargemPercentual(p);
-                return margem >= 25 && margem < 40;
+                Grade = "Vendidos",
+                Percentage = percentVendidos,
+                Color = "#00C851"
             });
 
-            int media = produtosVendidos.Count(p =>
+            GradeDistributions.Add(new GradeDistribution
             {
-                double margem = CalcularMargemPercentual(p);
-                return margem >= 10 && margem < 25;
+                Grade = "Stock",
+                Percentage = percentStock,
+                Color = "#2196F3"
             });
 
-            int baixa = produtosVendidos.Count(p =>
+            GradeDistributions.Add(new GradeDistribution
             {
-                double margem = CalcularMargemPercentual(p);
-                return margem >= 0 && margem < 10;
+                Grade = "Inativos",
+                Percentage = percentInativos,
+                Color = "#F44336"
             });
-
-            int prejuizo = produtosVendidos.Count(p => CalcularMargemPercentual(p) < 0);
-
-            int total = produtosVendidos.Count;
-
-            int pExcelente = (int)Math.Round((double)excelente * 100 / total);
-            int pBoa = (int)Math.Round((double)boa * 100 / total);
-            int pMedia = (int)Math.Round((double)media * 100 / total);
-            int pBaixa = (int)Math.Round((double)baixa * 100 / total);
-            int pPrejuizo = 100 - (pExcelente + pBoa + pMedia + pBaixa);
-
-            GradeDistributions.Add(new GradeDistribution { Grade = ">=40", Percentage = pExcelente, Color = "#00C851" });
-            GradeDistributions.Add(new GradeDistribution { Grade = "25-39", Percentage = pBoa, Color = "#2196F3" });
-            GradeDistributions.Add(new GradeDistribution { Grade = "10-24", Percentage = pMedia, Color = "#FF9800" });
-            GradeDistributions.Add(new GradeDistribution { Grade = "0-9", Percentage = pBaixa, Color = "#F44336" });
-            GradeDistributions.Add(new GradeDistribution { Grade = "<0", Percentage = pPrejuizo, Color = "#9C27B0" });
         }
 
         #endregion

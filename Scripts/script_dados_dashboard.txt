@@ -1,0 +1,372 @@
+SET XACT_ABORT ON;
+
+BEGIN TRY
+    BEGIN TRANSACTION;
+
+    ------------------------------------------------------------
+    -- 1. Países
+    ------------------------------------------------------------
+
+    IF NOT EXISTS (SELECT 1 FROM Pais WHERE NomePais = N'Portugal')
+        INSERT INTO Pais (NomePais) VALUES (N'Portugal');
+
+    IF NOT EXISTS (SELECT 1 FROM Pais WHERE NomePais = N'Espanha')
+        INSERT INTO Pais (NomePais) VALUES (N'Espanha');
+
+    IF NOT EXISTS (SELECT 1 FROM Pais WHERE NomePais = N'França')
+        INSERT INTO Pais (NomePais) VALUES (N'França');
+
+    DECLARE @PortugalId INT;
+    DECLARE @EspanhaId INT;
+    DECLARE @FrancaId INT;
+
+    SELECT @PortugalId = PaisId FROM Pais WHERE NomePais = N'Portugal';
+    SELECT @EspanhaId = PaisId FROM Pais WHERE NomePais = N'Espanha';
+    SELECT @FrancaId = PaisId FROM Pais WHERE NomePais = N'França';
+
+
+    ------------------------------------------------------------
+    -- 2. Cidades
+    ------------------------------------------------------------
+
+    IF NOT EXISTS (SELECT 1 FROM Cidade WHERE NomeCidade = N'Lisboa')
+        INSERT INTO Cidade (NomeCidade, PaisId) VALUES (N'Lisboa', @PortugalId);
+
+    IF NOT EXISTS (SELECT 1 FROM Cidade WHERE NomeCidade = N'Porto')
+        INSERT INTO Cidade (NomeCidade, PaisId) VALUES (N'Porto', @PortugalId);
+
+    IF NOT EXISTS (SELECT 1 FROM Cidade WHERE NomeCidade = N'Madrid')
+        INSERT INTO Cidade (NomeCidade, PaisId) VALUES (N'Madrid', @EspanhaId);
+
+    IF NOT EXISTS (SELECT 1 FROM Cidade WHERE NomeCidade = N'Barcelona')
+        INSERT INTO Cidade (NomeCidade, PaisId) VALUES (N'Barcelona', @EspanhaId);
+
+    IF NOT EXISTS (SELECT 1 FROM Cidade WHERE NomeCidade = N'Paris')
+        INSERT INTO Cidade (NomeCidade, PaisId) VALUES (N'Paris', @FrancaId);
+
+    IF NOT EXISTS (SELECT 1 FROM Cidade WHERE NomeCidade = N'Lyon')
+        INSERT INTO Cidade (NomeCidade, PaisId) VALUES (N'Lyon', @FrancaId);
+
+    DECLARE @LisboaId INT;
+    DECLARE @PortoId INT;
+    DECLARE @MadridId INT;
+    DECLARE @BarcelonaId INT;
+    DECLARE @ParisId INT;
+    DECLARE @LyonId INT;
+
+    SELECT @LisboaId = CidadeId FROM Cidade WHERE NomeCidade = N'Lisboa';
+    SELECT @PortoId = CidadeId FROM Cidade WHERE NomeCidade = N'Porto';
+    SELECT @MadridId = CidadeId FROM Cidade WHERE NomeCidade = N'Madrid';
+    SELECT @BarcelonaId = CidadeId FROM Cidade WHERE NomeCidade = N'Barcelona';
+    SELECT @ParisId = CidadeId FROM Cidade WHERE NomeCidade = N'Paris';
+    SELECT @LyonId = CidadeId FROM Cidade WHERE NomeCidade = N'Lyon';
+
+
+    ------------------------------------------------------------
+    -- 3. Categorias
+    ------------------------------------------------------------
+
+    DECLARE @InformaticaId INT;
+    DECLARE @EscritorioId INT;
+    DECLARE @AcessoriosId INT;
+
+    SELECT @InformaticaId = CategoriaId
+    FROM CategoriaProduto
+    WHERE NomeCategoria = N'Informática';
+
+    IF @InformaticaId IS NULL
+    BEGIN
+        INSERT INTO CategoriaProduto (NomeCategoria) VALUES (N'Informática');
+        SET @InformaticaId = SCOPE_IDENTITY();
+    END;
+
+    SELECT @EscritorioId = CategoriaId
+    FROM CategoriaProduto
+    WHERE NomeCategoria = N'Escritório';
+
+    IF @EscritorioId IS NULL
+    BEGIN
+        INSERT INTO CategoriaProduto (NomeCategoria) VALUES (N'Escritório');
+        SET @EscritorioId = SCOPE_IDENTITY();
+    END;
+
+    SELECT TOP 1 @AcessoriosId = CategoriaId
+    FROM CategoriaProduto
+    WHERE NomeCategoria IN (N'Acessórios', N'Acessório');
+
+    IF @AcessoriosId IS NULL
+    BEGIN
+        INSERT INTO CategoriaProduto (NomeCategoria) VALUES (N'Acessórios');
+        SET @AcessoriosId = SCOPE_IDENTITY();
+    END;
+
+
+    ------------------------------------------------------------
+    -- 4. Clientes
+    -- SegmentoId: 1 = Particular, 2 = Empresa
+    ------------------------------------------------------------
+
+    IF NOT EXISTS (SELECT 1 FROM Cliente WHERE Email = N'ana.silva@email.com')
+        INSERT INTO Cliente (Nome, Email, Telefone, CidadeId, SegmentoId, DataRegisto, Ativo)
+        VALUES (N'Ana Silva', N'ana.silva@email.com', N'910000001', @LisboaId, 1, '2024-01-05', 1);
+
+    IF NOT EXISTS (SELECT 1 FROM Cliente WHERE Email = N'joao.costa@email.com')
+        INSERT INTO Cliente (Nome, Email, Telefone, CidadeId, SegmentoId, DataRegisto, Ativo)
+        VALUES (N'João Costa', N'joao.costa@email.com', N'910000002', @PortoId, 1, '2024-02-10', 1);
+
+    IF NOT EXISTS (SELECT 1 FROM Cliente WHERE Email = N'tech.solutions@email.com')
+        INSERT INTO Cliente (Nome, Email, Telefone, CidadeId, SegmentoId, DataRegisto, Ativo)
+        VALUES (N'Tech Solutions Lda', N'tech.solutions@email.com', N'910000003', @MadridId, 2, '2024-03-15', 1);
+
+    IF NOT EXISTS (SELECT 1 FROM Cliente WHERE Email = N'officeplus@email.com')
+        INSERT INTO Cliente (Nome, Email, Telefone, CidadeId, SegmentoId, DataRegisto, Ativo)
+        VALUES (N'Office Plus SA', N'officeplus@email.com', N'910000004', @BarcelonaId, 2, '2024-04-20', 1);
+
+    IF NOT EXISTS (SELECT 1 FROM Cliente WHERE Email = N'marie.dubois@email.com')
+        INSERT INTO Cliente (Nome, Email, Telefone, CidadeId, SegmentoId, DataRegisto, Ativo)
+        VALUES (N'Marie Dubois', N'marie.dubois@email.com', N'910000005', @ParisId, 1, '2024-05-12', 1);
+
+    IF NOT EXISTS (SELECT 1 FROM Cliente WHERE Email = N'lyon.business@email.com')
+        INSERT INTO Cliente (Nome, Email, Telefone, CidadeId, SegmentoId, DataRegisto, Ativo)
+        VALUES (N'Lyon Business Group', N'lyon.business@email.com', N'910000006', @LyonId, 2, '2024-06-01', 1);
+
+    IF NOT EXISTS (SELECT 1 FROM Cliente WHERE Email = N'ricardo.mendes@email.com')
+        INSERT INTO Cliente (Nome, Email, Telefone, CidadeId, SegmentoId, DataRegisto, Ativo)
+        VALUES (N'Ricardo Mendes', N'ricardo.mendes@email.com', N'910000007', @LisboaId, 1, '2025-01-11', 1);
+
+    IF NOT EXISTS (SELECT 1 FROM Cliente WHERE Email = N'iberia.corp@email.com')
+        INSERT INTO Cliente (Nome, Email, Telefone, CidadeId, SegmentoId, DataRegisto, Ativo)
+        VALUES (N'Iberia Corp', N'iberia.corp@email.com', N'910000008', @MadridId, 2, '2025-02-14', 1);
+
+    IF NOT EXISTS (SELECT 1 FROM Cliente WHERE Email = N'claire.martin@email.com')
+        INSERT INTO Cliente (Nome, Email, Telefone, CidadeId, SegmentoId, DataRegisto, Ativo)
+        VALUES (N'Claire Martin', N'claire.martin@email.com', N'910000009', @ParisId, 1, '2025-03-09', 1);
+
+    IF NOT EXISTS (SELECT 1 FROM Cliente WHERE Email = N'norte.office@email.com')
+        INSERT INTO Cliente (Nome, Email, Telefone, CidadeId, SegmentoId, DataRegisto, Ativo)
+        VALUES (N'Norte Office Lda', N'norte.office@email.com', N'910000010', @PortoId, 2, '2025-04-18', 1);
+
+
+    ------------------------------------------------------------
+    -- 5. Guardar IDs dos clientes
+    ------------------------------------------------------------
+
+    DECLARE @ClienteAna INT;
+    DECLARE @ClienteJoao INT;
+    DECLARE @ClienteTech INT;
+    DECLARE @ClienteOffice INT;
+    DECLARE @ClienteMarie INT;
+    DECLARE @ClienteLyon INT;
+    DECLARE @ClienteRicardo INT;
+    DECLARE @ClienteIberia INT;
+    DECLARE @ClienteClaire INT;
+    DECLARE @ClienteNorte INT;
+
+    SELECT @ClienteAna = ClienteId FROM Cliente WHERE Email = N'ana.silva@email.com';
+    SELECT @ClienteJoao = ClienteId FROM Cliente WHERE Email = N'joao.costa@email.com';
+    SELECT @ClienteTech = ClienteId FROM Cliente WHERE Email = N'tech.solutions@email.com';
+    SELECT @ClienteOffice = ClienteId FROM Cliente WHERE Email = N'officeplus@email.com';
+    SELECT @ClienteMarie = ClienteId FROM Cliente WHERE Email = N'marie.dubois@email.com';
+    SELECT @ClienteLyon = ClienteId FROM Cliente WHERE Email = N'lyon.business@email.com';
+    SELECT @ClienteRicardo = ClienteId FROM Cliente WHERE Email = N'ricardo.mendes@email.com';
+    SELECT @ClienteIberia = ClienteId FROM Cliente WHERE Email = N'iberia.corp@email.com';
+    SELECT @ClienteClaire = ClienteId FROM Cliente WHERE Email = N'claire.martin@email.com';
+    SELECT @ClienteNorte = ClienteId FROM Cliente WHERE Email = N'norte.office@email.com';
+
+
+    ------------------------------------------------------------
+    -- 6. Produtos vendidos, stock e inativos
+    ------------------------------------------------------------
+
+    DECLARE @Produtos TABLE
+    (
+        NomeProduto NVARCHAR(100),
+        CategoriaId INT,
+        PrecoVenda DECIMAL(10,2),
+        PrecoCusto DECIMAL(10,2),
+        Quantidade INT,
+        Ativo BIT,
+        DataCriacao DATE,
+        DataVenda DATE NULL,
+        ClienteId INT NULL
+    );
+
+    ------------------------------------------------------------
+    -- Vendas 2024
+    ------------------------------------------------------------
+
+    INSERT INTO @Produtos VALUES
+    (N'Portátil Lenovo V15 2024', @InformaticaId, 650.00, 480.00, 1, 1, '2024-01-02', '2024-01-20', @ClienteAna),
+    (N'Monitor LG 24 2024', @InformaticaId, 190.00, 125.00, 1, 1, '2024-01-08', '2024-02-10', @ClienteTech),
+    (N'SSD Kingston 1TB 2024', @InformaticaId, 95.00, 58.00, 1, 1, '2024-02-01', '2024-03-05', @ClienteJoao),
+    (N'Webcam Logitech C270 2024', @InformaticaId, 45.00, 25.00, 1, 1, '2024-02-15', '2024-04-18', @ClienteMarie),
+
+    (N'Cadeira Ergonómica Base 2024', @EscritorioId, 145.00, 90.00, 1, 1, '2024-01-12', '2024-02-25', @ClienteOffice),
+    (N'Secretária Compacta 2024', @EscritorioId, 220.00, 150.00, 1, 1, '2024-02-20', '2024-03-14', @ClienteNorte),
+    (N'Candeeiro LED Mesa 2024', @EscritorioId, 38.00, 18.00, 1, 1, '2024-03-10', '2024-05-09', @ClienteAna),
+    (N'Cadeira Outlet 2024', @EscritorioId, 70.00, 65.00, 1, 1, '2024-04-01', '2024-06-21', @ClienteLyon),
+
+    (N'Rato Logitech M185 2024', @AcessoriosId, 25.00, 12.00, 1, 1, '2024-01-06', '2024-01-30', @ClienteJoao),
+    (N'Teclado Microsoft 600 2024', @AcessoriosId, 32.00, 16.00, 1, 1, '2024-02-01', '2024-02-27', @ClienteTech),
+    (N'Hub USB-C 5 Portas 2024', @AcessoriosId, 40.00, 20.00, 1, 1, '2024-03-03', '2024-04-11', @ClienteOffice),
+    (N'Cabo HDMI 2m 2024', @AcessoriosId, 12.00, 5.00, 1, 1, '2024-04-15', '2024-05-16', @ClienteMarie);
+
+
+    ------------------------------------------------------------
+    -- Vendas 2025
+    ------------------------------------------------------------
+
+    INSERT INTO @Produtos VALUES
+    (N'Portátil HP ProBook 2025', @InformaticaId, 780.00, 570.00, 1, 1, '2025-01-03', '2025-01-28', @ClienteRicardo),
+    (N'Monitor Dell 27 2025', @InformaticaId, 260.00, 175.00, 1, 1, '2025-01-20', '2025-02-19', @ClienteIberia),
+    (N'Impressora Brother Laser 2025', @InformaticaId, 180.00, 120.00, 1, 1, '2025-02-05', '2025-03-15', @ClienteClaire),
+    (N'Router TP-Link AX 2025', @InformaticaId, 90.00, 50.00, 1, 1, '2025-03-12', '2025-04-17', @ClienteAna),
+    (N'Liquidação Router Antigo 2025', @InformaticaId, 60.00, 75.00, 1, 1, '2025-04-10', '2025-05-22', @ClienteTech),
+
+    (N'Cadeira Executiva 2025', @EscritorioId, 210.00, 130.00, 1, 1, '2025-01-09', '2025-02-08', @ClienteOffice),
+    (N'Estante Modular 2025', @EscritorioId, 160.00, 95.00, 1, 1, '2025-02-11', '2025-03-19', @ClienteNorte),
+    (N'Quadro Branco 2025', @EscritorioId, 75.00, 38.00, 1, 1, '2025-03-04', '2025-04-29', @ClienteLyon),
+    (N'Pack Papel A4 2025', @EscritorioId, 18.00, 10.00, 1, 1, '2025-04-14', '2025-05-30', @ClienteClaire),
+
+    (N'Rato Vertical 2025', @AcessoriosId, 38.00, 18.00, 1, 1, '2025-01-07', '2025-01-31', @ClienteJoao),
+    (N'Teclado Mecânico 2025', @AcessoriosId, 85.00, 45.00, 1, 1, '2025-02-18', '2025-03-16', @ClienteIberia),
+    (N'Powerbank 20000 2025', @AcessoriosId, 42.00, 25.00, 1, 1, '2025-03-21', '2025-04-25', @ClienteMarie),
+    (N'Adaptador USB-C HDMI 2025', @AcessoriosId, 28.00, 12.00, 1, 1, '2025-04-13', '2025-05-18', @ClienteRicardo);
+
+
+    ------------------------------------------------------------
+    -- Vendas 2026
+    ------------------------------------------------------------
+
+    INSERT INTO @Produtos VALUES
+    (N'Portátil Dell Latitude 2026', @InformaticaId, 950.00, 700.00, 1, 1, '2026-01-05', '2026-02-10', @ClienteTech),
+    (N'Monitor 24 Pro 2026', @InformaticaId, 210.00, 150.00, 1, 1, '2026-01-12', '2026-03-01', @ClienteIberia),
+    (N'NAS Synology DS223 2026', @InformaticaId, 340.00, 230.00, 1, 1, '2026-02-01', '2026-03-11', @ClienteNorte),
+    (N'Tablet Samsung A9 2026', @InformaticaId, 230.00, 160.00, 1, 1, '2026-02-19', '2026-04-09', @ClienteClaire),
+    (N'Mini PC Intel NUC 2026', @InformaticaId, 520.00, 360.00, 1, 1, '2026-03-02', '2026-05-15', @ClienteAna),
+
+    (N'Cadeira Premium 2026', @EscritorioId, 260.00, 160.00, 1, 1, '2026-01-14', '2026-02-18', @ClienteOffice),
+    (N'Secretária Elétrica 2026', @EscritorioId, 430.00, 280.00, 1, 1, '2026-02-07', '2026-03-20', @ClienteLyon),
+    (N'Armário Escritório 2026', @EscritorioId, 190.00, 110.00, 1, 1, '2026-03-10', '2026-04-26', @ClienteNorte),
+    (N'Triturador Papel 2026', @EscritorioId, 120.00, 70.00, 1, 1, '2026-04-01', '2026-05-19', @ClienteRicardo),
+
+    (N'Rato Sem Fios Pro 2026', @AcessoriosId, 30.00, 10.00, 1, 1, '2026-01-10', '2026-02-20', @ClienteJoao),
+    (N'Headset USB 2026', @AcessoriosId, 55.00, 28.00, 1, 1, '2026-02-13', '2026-03-08', @ClienteMarie),
+    (N'Docking Station USB-C 2026', @AcessoriosId, 135.00, 80.00, 1, 1, '2026-03-06', '2026-04-12', @ClienteTech),
+    (N'Suporte Monitor 2026', @AcessoriosId, 32.00, 14.00, 1, 1, '2026-04-04', '2026-05-06', @ClienteClaire),
+    (N'Teclado Low Margin 2026', @AcessoriosId, 50.00, 47.00, 1, 1, '2026-05-01', '2026-06-03', @ClienteOffice);
+
+
+    ------------------------------------------------------------
+    -- Produtos em stock
+    ------------------------------------------------------------
+
+    INSERT INTO @Produtos VALUES
+    (N'Workstation Desktop Stock', @InformaticaId, 1200.00, 850.00, 5, 1, '2026-01-01', NULL, NULL),
+    (N'Monitor Curvo Stock', @InformaticaId, 320.00, 220.00, 8, 1, '2026-01-05', NULL, NULL),
+    (N'Teclado Gamer Stock', @InformaticaId, 95.00, 55.00, 20, 1, '2026-01-10', NULL, NULL),
+
+    (N'Cadeira Stock Basic', @EscritorioId, 90.00, 55.00, 15, 1, '2026-01-12', NULL, NULL),
+    (N'Papel A4 Stock', @EscritorioId, 6.00, 3.00, 200, 1, '2026-01-15', NULL, NULL),
+    (N'Arquivador Metal Stock', @EscritorioId, 75.00, 42.00, 10, 1, '2026-01-20', NULL, NULL),
+
+    (N'Cabo USB-C Stock', @AcessoriosId, 9.00, 3.00, 150, 1, '2026-01-22', NULL, NULL),
+    (N'Tapete Rato Stock', @AcessoriosId, 7.00, 2.00, 120, 1, '2026-01-25', NULL, NULL),
+    (N'Carregador USB-C 65W Stock', @AcessoriosId, 29.00, 14.00, 60, 1, '2026-01-28', NULL, NULL);
+
+
+    ------------------------------------------------------------
+    -- Produtos inativos
+    ------------------------------------------------------------
+
+    INSERT INTO @Produtos VALUES
+    (N'Projetor Antigo Inativo', @InformaticaId, 150.00, 180.00, 0, 0, '2024-01-01', NULL, NULL),
+    (N'Impressora Matricial Inativa', @InformaticaId, 90.00, 130.00, 0, 0, '2024-02-01', NULL, NULL),
+    (N'Agrafador Antigo Inativo', @EscritorioId, 8.00, 10.00, 0, 0, '2024-01-01', NULL, NULL),
+    (N'Arquivo Plástico Inativo', @EscritorioId, 12.00, 14.00, 0, 0, '2024-02-01', NULL, NULL),
+    (N'Cabo VGA Antigo Inativo', @AcessoriosId, 5.00, 8.00, 0, 0, '2024-01-01', NULL, NULL),
+    (N'Adaptador PS2 Inativo', @AcessoriosId, 4.00, 6.00, 0, 0, '2024-02-01', NULL, NULL);
+
+
+    ------------------------------------------------------------
+    -- 7. Inserir produtos sem duplicar
+    ------------------------------------------------------------
+
+    INSERT INTO Produto
+    (
+        NomeProduto,
+        CategoriaId,
+        PrecoVenda,
+        PrecoCusto,
+        Quantidade,
+        Ativo,
+        DataCriacao,
+        DataVenda,
+        ClienteId
+    )
+    SELECT
+        p.NomeProduto,
+        p.CategoriaId,
+        p.PrecoVenda,
+        p.PrecoCusto,
+        p.Quantidade,
+        p.Ativo,
+        p.DataCriacao,
+        p.DataVenda,
+        p.ClienteId
+    FROM @Produtos p
+    WHERE NOT EXISTS
+    (
+        SELECT 1
+        FROM Produto pr
+        WHERE pr.NomeProduto = p.NomeProduto
+    );
+
+
+    COMMIT TRANSACTION;
+END TRY
+BEGIN CATCH
+    IF @@TRANCOUNT > 0
+        ROLLBACK TRANSACTION;
+
+    THROW;
+END CATCH;
+
+
+------------------------------------------------------------
+-- 8. Consultas de verificação
+------------------------------------------------------------
+
+SELECT
+    YEAR(DataVenda) AS Ano,
+    COUNT(*) AS ProdutosVendidos,
+    SUM(PrecoVenda) AS TotalVendas,
+    SUM(PrecoVenda - PrecoCusto) AS Lucro
+FROM Produto
+WHERE DataVenda IS NOT NULL
+GROUP BY YEAR(DataVenda)
+ORDER BY Ano;
+
+
+SELECT
+    cp.NomeCategoria,
+    YEAR(p.DataVenda) AS Ano,
+    COUNT(*) AS ProdutosVendidos,
+    SUM(p.PrecoVenda) AS TotalVendas,
+    SUM(p.PrecoVenda - p.PrecoCusto) AS Lucro
+FROM Produto p
+INNER JOIN CategoriaProduto cp ON cp.CategoriaId = p.CategoriaId
+WHERE p.DataVenda IS NOT NULL
+GROUP BY cp.NomeCategoria, YEAR(p.DataVenda)
+ORDER BY cp.NomeCategoria, Ano;
+
+
+SELECT
+    cp.NomeCategoria,
+    SUM(CASE WHEN p.DataVenda IS NOT NULL THEN 1 ELSE 0 END) AS Vendidos,
+    SUM(CASE WHEN p.Ativo = 1 AND p.DataVenda IS NULL THEN p.Quantidade ELSE 0 END) AS StockDisponivel,
+    SUM(CASE WHEN p.Ativo = 0 THEN 1 ELSE 0 END) AS Inativos
+FROM Produto p
+INNER JOIN CategoriaProduto cp ON cp.CategoriaId = p.CategoriaId
+GROUP BY cp.NomeCategoria
+ORDER BY cp.NomeCategoria;
