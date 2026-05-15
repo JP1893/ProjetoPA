@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using BDGlobal;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Data;
 
@@ -6,9 +7,6 @@ namespace DataLayer
 {
     public class Cliente
     {
-        private static string ConnectionString =>
-            @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=ProjetoPAEmpresa;TrustServerCertificate = true;Data Source=MIGUELNOVO\SQLEXPRESS";
-
         public static bool Gravar(
             int clienteId, string nome, string email, string? telefone, int cidadeId,
             int segmentoId, DateTime dataRegisto, bool ativo, out string erro)
@@ -17,8 +15,7 @@ namespace DataLayer
 
             try
             {
-                using SqlConnection con = new SqlConnection(ConnectionString);
-                con.Open();
+                using SqlConnection con = BaseDadosGlobal.AbrirBaseDados();
 
                 using SqlCommand cmd = new SqlCommand("Gravar_Cliente", con);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -26,16 +23,19 @@ namespace DataLayer
                 cmd.Parameters.Add(new SqlParameter("@ClienteId", SqlDbType.Int) { Value = clienteId });
                 cmd.Parameters.Add(new SqlParameter("@Nome", SqlDbType.NVarChar, 150) { Value = nome });
                 cmd.Parameters.Add(new SqlParameter("@Email", SqlDbType.NVarChar, 150) { Value = email });
+
                 cmd.Parameters.Add(new SqlParameter("@Telefone", SqlDbType.NVarChar, 30)
                 {
                     Value = string.IsNullOrWhiteSpace(telefone) ? DBNull.Value : telefone
                 });
+
                 cmd.Parameters.Add(new SqlParameter("@CidadeId", SqlDbType.Int) { Value = cidadeId });
                 cmd.Parameters.Add(new SqlParameter("@SegmentoId", SqlDbType.Int) { Value = segmentoId });
                 cmd.Parameters.Add(new SqlParameter("@DataRegisto", SqlDbType.Date) { Value = dataRegisto });
                 cmd.Parameters.Add(new SqlParameter("@Ativo", SqlDbType.Bit) { Value = ativo });
 
                 cmd.ExecuteNonQuery();
+
                 return true;
             }
             catch (Exception ex)
@@ -51,14 +51,15 @@ namespace DataLayer
 
             try
             {
-                using SqlConnection con = new SqlConnection(ConnectionString);
-                con.Open();
+                using SqlConnection con = BaseDadosGlobal.AbrirBaseDados();
 
                 using SqlCommand cmd = new SqlCommand("Eliminar_Cliente", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+
                 cmd.Parameters.Add(new SqlParameter("@ClienteId", SqlDbType.Int) { Value = clienteId });
 
                 cmd.ExecuteNonQuery();
+
                 return true;
             }
             catch (Exception ex)
@@ -70,26 +71,7 @@ namespace DataLayer
 
         public static DataTable Listar(out string erro)
         {
-            erro = string.Empty;
-            DataTable dt = new DataTable();
-
-            try
-            {
-                using SqlConnection con = new SqlConnection(ConnectionString);
-                con.Open();
-
-                using SqlCommand cmd = new SqlCommand("Listar_Cliente", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                using SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                erro = ex.Message;
-            }
-
-            return dt;
+            return BaseDadosGlobal.ObterLista("Listar_Cliente", out erro);
         }
 
         public static bool Obter(
@@ -101,11 +83,11 @@ namespace DataLayer
 
             try
             {
-                using SqlConnection con = new SqlConnection(ConnectionString);
-                con.Open();
+                using SqlConnection con = BaseDadosGlobal.AbrirBaseDados();
 
                 using SqlCommand cmd = new SqlCommand("Obter_Cliente", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+
                 cmd.Parameters.Add(new SqlParameter("@ClienteId", SqlDbType.Int) { Value = clienteId });
 
                 using SqlDataReader dr = cmd.ExecuteReader();
@@ -119,6 +101,7 @@ namespace DataLayer
                     segmentoId = Convert.ToInt32(dr["SegmentoId"]);
                     dataRegisto = Convert.ToDateTime(dr["DataRegisto"]);
                     ativo = Convert.ToBoolean(dr["Ativo"]);
+
                     return true;
                 }
 

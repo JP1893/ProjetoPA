@@ -139,5 +139,22 @@ namespace BusinessLayer
         {
             return (float)(this.PrecoVenda - this.PrecoCusto);
         }
+
+        internal bool FiltraDados(int categoriaId, string produtoSelecionado)
+        {
+            bool valido = true;
+
+            if (categoriaId > 0)
+            {
+                valido = (this.CategoriaId == categoriaId);
+            }
+
+            if (!string.IsNullOrEmpty(produtoSelecionado) && !string.Equals(produtoSelecionado, "All", StringComparison.OrdinalIgnoreCase))
+            {
+                valido = valido && (string.Equals(this.NomeProduto, produtoSelecionado, StringComparison.OrdinalIgnoreCase));
+            }
+
+            return valido;
+        }
     }
 }

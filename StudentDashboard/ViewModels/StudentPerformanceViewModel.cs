@@ -382,18 +382,18 @@ namespace StudentPerformanceDashboard
                 "All",
                 StringComparison.OrdinalIgnoreCase);
 
-            IEnumerable<BusinessLayer.Produto> produtosBase = AllProdutos;
+            IEnumerable<BusinessLayer.Produto> produtosBase = AllProdutos.GetFilterProdutos(categoriaId, produtoSelecionado);
 
-            if (categoriaId > 0)
-            {
-                produtosBase = produtosBase.Where(p => p.CategoriaId == categoriaId);
-            }
+            //if (categoriaId > 0)
+            //{
+            //    produtosBase = produtosBase.Where(p => p.CategoriaId == categoriaId);
+            //}
 
-            if (temProdutoSelecionado)
-            {
-                produtosBase = produtosBase.Where(p =>
-                    string.Equals(p.NomeProduto, produtoSelecionado, StringComparison.OrdinalIgnoreCase));
-            }
+            //if (temProdutoSelecionado)
+            //{
+            //    produtosBase = produtosBase.Where(p =>
+            //        string.Equals(p.NomeProduto, produtoSelecionado, StringComparison.OrdinalIgnoreCase));
+            //}
 
             List<BusinessLayer.Produto> produtosFiltrados = produtosBase.ToList();
 

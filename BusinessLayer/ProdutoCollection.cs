@@ -99,8 +99,11 @@ namespace BusinessLayer
             return resultado;
         }
 
+        public IEnumerable<Produto> GetFilterProdutos(int categoriaId, string produtoSelecionado)
+        {
+            IEnumerable<Produto> produtos = this.Where(k => k.FiltraDados(categoriaId, produtoSelecionado));
 
-
-
+            return produtos;
+        }
     }
 }
