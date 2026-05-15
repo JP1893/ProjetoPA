@@ -1,16 +1,17 @@
-﻿
-using BusinessLayer;
+﻿using BusinessLayer;
 using StudentDashBoard.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace StudentPerformanceDashboard
 {
     public partial class StudentPerformanceViewModel
     {
-        #region Methods
+        #region Inicialização de dados antigos / base do template
 
         private void SeedSampleData()
         {
-            // Updated varied counts per year
             StudentsPerYear.Add(new StudentsPerYear { Year = 2021, Students = 650 });
             StudentsPerYear.Add(new StudentsPerYear { Year = 2022, Students = 690 });
             StudentsPerYear.Add(new StudentsPerYear { Year = 2023, Students = 730 });
@@ -22,71 +23,129 @@ namespace StudentPerformanceDashboard
                 Year = 2021,
                 Scores = new SubjectScores { PhysEd = 82.5, English = 74.2, Maths = 79.1, Science = 76.8 }
             });
+
             AverageSubjectScores.Add(new AverageSubjectScore
             {
                 Year = 2022,
                 Scores = new SubjectScores { PhysEd = 84.1, English = 75.5, Maths = 80.8, Science = 77.2 }
             });
+
             AverageSubjectScores.Add(new AverageSubjectScore
             {
                 Year = 2023,
                 Scores = new SubjectScores { PhysEd = 85.7, English = 77.2, Maths = 82.5, Science = 77.8 }
             });
+
             AverageSubjectScores.Add(new AverageSubjectScore
             {
                 Year = 2024,
                 Scores = new SubjectScores { PhysEd = 84.9, English = 76.1, Maths = 81.0, Science = 76.9 }
             });
+
             AverageSubjectScores.Add(new AverageSubjectScore
             {
                 Year = 2025,
                 Scores = new SubjectScores { PhysEd = 83.8, English = 75.0, Maths = 79.6, Science = 75.5 }
             });
 
-            // Year-wise gender totals (example realistic splits)
             _genderTotalsByYear[2021] = new StudentsByGradeAndGender { Male = 320, Female = 300, Others = 30 };
             _genderTotalsByYear[2022] = new StudentsByGradeAndGender { Male = 330, Female = 320, Others = 40 };
             _genderTotalsByYear[2023] = new StudentsByGradeAndGender { Male = 340, Female = 340, Others = 50 };
             _genderTotalsByYear[2024] = new StudentsByGradeAndGender { Male = 335, Female = 330, Others = 50 };
             _genderTotalsByYear[2025] = new StudentsByGradeAndGender { Male = 325, Female = 325, Others = 50 };
-            // initialize current snapshot (will be refreshed per year in BuildProjections)
+
             StudentsByGradeAndGender = _genderTotalsByYear[2021];
 
-            // Participation rates by subject per year
             StudentParticipationRateByBranch.Add(new StudentParticipationRateByBranch
             {
                 Year = 2021,
                 Rates = new BranchRates { PhysEd = 95.0, Arts = 81.0, English = 75.5, Maths = 83.5, Science = 86.0 }
             });
+
             StudentParticipationRateByBranch.Add(new StudentParticipationRateByBranch
             {
                 Year = 2022,
                 Rates = new BranchRates { PhysEd = 97.2, Arts = 83.0, English = 77.0, Maths = 85.2, Science = 87.5 }
             });
+
             StudentParticipationRateByBranch.Add(new StudentParticipationRateByBranch
             {
                 Year = 2023,
                 Rates = new BranchRates { PhysEd = 98.8, Arts = 84.0, English = 78.1, Maths = 86.4, Science = 88.1 }
             });
+
             StudentParticipationRateByBranch.Add(new StudentParticipationRateByBranch
             {
                 Year = 2024,
                 Rates = new BranchRates { PhysEd = 97.5, Arts = 83.2, English = 77.0, Maths = 85.0, Science = 86.8 }
             });
+
             StudentParticipationRateByBranch.Add(new StudentParticipationRateByBranch
             {
                 Year = 2025,
                 Rates = new BranchRates { PhysEd = 96.0, Arts = 82.0, English = 75.8, Maths = 83.6, Science = 85.2 }
             });
 
-            // Derive examination results from participation rates and subject scores to keep data consistent
             ComputeExamResultsFromRatesAndScores();
         }
+
+        private void ComputeExamResultsFromRatesAndScores()
+        {
+            ExaminationResultsByBranch.Clear();
+
+            foreach (var yearInfo in StudentsPerYear)
+            {
+                var year = yearInfo.Year;
+                int total = yearInfo.Students;
+
+                var rates = StudentParticipationRateByBranch.FirstOrDefault(r => r.Year == year)?.Rates;
+                var scores = AverageSubjectScores.FirstOrDefault(s => s.Year == year)?.Scores;
+
+                if (rates == null || scores == null)
+                    continue;
+
+                var results = new Dictionary<string, ExaminationResult>();
+
+                void AddFor(string subjectName, double participationRatePercent, double avgScore)
+                {
+                    int attended = (int)Math.Round(total * participationRatePercent / 100.0, MidpointRounding.AwayFromZero);
+                    int notAttended = Math.Max(0, total - attended);
+
+                    double passRate = Math.Clamp(0.4 + (avgScore / 100.0) * 0.58, 0.4, 0.98);
+                    int pass = (int)Math.Round(attended * passRate, MidpointRounding.AwayFromZero);
+                    int fail = Math.Max(0, attended - pass);
+
+                    results[subjectName] = new ExaminationResult
+                    {
+                        Pass = pass,
+                        Fail = fail,
+                        NotAttended = notAttended
+                    };
+                }
+
+                AddFor("PhysEd", rates.PhysEd, scores.PhysEd);
+                AddFor("English", rates.English, scores.English);
+                AddFor("Maths", rates.Maths, scores.Maths);
+                AddFor("Science", rates.Science, scores.Science);
+
+                ExaminationResultsByBranch.Add(new ExaminationResultsByBranch
+                {
+                    Year = year,
+                    Results = results
+                });
+            }
+        }
+
+        #endregion
+
+        #region Inicialização de filtros
 
         private void InitializeSubjects()
         {
             Subjects.Clear();
+
             string[] names = new[] { "All", "PhysEd", "English", "Maths", "Science" };
+
             foreach (var name in names)
             {
                 var subject = new Subject { Name = name };
@@ -109,7 +168,7 @@ namespace StudentPerformanceDashboard
             _categoriaProdutosByName["Todas"] = categoriaTodos;
             CategoriaProdutos.Add(categoriaTodos);
 
-            BusinessLayer.CategoriaProdutoCollection categoriaProdutos = BusinessLayer.CategoriaProduto.Listar();
+            CategoriaProdutoCollection categoriaProdutos = BusinessLayer.CategoriaProduto.Listar();
 
             foreach (BusinessLayer.CategoriaProduto item in categoriaProdutos)
             {
@@ -129,11 +188,16 @@ namespace StudentPerformanceDashboard
             Paises.Clear();
             _paisesByName.Clear();
 
-            var paisTodos = new StudentDashBoard.Models.Pais { PaisID = 0, Name = "All" };
+            var paisTodos = new StudentDashBoard.Models.Pais
+            {
+                PaisID = 0,
+                Name = "All"
+            };
+
             _paisesByName["All"] = paisTodos;
             Paises.Add(paisTodos);
 
-            BusinessLayer.PaisCollection paises = BusinessLayer.Pais.Listar();
+            PaisCollection paises = BusinessLayer.Pais.Listar();
 
             foreach (BusinessLayer.Pais item in paises)
             {
@@ -153,26 +217,31 @@ namespace StudentPerformanceDashboard
             Cidades.Clear();
             _cidadesByName.Clear();
 
-            var cidadeTodos = new StudentDashBoard.Models.Cidade { Name = "All" };
+            var cidadeTodos = new StudentDashBoard.Models.Cidade
+            {
+                Name = "All"
+            };
+
             _cidadesByName["All"] = cidadeTodos;
             Cidades.Add(cidadeTodos);
 
-            if (paisID > 0)
+            if (paisID <= 0)
+                return;
+
+            CidadeCollection cidades = BusinessLayer.Cidade.Listar();
+
+            IEnumerable<BusinessLayer.Cidade> cidadesPorPais = cidades
+                .Where(c => c.PaisId == paisID);
+
+            foreach (BusinessLayer.Cidade item in cidadesPorPais)
             {
-                BusinessLayer.CidadeCollection cidades = BusinessLayer.Cidade.Listar();
-
-                IEnumerable<BusinessLayer.Cidade> cidadesPorPais = cidades.Where(k => k.PaisId == paisID);
-
-                foreach (BusinessLayer.Cidade item in cidadesPorPais)
+                var cidade = new StudentDashBoard.Models.Cidade
                 {
-                    var cidade = new StudentDashBoard.Models.Cidade
-                    {
-                        Name = item.NomeCidade
-                    };
+                    Name = item.NomeCidade
+                };
 
-                    _cidadesByName[cidade.Name] = cidade;
-                    Cidades.Add(cidade);
-                }
+                _cidadesByName[cidade.Name] = cidade;
+                Cidades.Add(cidade);
             }
         }
 
@@ -181,13 +250,17 @@ namespace StudentPerformanceDashboard
             Produtos.Clear();
             _produtosByName.Clear();
 
-            var produtoTodos = new StudentDashBoard.Models.Produto { Name = "All" };
+            var produtoTodos = new StudentDashBoard.Models.Produto
+            {
+                Name = "All"
+            };
+
             _produtosByName["All"] = produtoTodos;
             Produtos.Add(produtoTodos);
 
-            this.AllProdutos = BusinessLayer.Produto.Listar();
+            AllProdutos = BusinessLayer.Produto.Listar();
 
-            foreach (BusinessLayer.Produto item in this.AllProdutos)
+            foreach (BusinessLayer.Produto item in AllProdutos)
             {
                 var produto = new StudentDashBoard.Models.Produto
                 {
@@ -204,11 +277,15 @@ namespace StudentPerformanceDashboard
             Clientes.Clear();
             _clientesByName.Clear();
 
-            var clienteTodos = new StudentDashBoard.Models.Cliente { Name = "All" };
+            var clienteTodos = new StudentDashBoard.Models.Cliente
+            {
+                Name = "All"
+            };
+
             _clientesByName["All"] = clienteTodos;
             Clientes.Add(clienteTodos);
 
-            BusinessLayer.ClienteCollection clientes = BusinessLayer.Cliente.Listar();
+            ClienteCollection clientes = BusinessLayer.Cliente.Listar();
 
             foreach (BusinessLayer.Cliente item in clientes)
             {
@@ -222,30 +299,165 @@ namespace StudentPerformanceDashboard
             }
         }
 
+        private void InitializeCollections()
+        {
+            Years.Clear();
+
+            var anosComVendas = AllProdutos
+                .Where(p => p.DataVenda.HasValue)
+                .Select(p => p.DataVenda.Value.Year)
+                .Distinct()
+                .OrderByDescending(y => y)
+                .ToList();
+
+            foreach (var year in anosComVendas)
+            {
+                Years.Add(year);
+            }
+
+            if (Years.Count > 0)
+            {
+                SelectedYear = Years[0];
+            }
+        }
+
+        #endregion
+
+        #region Atualização principal do dashboard
+
         private void UpdateFilteredData()
         {
             BuildProjections();
 
-            // Participation (apply filter correctly and avoid unnecessary allocations)
-            FilteredParticipationRates.Clear();
+            AtualizarGraficoParticipacaoFiltrado();
+            AtualizarGraficoProdutosPorEstadoFiltrado();
+            AtualizarDadosAntigosDoTemplate();
+        }
 
-            foreach (var item in ParticipationBySubject)
+        private void BuildProjections()
+        {
+            if (AllProdutos == null)
+                return;
+
+            int categoriaId = ObterCategoriaSelecionadaId();
+            int paisId = ObterPaisSelecionadoId();
+
+            AtualizarKpis(categoriaId, paisId);
+
+            BuildGraficoLucroPorAnoECategoria(categoriaId);
+            BuildGraficoEvolucaoVendas(categoriaId, paisId);
+            BuildGraficoDistribuicaoVendas(categoriaId, paisId);
+            BuildGraficoParticipacaoNasVendas(categoriaId, paisId);
+            BuildGraficoProdutosPorEstado(categoriaId, paisId);
+            BuildGraficoEstadoDosProdutos(categoriaId, paisId);
+
+            AtualizarDadosAntigosDoTemplate();
+        }
+
+        #endregion
+
+        #region KPIs
+
+        private void AtualizarKpis(int categoriaId, int paisId)
+        {
+            TotalVendas = AllProdutos.ObterTotalVendas(categoriaId, paisId);
+            Lucro = AllProdutos.ObterLucro(categoriaId);
+
+            ProdutosVendidos = AllProdutos.ObterProdutosVendidos(categoriaId, SelectedYear);
+            StockDisponivel = AllProdutos.ObterStockDisponivel(categoriaId);
+        }
+
+        #endregion
+
+        #region Gráfico 1 - Produtos por Estado
+
+        private void BuildGraficoProdutosPorEstado(int categoriaId, int paisId)
+        {
+            ExamResultsBySubject.Clear();
+
+            string produtoSelecionado = SelectedProduto?.Name ?? "All";
+
+            bool temProdutoSelecionado = !string.Equals(
+                produtoSelecionado,
+                "All",
+                StringComparison.OrdinalIgnoreCase);
+
+            IEnumerable<BusinessLayer.Produto> produtosBase = AllProdutos;
+
+            if (categoriaId > 0)
             {
-                FilteredParticipationRates.Add(item);
+                produtosBase = produtosBase.Where(p => p.CategoriaId == categoriaId);
             }
 
-            // Semester trend (no filter currently; clone to filtered)
-            FilteredSemesterTrend.Clear();
-            foreach (var item in SemesterGradeTrend)
+            if (temProdutoSelecionado)
             {
-                item.Value = Math.Round(item.Value, 1);
-                FilteredSemesterTrend.Add(item);
+                produtosBase = produtosBase.Where(p =>
+                    string.Equals(p.NomeProduto, produtoSelecionado, StringComparison.OrdinalIgnoreCase));
             }
 
-            // Select single item for gauge view
-            SelectedParticipationRate = (FilteredParticipationRates.Count == 1) ? FilteredParticipationRates[0] : null;
+            List<BusinessLayer.Produto> produtosFiltrados = produtosBase.ToList();
 
-            // Exam results (name-based filter to avoid object reference issues)
+            if (temProdutoSelecionado)
+            {
+                AdicionarEstadoProduto(produtoSelecionado, produtosFiltrados, paisId);
+            }
+            else if (categoriaId > 0)
+            {
+                var produtosAgrupados = produtosFiltrados
+                    .GroupBy(p => p.NomeProduto)
+                    .OrderBy(g => g.Key);
+
+                foreach (var grupo in produtosAgrupados)
+                {
+                    AdicionarEstadoProduto(grupo.Key, grupo, paisId);
+                }
+            }
+            else
+            {
+                var categoriasAgrupadas = produtosFiltrados
+                    .GroupBy(p => p.CategoriaId)
+                    .OrderBy(g => g.Key);
+
+                foreach (var grupo in categoriasAgrupadas)
+                {
+                    string nomeCategoria = CategoriaProdutos
+                        .FirstOrDefault(c => c.CategoriaID == grupo.Key)?.Name
+                        ?? $"Categoria {grupo.Key}";
+
+                    AdicionarEstadoProduto(nomeCategoria, grupo, paisId);
+                }
+            }
+        }
+
+        private void AdicionarEstadoProduto(
+            string nome,
+            IEnumerable<BusinessLayer.Produto> produtos,
+            int paisId)
+        {
+            List<BusinessLayer.Produto> lista = produtos.ToList();
+
+            int vendidos = lista.Count(p =>
+                p.DataVenda.HasValue &&
+                p.DataVenda.Value.Year == SelectedYear &&
+                (paisId == 0 || p.IsPaisId(paisId)));
+
+            int emStock = lista
+                .Where(p => p.Ativo && !p.DataVenda.HasValue)
+                .Sum(p => p.Quantidade);
+
+            int inativos = lista.Count(p => !p.Ativo);
+
+            ExamResultsBySubject.Add(new SubjectExamResult
+            {
+                Subject = new Subject { Name = nome },
+                Pass = vendidos,
+                Fail = emStock,
+                NotAttended = inativos
+            });
+        }
+
+        private void AtualizarGraficoProdutosPorEstadoFiltrado()
+        {
             FilteredExamResults.Clear();
 
             foreach (SubjectExamResult item in ExamResultsBySubject)
@@ -254,119 +466,41 @@ namespace StudentPerformanceDashboard
             }
         }
 
-        // Compute exam results for each year and subject so that:
-        // - Attended = round(TotalStudents * ParticipationRate)
-        // - NotAttended = TotalStudents - Attended
-        // - Pass/Fail split of Attended is derived from the average subject score (higher score => higher pass rate)
-        private void ComputeExamResultsFromRatesAndScores()
+        #endregion
+
+        #region Gráfico 2 - Lucro por Ano e Categoria
+
+        private void BuildGraficoLucroPorAnoECategoria(int categoriaId)
         {
-            ExaminationResultsByBranch.Clear();
+            ValoresGrafico.Clear();
 
-            foreach (var yearInfo in StudentsPerYear)
+            LucroPorAnoCollection lucroPorAnos = AllProdutos.ObterLucroPorAno(categoriaId);
+
+            if (lucroPorAnos == null)
+                return;
+
+            foreach (LucroPorAno lucroPorAno in lucroPorAnos)
             {
-                var year = yearInfo.Year;
-                int total = yearInfo.Students;
-                var rates = StudentParticipationRateByBranch.FirstOrDefault(r => r.Year == year)?.Rates;
-                var scores = AverageSubjectScores.FirstOrDefault(s => s.Year == year)?.Scores;
-                if (rates == null || scores == null) continue;
-
-                var results = new Dictionary<string, ExaminationResult>();
-
-                // helper local function
-                void AddFor(string subjectName, double participationRatePercent, double avgScore)
+                ValoresGrafico.Add(new ValorGrafico
                 {
-                    // Attended by participation rate
-                    int attended = (int)Math.Round(total * participationRatePercent / 100.0, MidpointRounding.AwayFromZero);
-                    int notAttended = Math.Max(0, total - attended);
-
-                    // Map average score (0..100) to pass rate (0.4..0.98) to be realistic
-                    double passRate = Math.Clamp(0.4 + (avgScore / 100.0) * 0.58, 0.4, 0.98);
-                    int pass = (int)Math.Round(attended * passRate, MidpointRounding.AwayFromZero);
-                    int fail = Math.Max(0, attended - pass);
-
-                    results[subjectName] = new ExaminationResult { Pass = pass, Fail = fail, NotAttended = notAttended };
-                }
-
-                AddFor("PhysEd", rates.PhysEd, scores.PhysEd);
-                AddFor("English", rates.English, scores.English);
-                AddFor("Maths", rates.Maths, scores.Maths);
-                AddFor("Science", rates.Science, scores.Science);
-
-                ExaminationResultsByBranch.Add(new ExaminationResultsByBranch { Year = year, Results = results });
+                    ValorX = lucroPorAno.Ano.ToString(),
+                    ValorY = (int)lucroPorAno.Lucro
+                });
             }
         }
 
-        private void BuildProjections()
+        #endregion
+
+        #region Gráfico 3 - Distribuição de Vendas
+
+        private void BuildGraficoDistribuicaoVendas(int categoriaId, int paisId)
         {
-            if (this.AllProdutos == null)
-            {
-                return;
-            }
-
-            // refresh current year gender snapshot for bindings that read it
-            if (_genderTotalsByYear.TryGetValue(SelectedYear, out var yearGender))
-                StudentsByGradeAndGender = yearGender;
-
-            var avgScores = AverageSubjectScores.FirstOrDefault(s => s.Year == SelectedYear)?.Scores ?? new SubjectScores();
-
-            PhysEdScore = avgScores.PhysEd;
-
-            int categoriaId = 0;
-            if (SelectedCategoriaProduto != null)
-            {
-                categoriaId = this.SelectedCategoriaProduto.CategoriaID;
-            }
-
-            int paisID = 0;
-            if (SelectedPais != null)
-            {
-                paisID = this.SelectedPais.PaisID;
-            }
-
-            this.TotalVendas = this.AllProdutos.ObterTotalVendas(categoriaId, paisID);
-            this.Lucro = this.AllProdutos.ObterLucro(categoriaId);
-
-            LucroPorAnoCollection lucroPorAnos = this.AllProdutos.ObterLucroPorAno(categoriaId);
-
-
-            this.ValoresGrafico.Clear();
-
-            if (lucroPorAnos != null)
-            {
-                foreach (LucroPorAno lucroPorAno in lucroPorAnos)
-                {
-                    this.ValoresGrafico.Add(new ValorGrafico { ValorX = lucroPorAno.Ano.ToString(), ValorY = (int)lucroPorAno.Lucro });
-                }
-            }
-
-            System.Diagnostics.Debug.WriteLine("Dados do gráfico:");
-
-            foreach (var item in this.ValoresGrafico)
-            {
-                System.Diagnostics.Debug.WriteLine($"{item.ValorX} - {item.ValorY}");
-            }
-            //this.ValoresGrafico.Add(new ValorGrafico { ValorX = "2025A", ValorY = 900 });
-            //this.ValoresGrafico.Add(new ValorGrafico { ValorX = "2025B", ValorY = 400 });
-            //this.ValoresGrafico.Add(new ValorGrafico { ValorX = "2025C", ValorY = 600 });
-
-
-            //MathsScore = avgScores.Maths;
-            //ScienceScore = avgScores.Science;
-
-            ProdutosVendidos = this.AllProdutos.ObterProdutosVendidos(categoriaId, SelectedYear);
-            StockDisponivel = this.AllProdutos.ObterStockDisponivel(categoriaId);
-
-            // Dynamic grade distribution based on the selected subject/overall score
-            BuildEstadoProdutos(categoriaId, paisID);
-
-            // Gender participation pie (dynamic by year/subject)
-            // Distribuição de vendas
             GenderParticipationPie.Clear();
 
-            var produtosVendidos = this.AllProdutos
+            var produtosVendidos = AllProdutos
                 .Where(p => p.DataVenda.HasValue
                             && p.DataVenda.Value.Year == SelectedYear
-                            && (paisID == 0 || p.IsPaisId(paisID)))
+                            && (paisId == 0 || p.IsPaisId(paisId)))
                 .ToList();
 
             if (categoriaId > 0)
@@ -397,7 +531,8 @@ namespace StudentPerformanceDashboard
                     .Select(g => new LabelValue
                     {
                         Label = CategoriaProdutos
-                            .FirstOrDefault(c => c.CategoriaID == g.Key)?.Name ?? $"Categoria {g.Key}",
+                            .FirstOrDefault(c => c.CategoriaID == g.Key)?.Name
+                            ?? $"Categoria {g.Key}",
 
                         Value = (double)g.Sum(p => p.PrecoVenda)
                     })
@@ -409,16 +544,70 @@ namespace StudentPerformanceDashboard
                     GenderParticipationPie.Add(item);
                 }
             }
+        }
 
-            // Participation by subject (reuse Subject instances)
-            // Participação nas vendas por categoria
+        #endregion
+
+        #region Gráfico 4 - Evolução de Vendas
+
+        private void BuildGraficoEvolucaoVendas(int categoriaId, int paisId)
+        {
+            ValoresGraficoVendas.Clear();
+
+            IEnumerable<BusinessLayer.Produto> produtosVendidos = AllProdutos
+                .Where(p => p.DataVenda.HasValue);
+
+            if (categoriaId > 0)
+            {
+                produtosVendidos = produtosVendidos
+                    .Where(p => p.CategoriaId == categoriaId);
+            }
+
+            if (paisId > 0)
+            {
+                produtosVendidos = produtosVendidos
+                    .Where(p => p.IsPaisId(paisId));
+            }
+
+            string produtoSelecionado = SelectedProduto?.Name ?? "All";
+
+            if (!string.Equals(produtoSelecionado, "All", StringComparison.OrdinalIgnoreCase))
+            {
+                produtosVendidos = produtosVendidos
+                    .Where(p => string.Equals(p.NomeProduto, produtoSelecionado, StringComparison.OrdinalIgnoreCase));
+            }
+
+            var vendasPorAno = produtosVendidos
+                .GroupBy(p => p.DataVenda.Value.Year)
+                .Select(g => new
+                {
+                    Ano = g.Key,
+                    TotalVendas = g.Sum(p => p.PrecoVenda)
+                })
+                .OrderBy(x => x.Ano);
+
+            foreach (var item in vendasPorAno)
+            {
+                ValoresGraficoVendas.Add(new ValorGrafico
+                {
+                    ValorX = item.Ano.ToString(),
+                    ValorY = (int)item.TotalVendas
+                });
+            }
+        }
+        #endregion
+
+        #region Gráfico 5 - Participação nas Vendas
+
+        private void BuildGraficoParticipacaoNasVendas(int categoriaId, int paisId)
+        {
             ParticipationBySubject.Clear();
             TaxaVendasGauge.Clear();
 
-            var produtosVendidosAno = this.AllProdutos
+            var produtosVendidosAno = AllProdutos
                 .Where(p => p.DataVenda.HasValue
                             && p.DataVenda.Value.Year == SelectedYear
-                            && (paisID == 0 || p.IsPaisId(paisID)))
+                            && (paisId == 0 || p.IsPaisId(paisId)))
                 .ToList();
 
             double totalVendasAno = (double)produtosVendidosAno.Sum(p => p.PrecoVenda);
@@ -473,209 +662,31 @@ namespace StudentPerformanceDashboard
                 TaxaVendasNome = "Todas";
                 TaxaVendasValor = 100;
             }
-            // Exam results (reuse Subject instances)
-            // Produtos por categoria
-            // Produtos por estado
-            ExamResultsBySubject.Clear();
-
-            string produtoSelecionado = SelectedProduto?.Name ?? "All";
-
-            bool temProdutoSelecionado =
-                !string.Equals(produtoSelecionado, "All", StringComparison.OrdinalIgnoreCase);
-
-            IEnumerable<BusinessLayer.Produto> produtosBase = this.AllProdutos;
-
-            // Filtrar por categoria, se não estiver em Todas
-            if (categoriaId > 0)
-            {
-                produtosBase = produtosBase.Where(p => p.CategoriaId == categoriaId);
-            }
-
-            // Filtrar por produto, se não estiver em All
-            if (temProdutoSelecionado)
-            {
-                produtosBase = produtosBase.Where(p =>
-                    string.Equals(p.NomeProduto, produtoSelecionado, StringComparison.OrdinalIgnoreCase));
-            }
-
-            List<BusinessLayer.Produto> produtosFiltrados = produtosBase.ToList();
-
-            void AdicionarEstado(string nome, IEnumerable<BusinessLayer.Produto> produtos)
-            {
-                List<BusinessLayer.Produto> lista = produtos.ToList();
-
-                int vendidos = lista.Count(p =>
-                    p.DataVenda.HasValue &&
-                    p.DataVenda.Value.Year == SelectedYear &&
-                    (paisID == 0 || p.IsPaisId(paisID)));
-
-                int emStock = lista
-                    .Where(p => p.Ativo && !p.DataVenda.HasValue)
-                    .Sum(p => p.Quantidade);
-
-                int inativos = lista.Count(p => !p.Ativo);
-
-                ExamResultsBySubject.Add(new SubjectExamResult
-                {
-                    Subject = new Subject { Name = nome },
-                    Pass = vendidos,
-                    Fail = emStock,
-                    NotAttended = inativos
-                });
-            }
-
-            // Se escolher produto específico, mostra só esse produto
-            if (temProdutoSelecionado)
-            {
-                AdicionarEstado(produtoSelecionado, produtosFiltrados);
-            }
-            // Se escolher categoria específica, mostra produtos dessa categoria individualmente
-            else if (categoriaId > 0)
-            {
-                var produtosAgrupados = produtosFiltrados
-                    .GroupBy(p => p.NomeProduto)
-                    .OrderBy(g => g.Key);
-
-                foreach (var grupo in produtosAgrupados)
-                {
-                    AdicionarEstado(grupo.Key, grupo);
-                }
-            }
-            // Se estiver em Todas, mostra por categoria
-            else
-            {
-                var categoriasAgrupadas = produtosFiltrados
-                    .GroupBy(p => p.CategoriaId)
-                    .OrderBy(g => g.Key);
-
-                foreach (var grupo in categoriasAgrupadas)
-                {
-                    string nomeCategoria = CategoriaProdutos
-                        .FirstOrDefault(c => c.CategoriaID == grupo.Key)?.Name
-                        ?? $"Categoria {grupo.Key}";
-
-                    AdicionarEstado(nomeCategoria, grupo);
-                }
-            }
-
-            // Scores over years (fallback to Maths when "All")
-            SubjectScoresOverYears.Clear();
-            var subjectForTrend = (SelectedSubject is null || IsAll(SelectedSubject)) ? "Maths" : SelectedSubject.Name;
-            foreach (var score in AverageSubjectScores.OrderBy(s => s.Year))
-            {
-                double val = GetScoreBySubject(score.Scores, subjectForTrend);
-                SubjectScoresOverYears.Add(new LabelValue { Label = score.Year.ToString(), Value = val });
-            }
-
-            // Semester trend - make it a slight downward trend with mild variation
-            SemesterGradeTrend.Clear();
-            double baseScore = GetScoreBySubject(avgScores, subjectForTrend);
-            for (int i = 1; i <= 6; i++)
-            {
-                double decay = i * Math.Max(0.6, baseScore * 0.012); // scales with base score but trends down
-                double variation = Math.Sin(i) * 0.8;                 // small up/down wiggle
-                double value = Math.Max(0, baseScore - decay + variation);
-                SemesterGradeTrend.Add(new LabelValue { Label = i.ToString(), Value = value });
-            }
         }
 
-        private static bool IsAll(Subject subject) =>
-            subject != null && string.Equals(subject.Name, "All", StringComparison.OrdinalIgnoreCase);
-
-        private static double GetRateBySubject(BranchRates rates, string subject) => subject switch
+        private void AtualizarGraficoParticipacaoFiltrado()
         {
-            "PhysEd" => rates.PhysEd,
-            "Arts" => rates.Arts,
-            "English" => rates.English,
-            "Maths" => rates.Maths,
-            "Science" => rates.Science,
-            _ => rates.Maths
-        };
+            FilteredParticipationRates.Clear();
 
-        private double GetScoreBySubject(SubjectScores scores, string subject) => subject switch
-        {
-            "PhysEd" => scores.PhysEd,
-            "English" => scores.English,
-            "Maths" => scores.Maths,
-            "Science" => scores.Science,
-            _ => scores.Maths
-        };
-
-        private void InitializeCollections()
-        {
-            Years.Clear();
-
-            var anosComVendas = AllProdutos
-                .Where(p => p.DataVenda.HasValue)
-                .Select(p => p.DataVenda.Value.Year)
-                .Distinct()
-                .OrderByDescending(y => y)
-                .ToList();
-
-            foreach (var year in anosComVendas)
+            foreach (var item in ParticipationBySubject)
             {
-                Years.Add(year);
+                FilteredParticipationRates.Add(item);
             }
 
-            if (Years.Count > 0)
-            {
-                SelectedYear = Years[0];
-            }
+            SelectedParticipationRate = FilteredParticipationRates.Count == 1
+                ? FilteredParticipationRates[0]
+                : null;
         }
 
-        // Build grade distribution from the current average score using a normal model.
-        // This ties grade buckets (A/B/C/D/F) to the mean score so it reacts to year/subject changes.
-        private void BuildGradeDistribution(double average)
-        {
-            // Clamp
-            average = Math.Max(0, Math.Min(100, average));
+        #endregion
 
-            // Assume scores follow N(average, sd^2). Use sd = 12 for reasonable spread.
-            const double sd = 12.0;
-            static double Phi(double x)
-            {
-                // Standard normal CDF approximation (error function based)
-                // Abramowitz-Stegun approximation
-                double t = 1.0 / (1.0 + 0.2316419 * Math.Abs(x));
-                double d = Math.Exp(-x * x / 2.0) / Math.Sqrt(2.0 * Math.PI);
-                double p = 1 - d * (0.319381530 * t - 0.356563782 * Math.Pow(t, 2) + 1.781477937 * Math.Pow(t, 3) - 1.821255978 * Math.Pow(t, 4) + 1.330274429 * Math.Pow(t, 5));
-                return x >= 0 ? p : 1 - p;
-            }
+        #region Gráfico 6 - Estado dos Produtos
 
-            double Cdf(double score) => Phi((score - average) / sd);
-
-            // Bucket thresholds
-            double pBelow60 = Cdf(60);
-            double pBelow70 = Cdf(70);
-            double pBelow80 = Cdf(80);
-            double pBelow90 = Cdf(90);
-
-            double pF = pBelow60;
-            double pD = Math.Max(0, pBelow70 - pBelow60);
-            double pC = Math.Max(0, pBelow80 - pBelow70);
-            double pB = Math.Max(0, pBelow90 - pBelow80);
-            double pA = Math.Max(0, 1 - pBelow90);
-
-            // Convert to percentages and normalize rounding to 100
-            int iA = (int)Math.Round(pA * 100);
-            int iB = (int)Math.Round(pB * 100);
-            int iC = (int)Math.Round(pC * 100);
-            int iD = (int)Math.Round(pD * 100);
-            int iF = 100 - (iA + iB + iC + iD);
-
-            GradeDistributions.Clear();
-            GradeDistributions.Add(new GradeDistribution { Grade = "A", Percentage = iA, Color = "#00C851" });
-            GradeDistributions.Add(new GradeDistribution { Grade = "B", Percentage = iB, Color = "#2196F3" });
-            GradeDistributions.Add(new GradeDistribution { Grade = "C", Percentage = iC, Color = "#FF9800" });
-            GradeDistributions.Add(new GradeDistribution { Grade = "D", Percentage = iD, Color = "#F44336" });
-            GradeDistributions.Add(new GradeDistribution { Grade = "F", Percentage = iF, Color = "#9C27B0" });
-        }
-
-        private void BuildEstadoProdutos(int categoriaId, int paisId)
+        private void BuildGraficoEstadoDosProdutos(int categoriaId, int paisId)
         {
             GradeDistributions.Clear();
 
-            var produtosCategoria = this.AllProdutos
+            var produtosCategoria = AllProdutos
                 .Where(p => categoriaId == 0 || p.CategoriaId == categoriaId)
                 .ToList();
 
@@ -724,6 +735,152 @@ namespace StudentPerformanceDashboard
                 Percentage = percentInativos,
                 Color = "#F44336"
             });
+        }
+
+        #endregion
+
+        #region Métodos auxiliares
+
+        private int ObterCategoriaSelecionadaId()
+        {
+            return SelectedCategoriaProduto?.CategoriaID ?? 0;
+        }
+
+        private int ObterPaisSelecionadoId()
+        {
+            return SelectedPais?.PaisID ?? 0;
+        }
+
+        private static bool IsAll(Subject subject)
+        {
+            return subject != null &&
+                   string.Equals(subject.Name, "All", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static double GetRateBySubject(BranchRates rates, string subject) => subject switch
+        {
+            "PhysEd" => rates.PhysEd,
+            "Arts" => rates.Arts,
+            "English" => rates.English,
+            "Maths" => rates.Maths,
+            "Science" => rates.Science,
+            _ => rates.Maths
+        };
+
+        private double GetScoreBySubject(SubjectScores scores, string subject) => subject switch
+        {
+            "PhysEd" => scores.PhysEd,
+            "English" => scores.English,
+            "Maths" => scores.Maths,
+            "Science" => scores.Science,
+            _ => scores.Maths
+        };
+
+        #endregion
+
+        #region Código antigo do template
+
+        private void AtualizarDadosAntigosDoTemplate()
+        {
+            var avgScores = AverageSubjectScores
+                .FirstOrDefault(s => s.Year == SelectedYear)?.Scores
+                ?? new SubjectScores();
+
+            PhysEdScore = avgScores.PhysEd;
+
+            if (_genderTotalsByYear.TryGetValue(SelectedYear, out var yearGender))
+            {
+                StudentsByGradeAndGender = yearGender;
+            }
+
+            SubjectScoresOverYears.Clear();
+
+            var subjectForTrend = SelectedSubject is null || IsAll(SelectedSubject)
+                ? "Maths"
+                : SelectedSubject.Name;
+
+            foreach (var score in AverageSubjectScores.OrderBy(s => s.Year))
+            {
+                double val = GetScoreBySubject(score.Scores, subjectForTrend);
+
+                SubjectScoresOverYears.Add(new LabelValue
+                {
+                    Label = score.Year.ToString(),
+                    Value = val
+                });
+            }
+
+            SemesterGradeTrend.Clear();
+
+            double baseScore = GetScoreBySubject(avgScores, subjectForTrend);
+
+            for (int i = 1; i <= 6; i++)
+            {
+                double decay = i * Math.Max(0.6, baseScore * 0.012);
+                double variation = Math.Sin(i) * 0.8;
+                double value = Math.Max(0, baseScore - decay + variation);
+
+                SemesterGradeTrend.Add(new LabelValue
+                {
+                    Label = i.ToString(),
+                    Value = value
+                });
+            }
+
+            FilteredSemesterTrend.Clear();
+
+            foreach (var item in SemesterGradeTrend)
+            {
+                item.Value = Math.Round(item.Value, 1);
+                FilteredSemesterTrend.Add(item);
+            }
+        }
+
+        private void BuildGradeDistribution(double average)
+        {
+            average = Math.Max(0, Math.Min(100, average));
+
+            const double sd = 12.0;
+
+            static double Phi(double x)
+            {
+                double t = 1.0 / (1.0 + 0.2316419 * Math.Abs(x));
+                double d = Math.Exp(-x * x / 2.0) / Math.Sqrt(2.0 * Math.PI);
+
+                double p = 1 - d * (
+                    0.319381530 * t
+                    - 0.356563782 * Math.Pow(t, 2)
+                    + 1.781477937 * Math.Pow(t, 3)
+                    - 1.821255978 * Math.Pow(t, 4)
+                    + 1.330274429 * Math.Pow(t, 5));
+
+                return x >= 0 ? p : 1 - p;
+            }
+
+            double Cdf(double score) => Phi((score - average) / sd);
+
+            double pBelow60 = Cdf(60);
+            double pBelow70 = Cdf(70);
+            double pBelow80 = Cdf(80);
+            double pBelow90 = Cdf(90);
+
+            double pD = Math.Max(0, pBelow70 - pBelow60);
+            double pC = Math.Max(0, pBelow80 - pBelow70);
+            double pB = Math.Max(0, pBelow90 - pBelow80);
+            double pA = Math.Max(0, 1 - pBelow90);
+
+            int iA = (int)Math.Round(pA * 100);
+            int iB = (int)Math.Round(pB * 100);
+            int iC = (int)Math.Round(pC * 100);
+            int iD = (int)Math.Round(pD * 100);
+            int iF = 100 - (iA + iB + iC + iD);
+
+            GradeDistributions.Clear();
+            GradeDistributions.Add(new GradeDistribution { Grade = "A", Percentage = iA, Color = "#00C851" });
+            GradeDistributions.Add(new GradeDistribution { Grade = "B", Percentage = iB, Color = "#2196F3" });
+            GradeDistributions.Add(new GradeDistribution { Grade = "C", Percentage = iC, Color = "#FF9800" });
+            GradeDistributions.Add(new GradeDistribution { Grade = "D", Percentage = iD, Color = "#F44336" });
+            GradeDistributions.Add(new GradeDistribution { Grade = "F", Percentage = iF, Color = "#9C27B0" });
         }
 
         #endregion

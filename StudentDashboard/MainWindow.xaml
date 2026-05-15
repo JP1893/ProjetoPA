@@ -24,7 +24,9 @@
     <ScrollViewer>
         <Grid RowDefinitions="1*,1*,3.5*,4.5*" Background="#290D5C">
 
-            <!-- Header -->
+            <!-- ========================================================= -->
+            <!-- REGION: HEADER / FILTROS -->
+            <!-- ========================================================= -->
 
             <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Margin="5">
 
@@ -147,7 +149,16 @@
                      VerticalAlignment="Center"/>
             </Grid>
 
-            <!-- Score tiles -->
+            <!-- ========================================================= -->
+            <!-- END REGION: HEADER / FILTROS -->
+            <!-- ========================================================= -->
+
+         
+
+            <!-- ========================================================= -->
+            <!-- REGION: KPI CARDS -->
+            <!-- Total, Lucro, Vendidos, Stock -->
+            <!-- ========================================================= -->
             <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*">
 
                 <Border Grid.Column="0" Style="{StaticResource border}">
@@ -178,9 +189,19 @@
                     </StackPanel>
                 </Border>
             </Grid>
-
+            <!-- ========================================================= -->
+            <!-- END REGION: KPI CARDS -->
+            <!-- ========================================================= -->
+            
+            
+            <!--Produtos Por Estado, Lucro por Ano e Categoria, Distribuição de Vendas-->
+            <!-- ========================================================= -->
+            <!-- REGION: GRÁFICOS - LINHA 1 -->
+            <!-- Produtos por Estado | Lucro por Ano | Distribuição de Vendas -->
+            <!-- ========================================================= -->
             <Grid Grid.Row="2" ColumnDefinitions="4*,3.5*,2.5*">
-
+                
+                <!-- GRÁFICO 1: Produtos por Estado -->
                 <Border Grid.Column="0" Style="{StaticResource border}">
                     <StackPanel>
                         <TextBlock Text="Produtos por Estado" Style="{StaticResource titleStyle}"/>
@@ -231,6 +252,7 @@
                     </StackPanel>
                 </Border>
 
+                <!-- GRÁFICO 2: Lucro por Ano e Categoria -->
                 <Border Grid.Column="1" Style="{StaticResource border}">
                     <StackPanel>
                         <TextBlock Text="Lucro por Ano e Categoria" Style="{StaticResource titleStyle}"/>
@@ -272,6 +294,7 @@
                     </StackPanel>
                 </Border>
 
+                <!-- GRÁFICO 3: Distribuição de Vendas -->
                 <Border Grid.Column="2" Style="{StaticResource border}">
                     <StackPanel>
                         <TextBlock Text="Distribuição de Vendas" Style="{StaticResource titleStyle}"/>
@@ -308,8 +331,13 @@
 
             </Grid>
 
+            <!-- ========================================================= -->
+            <!-- REGION: GRÁFICOS - LINHA 2 -->
+            <!-- Evolução de Vendas | Participação nas Vendas | Estado dos Produtos -->
+            <!-- ========================================================= -->
             <Grid Grid.Row="3" ColumnDefinitions="4*,4*,2*">
 
+                <!-- GRÁFICO 4: Evolução de Vendas -->
                 <Border Grid.Column="0" Style="{StaticResource border}">
                     <StackPanel>
                         <TextBlock Text="Evolução de Vendas" Style="{StaticResource titleStyle}"/>
@@ -329,8 +357,12 @@
                                 </chart:NumericalAxis>
                             </chart:SfChart.SecondaryAxis>
 
-                            <chart:SplineSeries ItemsSource="{Binding ValoresGrafico}" EnableAnimation="True" XBindingPath="ValorX" YBindingPath="ValorY" ShowTooltip="True"
-                                                Interior="#F73039">
+                            <chart:SplineSeries ItemsSource="{Binding ValoresGraficoVendas}"
+                    EnableAnimation="True"
+                    XBindingPath="ValorX"
+                    YBindingPath="ValorY"
+                    ShowTooltip="True"
+                    Interior="#F73039">
                                 <chart:SplineSeries.AdornmentsInfo>
                                     <chart:ChartAdornmentInfo ShowMarker="True" SymbolInterior="#FFFFF8" SymbolStroke="#F73039" BorderThickness="1"
                                                               Symbol="Ellipse" SymbolHeight="8" SymbolWidth="8"/>
@@ -341,10 +373,12 @@
                     </StackPanel>
                 </Border>
 
+                <!-- GRÁFICO 5: Participação nas Vendas (%) -->
                 <Border Grid.Column="1" Style="{StaticResource border}">
                     <StackPanel>
                         <TextBlock Text="Participação nas Vendas (%)" Style="{StaticResource titleStyle}"/>
 
+                        
                         <Grid>
                             <chart:SfChart Visibility="{Binding FilteredParticipationRates.Count,
                                                   Converter={StaticResource MultipleItemsVisibleConverter}}">
@@ -418,6 +452,7 @@
                     </StackPanel>
                 </Border>
 
+                <!-- GRÁFICO 6: Estado dos Produtos -->
                 <Border Grid.Column="2" Style="{StaticResource border}">
                     <Grid RowDefinitions="1.5*, 8.5*" ColumnDefinitions="Auto,Auto">
                         <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Estado dos Produtos" Style="{StaticResource titleStyle}"/>
