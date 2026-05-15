@@ -33,6 +33,37 @@ namespace StudentPerformanceDashboard
         public ObservableCollection<Produto> Produtos { get; } = new();
         public ObservableCollection<Cliente> Clientes { get; } = new();
 
+        public ObservableCollection<LabelValue> TaxaVendasGauge { get; set; }
+    = new ObservableCollection<LabelValue>();
+
+        private string _taxaVendasNome;
+        public string TaxaVendasNome
+        {
+            get => _taxaVendasNome;
+            set
+            {
+                if (_taxaVendasNome != value)
+                {
+                    _taxaVendasNome = value;
+                    OnPropertyChanged(nameof(TaxaVendasNome));
+                }
+            }
+        }
+
+        private double _taxaVendasValor;
+        public double TaxaVendasValor
+        {
+            get => _taxaVendasValor;
+            set
+            {
+                if (_taxaVendasValor != value)
+                {
+                    _taxaVendasValor = value;
+                    OnPropertyChanged(nameof(TaxaVendasValor));
+                }
+            }
+        }
+
         public ObservableCollection<int> Years { get; } = new();
         public ObservableCollection<LabelValue> SubjectScoresOverYears { get; } = new();
         public ObservableCollection<LabelValue> SemesterGradeTrend { get; } = new();

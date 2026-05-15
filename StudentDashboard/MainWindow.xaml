@@ -343,7 +343,7 @@
 
                 <Border Grid.Column="1" Style="{StaticResource border}">
                     <StackPanel>
-                        <TextBlock Text="Participation Rate by Subject (%)" Style="{StaticResource titleStyle}"/>
+                        <TextBlock Text="Participação nas Vendas (%)" Style="{StaticResource titleStyle}"/>
 
                         <Grid>
                             <chart:SfChart Visibility="{Binding FilteredParticipationRates.Count,
@@ -380,18 +380,25 @@
                             <chart:SfChart VerticalAlignment="Center" Margin="5" Visibility="{Binding FilteredParticipationRates.Count,
                                    Converter={StaticResource OneItemVisibleConverter}}">
 
-                                <chart:DoughnutSeries ItemsSource="{Binding FilteredParticipationRates}" 
-                                                      XBindingPath="Subject.Name" YBindingPath="Rate" 
+                                <chart:DoughnutSeries ItemsSource="{Binding TaxaVendasGauge}" 
+                      XBindingPath="Label" 
+                      YBindingPath="Value" 
                                                       DoughnutCoefficient="0.7"
                                                       EnableAnimation="True" EndAngle="420" StartAngle="120" DoughnutSize="1"
                                                       Palette="Custom">
                                     <chart:DoughnutSeries.CenterView>
                                         <ContentControl>
                                             <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center">
-                                                <TextBlock Text="{Binding FilteredParticipationRates[0].Subject.Name}"
-                                                        FontSize="24" HorizontalAlignment="Center" Foreground="White"/>
-                                                <TextBlock Text="{Binding FilteredParticipationRates[0].Rate}" FontSize="34"
-                                                        FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
+                                                <TextBlock Text="{Binding TaxaVendasNome}"
+           FontSize="24"
+           HorizontalAlignment="Center"
+           Foreground="White"/>
+
+                                                <TextBlock Text="{Binding TaxaVendasValor, StringFormat={}{0}%}"
+           FontSize="34"
+           FontWeight="Bold"
+           HorizontalAlignment="Center"
+           Foreground="White"/>
                                             </StackPanel>
                                         </ContentControl>
                                     </chart:DoughnutSeries.CenterView>
@@ -413,7 +420,7 @@
 
                 <Border Grid.Column="2" Style="{StaticResource border}">
                     <Grid RowDefinitions="1.5*, 8.5*" ColumnDefinitions="Auto,Auto">
-                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Grades Distribution" Style="{StaticResource titleStyle}"/>
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Distribuição da Margem" Style="{StaticResource titleStyle}"/>
 
                         <ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding GradeDistributions}">
 
@@ -452,8 +459,8 @@
                         </ItemsControl>
 
                         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Margin="30,30,0,0">
-                            <TextBlock Text="Every grade tells" FontStyle="Italic" Foreground="#FAEFF6" FontWeight="SemiBold" FontSize="17"/>
-                            <TextBlock Text="a story of effort..!" FontStyle="Italic" Foreground="#FAEFF6" FontWeight="SemiBold" FontSize="17"/>
+                            <TextBlock Text="Cada venda mostra" FontStyle="Italic" Foreground="#FAEFF6" FontWeight="SemiBold" FontSize="17"/>
+                            <TextBlock Text="a sua rentabilidade!" FontStyle="Italic" Foreground="#FAEFF6" FontWeight="SemiBold" FontSize="17"/>
                             <Path  Data="{StaticResource PathData2}" Stroke="#FAEFF6" StrokeThickness="0.6" Margin="0,20,0,0">
                                 <Path.RenderTransform>
                                     <ScaleTransform ScaleX="4.5" ScaleY="5"/>

@@ -228,25 +228,10 @@ namespace StudentPerformanceDashboard
 
             // Participation (apply filter correctly and avoid unnecessary allocations)
             FilteredParticipationRates.Clear();
-            if (SelectedSubject is not null && !IsAll(SelectedSubject))
+
+            foreach (var item in ParticipationBySubject)
             {
-                var targetName = SelectedSubject.Name;
-                for (int i = 0; i < ParticipationBySubject.Count; i++)
-                {
-                    var item = ParticipationBySubject[i];
-                    if (item.Subject != null && string.Equals(item.Subject.Name, targetName, StringComparison.OrdinalIgnoreCase))
-                    {
-                        FilteredParticipationRates.Add(item);
-                        var newitem = new SubjectRate() { Rate = 100 - item.Rate };
-                        FilteredParticipationRates.Add(newitem);
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                for (int i = 0; i < ParticipationBySubject.Count; i++)
-                    FilteredParticipationRates.Add(ParticipationBySubject[i]);
+                FilteredParticipationRates.Add(item);
             }
 
             // Semester trend (no filter currently; clone to filtered)
@@ -372,10 +357,7 @@ namespace StudentPerformanceDashboard
             StockDisponivel = this.AllProdutos.ObterStockDisponivel(categoriaId);
 
             // Dynamic grade distribution based on the selected subject/overall score
-            double scoreForGrades = (SelectedSubject is null || IsAll(SelectedSubject))
-                ? (avgScores.PhysEd + avgScores.English + avgScores.Maths + avgScores.Science) / 5.0
-                : GetScoreBySubject(avgScores, SelectedSubject.Name);
-            BuildGradeDistribution(scoreForGrades);
+            BuildDistribuicaoMargem(categoriaId, paisID);
 
             // Gender participation pie (dynamic by year/subject)
             // Distribuição de vendas
@@ -429,27 +411,83 @@ namespace StudentPerformanceDashboard
             }
 
             // Participation by subject (reuse Subject instances)
+            // Participação nas vendas por categoria
             ParticipationBySubject.Clear();
-            var rates = StudentParticipationRateByBranch.FirstOrDefault(r => r.Year == SelectedYear)?.Rates ?? new BranchRates();
-            ParticipationBySubject.Add(new SubjectRate { Subject = _subjectsByName["English"], Rate = rates.English });
-            ParticipationBySubject.Add(new SubjectRate { Subject = _subjectsByName["Maths"], Rate = rates.Maths });
-            ParticipationBySubject.Add(new SubjectRate { Subject = _subjectsByName["PhysEd"], Rate = rates.PhysEd });
-            ParticipationBySubject.Add(new SubjectRate { Subject = _subjectsByName["Science"], Rate = rates.Science });
+            TaxaVendasGauge.Clear();
 
-            // Exam results (reuse Subject instances)
-            // Produtos por categoria
-            ExamResultsBySubject.Clear();
+            var produtosVendidosAno = this.AllProdutos
+                .Where(p => p.DataVenda.HasValue
+                            && p.DataVenda.Value.Year == SelectedYear
+                            && (paisID == 0 || p.IsPaisId(paisID)))
+                .ToList();
+
+            double totalVendasAno = (double)produtosVendidosAno.Sum(p => p.PrecoVenda);
 
             IEnumerable<StudentDashBoard.Models.CategoriaProduto> categoriasParaMostrar =
                 CategoriaProdutos.Where(c => c.CategoriaID > 0);
 
-            if (SelectedCategoriaProduto != null && SelectedCategoriaProduto.CategoriaID > 0)
+            if (categoriaId > 0)
             {
                 categoriasParaMostrar = categoriasParaMostrar
-                    .Where(c => c.CategoriaID == SelectedCategoriaProduto.CategoriaID);
+                    .Where(c => c.CategoriaID == categoriaId);
             }
 
             foreach (var categoria in categoriasParaMostrar)
+            {
+                double vendasCategoria = (double)produtosVendidosAno
+                    .Where(p => p.CategoriaId == categoria.CategoriaID)
+                    .Sum(p => p.PrecoVenda);
+
+                double percentagem = totalVendasAno > 0
+                    ? Math.Round((vendasCategoria / totalVendasAno) * 100, 1)
+                    : 0;
+
+                ParticipationBySubject.Add(new SubjectRate
+                {
+                    Subject = new Subject { Name = categoria.Name },
+                    Rate = percentagem
+                });
+            }
+
+            if (categoriaId > 0 && ParticipationBySubject.Count > 0)
+            {
+                var item = ParticipationBySubject[0];
+
+                TaxaVendasNome = item.Subject.Name;
+                TaxaVendasValor = item.Rate;
+
+                TaxaVendasGauge.Add(new LabelValue
+                {
+                    Label = item.Subject.Name,
+                    Value = item.Rate
+                });
+
+                TaxaVendasGauge.Add(new LabelValue
+                {
+                    Label = "Restante",
+                    Value = Math.Max(0, 100 - item.Rate)
+                });
+            }
+            else
+            {
+                TaxaVendasNome = "Todas";
+                TaxaVendasValor = 100;
+            }
+            // Exam results (reuse Subject instances)
+            // Produtos por categoria
+            // Produtos por categoria
+            ExamResultsBySubject.Clear();
+
+            IEnumerable<StudentDashBoard.Models.CategoriaProduto> categoriasParaGraficoProdutos =
+                CategoriaProdutos.Where(c => c.CategoriaID > 0);
+
+            if (SelectedCategoriaProduto != null && SelectedCategoriaProduto.CategoriaID > 0)
+            {
+                categoriasParaGraficoProdutos = categoriasParaGraficoProdutos
+                    .Where(c => c.CategoriaID == SelectedCategoriaProduto.CategoriaID);
+            }
+
+            foreach (var categoria in categoriasParaGraficoProdutos)
             {
                 var produtosDaCategoria = this.AllProdutos
                     .Where(p => p.CategoriaId == categoria.CategoriaID)
@@ -585,6 +623,71 @@ namespace StudentPerformanceDashboard
             GradeDistributions.Add(new GradeDistribution { Grade = "C", Percentage = iC, Color = "#FF9800" });
             GradeDistributions.Add(new GradeDistribution { Grade = "D", Percentage = iD, Color = "#F44336" });
             GradeDistributions.Add(new GradeDistribution { Grade = "F", Percentage = iF, Color = "#9C27B0" });
+        }
+
+        private void BuildDistribuicaoMargem(int categoriaId, int paisId)
+        {
+            GradeDistributions.Clear();
+
+            var produtosVendidos = this.AllProdutos
+                .Where(p => p.DataVenda.HasValue
+                            && p.DataVenda.Value.Year == SelectedYear
+                            && (categoriaId == 0 || p.CategoriaId == categoriaId)
+                            && (paisId == 0 || p.IsPaisId(paisId)))
+                .ToList();
+
+            if (produtosVendidos.Count == 0)
+            {
+                GradeDistributions.Add(new GradeDistribution { Grade = ">=40", Percentage = 0, Color = "#00C851" });
+                GradeDistributions.Add(new GradeDistribution { Grade = "25-39", Percentage = 0, Color = "#2196F3" });
+                GradeDistributions.Add(new GradeDistribution { Grade = "10-24", Percentage = 0, Color = "#FF9800" });
+                GradeDistributions.Add(new GradeDistribution { Grade = "0-9", Percentage = 0, Color = "#F44336" });
+                GradeDistributions.Add(new GradeDistribution { Grade = "<0", Percentage = 0, Color = "#9C27B0" });
+                return;
+            }
+
+            double CalcularMargemPercentual(BusinessLayer.Produto p)
+            {
+                if (p.PrecoVenda <= 0)
+                    return 0;
+
+                return (double)((p.PrecoVenda - p.PrecoCusto) / p.PrecoVenda) * 100.0;
+            }
+
+            int excelente = produtosVendidos.Count(p => CalcularMargemPercentual(p) >= 40);
+            int boa = produtosVendidos.Count(p =>
+            {
+                double margem = CalcularMargemPercentual(p);
+                return margem >= 25 && margem < 40;
+            });
+
+            int media = produtosVendidos.Count(p =>
+            {
+                double margem = CalcularMargemPercentual(p);
+                return margem >= 10 && margem < 25;
+            });
+
+            int baixa = produtosVendidos.Count(p =>
+            {
+                double margem = CalcularMargemPercentual(p);
+                return margem >= 0 && margem < 10;
+            });
+
+            int prejuizo = produtosVendidos.Count(p => CalcularMargemPercentual(p) < 0);
+
+            int total = produtosVendidos.Count;
+
+            int pExcelente = (int)Math.Round((double)excelente * 100 / total);
+            int pBoa = (int)Math.Round((double)boa * 100 / total);
+            int pMedia = (int)Math.Round((double)media * 100 / total);
+            int pBaixa = (int)Math.Round((double)baixa * 100 / total);
+            int pPrejuizo = 100 - (pExcelente + pBoa + pMedia + pBaixa);
+
+            GradeDistributions.Add(new GradeDistribution { Grade = ">=40", Percentage = pExcelente, Color = "#00C851" });
+            GradeDistributions.Add(new GradeDistribution { Grade = "25-39", Percentage = pBoa, Color = "#2196F3" });
+            GradeDistributions.Add(new GradeDistribution { Grade = "10-24", Percentage = pMedia, Color = "#FF9800" });
+            GradeDistributions.Add(new GradeDistribution { Grade = "0-9", Percentage = pBaixa, Color = "#F44336" });
+            GradeDistributions.Add(new GradeDistribution { Grade = "<0", Percentage = pPrejuizo, Color = "#9C27B0" });
         }
 
         #endregion
